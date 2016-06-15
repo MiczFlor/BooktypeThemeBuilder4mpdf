@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta content="booktype:booktype-editor-styles-tests:%ThemeNameFolderVal%" name="dtb:uid"/>
+    <meta content="0" name="dtb:depth"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>%ThemeNameHumanVal% - a new Booktype theme</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="imprint">
+      <navLabel>
+        <text>Title</text>
+      </navLabel>
+      <content src="Text/title_page.xhtml"/>
+    </navPoint>
+    <navPoint id="chapter_0">
+      <navLabel>
+        <text>About this book</text>
+      </navLabel>
+      <content src="Text/about-this-book.xhtml"/>
+    </navPoint>
+    <navPoint id="chapter_1">
+      <navLabel>
+        <text>Font styles and paragraph settings</text>
+      </navLabel>
+      <content src="Text/font-styles-and-paragraph-settings.xhtml"/>
+    </navPoint>
+    <navPoint id="chapter_2">
+      <navLabel>
+        <text>Nice tables to look at</text>
+      </navLabel>
+      <content src="Text/nice-tables-to-look-at.xhtml"/>
+    </navPoint>
+    <navPoint id="chapter_3">
+      <navLabel>
+        <text>Images are too be seen</text>
+      </navLabel>
+      <content src="Text/images-are-too-be-seen.xhtml"/>
+    </navPoint>
+    <navPoint id="chapter_4">
+      <navLabel>
+        <text>Unicode sample text</text>
+      </navLabel>
+      <content src="Text/unicode-sample-text.xhtml"/>
+    </navPoint>
+  </navMap>
+</ncx>

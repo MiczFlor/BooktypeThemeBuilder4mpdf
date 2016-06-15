@@ -1,0 +1,17 @@
+    <item href="Text/title_page.xhtml" id="imprint" media-type="application/xhtml+xml"/>
+    <item href="Styles/theme.css" id="theme.css" media-type="text/css"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="nav"/>
+    <itemref idref="imprint"/>
+    <itemref idref="chapter_0"/>
+    <itemref idref="chapter_1"/>
+    <itemref idref="chapter_2"/>
+    <itemref idref="chapter_3"/>
+    <itemref idref="chapter_4"/>
+  </spine>
+  <guide>
+    <reference href="Text/nav.xhtml" title="toc" type="toc"/>
+    <reference href="Text/about-this-book.xhtml" title="About this book" type="text"/>
+  </guide>
+</package>

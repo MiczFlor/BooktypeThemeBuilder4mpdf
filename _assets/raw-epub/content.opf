@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package unique-identifier="id" version="3.0" xmlns="http://www.idpf.org/2007/opf" prefix="rendition: http://www.idpf.org/vocab/rendition/# bkterms: http://booktype.org/">
+  <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <meta property="dcterms:modified">2016-06-04T18:47:54Z</meta>
+    <meta content="Ebook-lib 0.15.0" name="generator"/>
+    <meta property="title-type" refines="#main_f87bf736">main</meta>
+    <meta property="title-type" refines="#subtitle_0985cc1a">subtitle</meta>
+    <meta property="title-type" refines="#short_f2df6d56">short</meta>
+    <meta property="role" refines="#author" scheme="marc:relators">aut</meta>
+    <meta property="dcterms:dateCopyrighted">2012</meta>
+    <meta property="dcterms:rightsHolder">Micz Flor</meta>
+    <meta property="dcterms:issued">2016</meta>
+    <dc:publisher>Booktype Publishing</dc:publisher>
+    <dc:rights>Public Domain</dc:rights>
+    <dc:language>en</dc:language>
+    <dc:creator id="author">Micz Flor</dc:creator>
+    <dc:title id="main_f87bf736">All things the Booktype editor can do</dc:title>
+    <dc:title id="subtitle_0985cc1a">This test document allows to check themes quickly.</dc:title>
+    <dc:title id="short_f2df6d56">Booktype editor features</dc:title>
+    <dc:identifier id="id">booktype:booktype-editor-styles-tests</dc:identifier>
+  </metadata>
+  <manifest>
+    <item href="Text/about-this-book.xhtml" id="chapter_0" media-type="application/xhtml+xml"/>
+    <item href="Text/font-styles-and-paragraph-settings.xhtml" id="chapter_1" media-type="application/xhtml+xml"/>
+    <item href="Text/nice-tables-to-look-at.xhtml" id="chapter_2" media-type="application/xhtml+xml"/>
+    <item href="Text/images-are-too-be-seen.xhtml" id="chapter_3" media-type="application/xhtml+xml"/>
+    <item href="Text/unicode-sample-text.xhtml" id="chapter_4" media-type="application/xhtml+xml"/>
+    <item href="Images/berlin-prag.png" id="image_0" media-type="image/png"/>
+    <item href="Images/bt-editor-01.png" id="image_1" media-type="image/png"/>
+    <item href="Images/pexels-photo-golf.jpeg" id="image_2" media-type="image/jpeg"/>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+    <item href="Text/nav.xhtml" id="nav" media-type="application/xhtml+xml" properties="nav"/>
+    <item href="Fonts/Roboto-Bold.ttf" id="static_0" media-type="application/octet-stream"/>
+    <item href="Fonts/Roboto-Italic.ttf" id="static_1" media-type="application/octet-stream"/>
+    <item href="Fonts/Roboto-BoldItalic.ttf" id="static_2" media-type="application/octet-stream"/>
+    <item href="Fonts/Roboto-Regular.ttf" id="static_3" media-type="application/octet-stream"/>
+    <item href="Fonts/Roboto-Medium.ttf" id="static_4" media-type="application/octet-stream"/>
+    <item href="Fonts/Roboto-MediumItalic.ttf" id="static_5" media-type="application/octet-stream"/>
+    <item href="Text/title_page.xhtml" id="imprint" media-type="application/xhtml+xml"/>
+    <item href="Styles/theme.css" id="theme.css" media-type="text/css"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="nav"/>
+    <itemref idref="imprint"/>
+    <itemref idref="chapter_0"/>
+    <itemref idref="chapter_1"/>
+    <itemref idref="chapter_2"/>
+    <itemref idref="chapter_3"/>
+    <itemref idref="chapter_4"/>
+  </spine>
+  <guide>
+    <reference href="Text/nav.xhtml" title="toc" type="toc"/>
+    <reference href="Text/about-this-book.xhtml" title="About this book" type="text"/>
+  </guide>
+</package>

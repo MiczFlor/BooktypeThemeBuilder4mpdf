@@ -1,0 +1,323 @@
+body {
+  font-size: 1em;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  font-family: "%BodyFontFamilyVal%"; 
+  color: #000000;
+}
+
+div.dedication {
+  text-align: left;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 50px;
+  font-family: "%BodyFontFamilyVal%"; 
+  font-size: 2em;
+  font-style: italic;
+}
+
+h1.section {
+  font-family: "%PartFontFamilyVal%"; 
+  text-align: %PartAlignVal%; 
+  font-weight: %PartFontWeightVal%; 
+  font-size: %PartFontSizeEmVal%em;
+  text-transform: %PartTextTransformVal%; 
+  text-decoration: %PartTextDecorationVal%;
+  margin-top: 0;
+}
+
+h1.frontmatter-title {
+  text-align: %FrontmatterTitlepageTitleAlignVal%; 
+  font-weight: %FrontmatterTitlepageTitleFontWeightVal%; 
+  text-transform: %FrontmatterTitlepageTitleTextTransformVal%; 
+  font-family: "%FrontmatterTitlepageTitleFontFamilyVal%"; 
+  text-decoration: %FrontmatterTitlepageTitleTextDecorationVal%;
+  border-bottom: 0px; 
+  font-size: %FrontmatterTitlepageTitleFontSizeEmVal%em;
+  line-height: normal;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
+h2.frontmatter-author {
+  text-align: %FrontmatterHalftitleAuthorAlignVal%; 
+  font-family: "%FrontmatterHalftitleAuthorFontFamilyVal%"; 
+  border-bottom: 0px; 
+  font-size: %FrontmatterHalftitleAuthorFontSizeEmVal%em;
+  line-height: normal;
+  margin-top: 2em;
+}
+div.frontmatter-line {
+  width: 6em;
+  background-color: black;
+  height: 0.3em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/*
+h2.frontmatter-author-title {
+  text-align: %FrontmatterTitlepageAuthorAlignVal%; 
+  font-family: "%FrontmatterTitlepageAuthorFontFamilyVal%"; 
+  border-bottom: 0px; 
+  margin-top: 2em;
+  font-size: %FrontmatterTitlepageAuthorFontSizeEmVal%em;
+  line-height: normal;
+}
+
+h3.frontmatter-subtitle {
+  text-align: %FrontmatterTitlepageSubtitleAlignVal%; 
+  font-family: "%FrontmatterTitlepageSubtitleFontFamilyVal%"; 
+  border-bottom: 0px; 
+  margin-top: 10mm;
+  font-size: %FrontmatterTitlepageSubtitleFontSizeEmVal%em;
+  line-height: normal;
+}
+*/
+
+p.quote {
+  font-family: "%QuoteFontFamilyVal%"; 
+  display: block;
+  font-weight: %QuoteFontWeightVal%; 
+  font-size: 1em;
+  font-style: %QuoteFontStyleVal%;
+  text-indent: 0;
+  border-left: %QuoteLineLeftVal% %QuoteLineStyleVal% %QuoteLineLeftColorVal%;
+  padding-left: 1em;
+  margin-left: 1em;
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+  text-align: %QuoteAlignVal%; 
+  line-height: %QuoteLineHeightPtVal%pt; 
+  text-transform: %QuoteTextTransformVal%; 
+  text-decoration: %QuoteTextDecorationVal%;
+} 
+
+p.quote:before {
+  display: none;
+/*
+  color: #333;
+  content: open-quote;
+  font-size: 72px;
+  margin-right: 20px;
+  position: absolute;
+  top: 14px;
+  left: 6px;
+  bottom: 0;
+*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    -webkit-hyphens:none;
+    hyphens:none;
+    adobe-hyphenate:none;
+    page-break-after:avoid;
+    color: black;
+}
+
+h1 {
+  font-family: "%ChapterHeader1FontFamilyVal%"; 
+  font-weight: %ChapterHeader1FontWeightVal%; 
+  text-transform: %ChapterHeader1TextTransformVal%; 
+  text-align: %ChapterHeader1AlignVal%; 
+  text-decoration: %ChapterHeader1TextDecorationVal%;
+  line-height: normal; 
+  font-size: %ChapterHeader1FontSizeEmVal%em; 
+  /*font-size: 3.6em;*/
+  margin-top: %ChapterHeader1PaddingTopEmVal%em;
+  margin-bottom: %ChapterHeader1PaddingBottomEmVal%em;
+}
+
+h2 {
+  font-family: "%BodyHeader2FontFamilyVal%"; 
+  font-weight: %BodyHeader2FontWeightVal%; 
+  text-transform: %BodyHeader2TextTransformVal%; 
+  text-align: %BodyHeader2AlignVal%; 
+  text-decoration: %BodyHeader2TextDecorationVal%;
+  line-height: normal; 
+  font-size: %BodyHeader2FontSizeEmVal%em; 
+  /*font-size: 2.2em;*/
+  margin-top: %BodyHeader2PaddingTopEmVal%em;
+  margin-bottom: %BodyHeader2PaddingBottomEmVal%em;
+}
+
+h3 {
+  font-family: "%BodyHeader3FontFamilyVal%"; 
+  font-weight: %BodyHeader3FontWeightVal%; 
+  text-transform: %BodyHeader3TextTransformVal%; 
+  text-align: %BodyHeader3AlignVal%; 
+  text-decoration: %BodyHeader3TextDecorationVal%;
+  line-height: normal; 
+  font-size: %BodyHeader3FontSizeEmVal%em; 
+  /*font-size: 1.8em;*/
+  margin-top: %BodyHeader3PaddingTopEmVal%em;
+  margin-bottom: %BodyHeader3PaddingBottomEmVal%em;
+}
+
+h4 {
+  font-family: "%BodyHeader4FontFamilyVal%"; 
+  font-weight: %BodyHeader4FontWeightVal%; 
+  text-transform: %BodyHeader4TextTransformVal%; 
+  text-align: %BodyHeader4AlignVal%; 
+  text-decoration: %BodyHeader4TextDecorationVal%;
+  line-height: normal; 
+  font-size: %BodyHeader4FontSizeEmVal%em; 
+  /*font-size: 1.4em;*/
+  margin-top: %BodyHeader4PaddingTopEmVal%em;
+  margin-bottom: %BodyHeader4PaddingBottomEmVal%em;
+}
+
+h5 {
+  font-family: "%BodyHeader5FontFamilyVal%"; 
+  font-weight: %BodyHeader5FontWeightVal%; 
+  text-transform: %BodyHeader5TextTransformVal%; 
+  text-align: %BodyHeader5AlignVal%; 
+  text-decoration: %BodyHeader5TextDecorationVal%;
+  line-height: normal; 
+  font-size: %BodyHeader5FontSizeEmVal%em; 
+  /*font-size: 1.2em;*/
+  margin-top: %BodyHeader5PaddingTopEmVal%em;
+  margin-bottom: %BodyHeader5PaddingBottomEmVal%em;
+}
+
+/* Paragraph Styles *****************************************************/
+
+body {
+    widows:2;
+    orphans:2;
+}
+
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p {
+  font-family: "%BodyFontFamilyVal%"; 
+    font-weight: normal;
+    font-size: 1em; 
+    line-height: 1.4em;
+    text-indent: 0;
+    margin-bottom: 0;
+}
+
+p,
+a {
+  font-family: "%BodyFontFamilyVal%"; 
+    font-weight: normal;
+    font-size: 1em; 
+    line-height: 1.4em;
+    margin: 0;
+}
+
+p+p,
+ul+p,
+ol+p,
+div.group_img+p,
+table+p {
+    text-indent: %EpubBodyParagraphIndentEmVal%em;
+    margin-bottom: %EpubBodyParagraphSpacingEmVal%em;
+}
+
+ul,
+ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+li {
+    font-family: "%BodyFontFamilyVal%"; 
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+img {
+    max-width:100%;
+    max-height:100%;
+    margin: 0px auto;
+}
+
+table {
+    border-collapse: collapse;
+    max-width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+table {
+    border-top: 0.5mm solid black;
+    border-bottom: 0.5mm solid black;
+}
+th, 
+td {
+    border-top: 0.3mm solid black;
+}
+
+td {
+    font-family: "%BodyFontFamilyVal%"; 
+    font-weight: normal;
+    font-size: 0.9em;
+    line-height: normal;
+    margin: 0;
+}
+
+th, 
+td {
+    padding: .6rem .8em;
+    text-indent: none;
+}
+
+.group_img {
+  page-break-inside: avoid;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.caption_small {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.frontmatter-bottom {
+  margin-bottom: 50px;
+  font-size: 1.2em;
+}
+
+p.impl {
+  margin: 0;
+  text-indent: 0em;
+}
+
+div.page-break {
+  page-break-after: always;
+}
+
+sup.endnote {
+  font-size: 0.8em;
+}
+
+ol.endnotes {
+  padding-left: 1.2em;
+  margin-top: 2em;
+}
+
+ol.endnotes li {
+  font-family: "%BodyFontFamilyVal%"; 
+  font-weight: normal;
+  font-size: 0.8em;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+ol.endnotes p {
+  text-indent: 0;
+}

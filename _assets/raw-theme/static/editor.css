@@ -1,0 +1,271 @@
+#contenteditor {
+  font-size: %EditorBodyFontSizeVal%;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  font-family: "%BodyFontFamilyVal%";
+  color: #000000;
+}
+
+/* QUOTE **************************************************/
+
+#contenteditor blockquote, 
+#contenteditor p.quote {
+  font-family: "%QuoteFontFamilyVal%"; 
+  font-weight: %QuoteFontWeightVal%; 
+  font-size: %QuoteFontSizeEmVal%em;
+  font-style: %QuoteFontStyleVal%;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  position: relative;
+  text-align: %QuoteAlignVal%; 
+  text-indent: 0;
+  line-height: inherit; 
+  border-left: %QuoteLineLeftVal% %QuoteLineStyleVal% %QuoteLineLeftColorVal%;
+  padding-left: %QuotePaddingLine2QuoteVal%em;
+  padding-top: 0em;
+  margin-left: %QuotePaddingMargin2LineEmVal%em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-transform: %QuoteTextTransformVal%; 
+  text-decoration: %QuoteTextDecorationVal%;
+}
+/* undo the quotes from booki-new.css */
+p.quote:before {
+  display: none;
+}
+
+/* Headlines ************************************************/
+#contenteditor h1,
+#contenteditor h2,
+#contenteditor h3,
+#contenteditor h4,
+#contenteditor h5,
+#contenteditor h6 {
+    -webkit-hyphens:none;
+    hyphens:none;
+    adobe-hyphenate:none;
+    page-break-after:avoid;
+    color: black;
+}
+
+#contenteditor .aloha-block-TitleBlock h1 {
+    font-family: "%ChapterHeader1FontFamilyVal%";
+    font-size: %ChapterHeader1FontSizeEmVal%em;
+    text-align: %ChapterHeader1AlignVal%; 
+    font-weight: %ChapterHeader1FontWeightVal%; 
+    text-transform: %ChapterHeader1TextTransformVal%; 
+    border-bottom: %ChapterHeader1BorderBottomVal% solid black;
+    text-decoration: %ChapterHeader1TextDecorationVal%;
+    padding-top: %ChapterHeader1PaddingTopVal%pt; 
+    margin-bottom: %ChapterHeader1PaddingBottomVal%pt;
+    line-height: inherit;
+    line-height: %ChapterHeader1LineHeightPtVal%pt; 
+}
+
+#contenteditor h1 {
+    font-family: "%BodyHeader1FontFamilyVal%";
+    font-size: %BodyHeader1FontSizeEmVal%em;
+    text-align: %BodyHeader1AlignVal%; 
+    font-weight: %BodyHeader1FontWeightVal%; 
+    text-transform: %BodyHeader1TextTransformVal%; 
+    border-bottom: %BodyHeader1BorderBottomVal% solid black;
+    text-decoration: %BodyHeader1TextDecorationVal%;
+    padding-top: %BodyHeader1PaddingTopVal%pt; 
+    margin-bottom: %BodyHeader1PaddingBottomVal%pt;
+    line-height: inherit;
+    line-height: %BodyHeader1LineHeightPtVal%pt; 
+}
+
+#contenteditor h2 {
+    font-family: "%BodyHeader2FontFamilyVal%";
+    font-size: %BodyHeader2FontSizeEmVal%em;
+    text-align: %BodyHeader2AlignVal%; 
+    font-weight: %BodyHeader2FontWeightVal%; 
+    text-transform: %BodyHeader2TextTransformVal%; 
+    border-bottom: %BodyHeader2BorderBottomVal% solid black;
+    text-decoration: %BodyHeader2TextDecorationVal%;
+    padding-top: %BodyHeader2PaddingTopVal%pt; 
+    margin-bottom: %BodyHeader2PaddingBottomVal%pt;
+    line-height: inherit;
+    line-height: %BodyHeader2LineHeightPtVal%pt; 
+}
+
+#contenteditor h3 {
+    font-family: "%BodyHeader3FontFamilyVal%";
+    font-size: %BodyHeader3FontSizeEmVal%em;
+    text-align: %BodyHeader3AlignVal%; 
+    font-weight: %BodyHeader3FontWeightVal%; 
+    text-transform: %BodyHeader3TextTransformVal%; 
+    border-bottom: %BodyHeader3BorderBottomVal% solid black;
+    text-decoration: %BodyHeader3TextDecorationVal%;
+    padding-top: %BodyHeader3PaddingTopVal%pt; 
+    margin-bottom: %BodyHeader3PaddingBottomVal%pt;
+    line-height: inherit;
+    line-height: %BodyHeader3LineHeightPtVal%pt; 
+}
+
+#contenteditor h4 {    
+    font-family: "%BodyHeader4FontFamilyVal%";
+    font-size: %BodyHeader4FontSizeEmVal%em;
+    text-align: %BodyHeader4AlignVal%; 
+    font-weight: %BodyHeader4FontWeightVal%; 
+    text-transform: %BodyHeader4TextTransformVal%; 
+    border-bottom: %BodyHeader4BorderBottomVal% solid black;
+    text-decoration: %BodyHeader4TextDecorationVal%;
+    padding-top: %BodyHeader4PaddingTopVal%pt; 
+    margin-bottom: %BodyHeader4PaddingBottomVal%pt;
+    line-height: inherit;
+    line-height: %BodyHeader4LineHeightPtVal%pt; 
+}
+
+#contenteditor h5 { 
+    font-family: "%BodyHeader5FontFamilyVal%";
+    font-size: %BodyHeader5FontSizeEmVal%em;
+    text-align: %BodyHeader5AlignVal%; 
+    font-weight: %BodyHeader5FontWeightVal%; 
+    text-transform: %BodyHeader5TextTransformVal%; 
+    border-bottom: %BodyHeader5BorderBottomVal% solid black;
+    text-decoration: %BodyHeader5TextDecorationVal%;
+    padding-top: %BodyHeader5PaddingTopVal%pt; 
+    margin-bottom: %BodyHeader5PaddingBottomVal%pt;
+    line-height: inherit;
+    line-height: %BodyHeader5LineHeightPtVal%pt; 
+}
+
+/* Paragraph Styles *****************************************************/
+
+#contenteditor, 
+#contenteditor p {
+    widows:2;
+    orphans:2;
+}
+
+#contenteditor p {
+    font-family: "%BodyFontFamilyVal%";
+    font-weight: normal;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* First paragraph *******************************************************/
+
+#contenteditor .aloha-block-TitleBlock + p,
+#contenteditor h2 + p,
+#contenteditor h3 + p,
+#contenteditor h4 + p {
+    font-family: "%BodyFontFamilyVal%";
+    font-weight: normal;
+    font-size: inherit; 
+    line-height: inherit;
+    text-indent: 0;
+    margin-bottom: %EditorBodyParagraphSpacingEmVal%em;
+}
+/* Not first paragraph **************************************************/
+#contenteditor p+p,
+#contenteditor ul+p,
+#contenteditor ol+p,
+#contenteditor div.group_img+p,
+#contenteditor div.aloha-table+p {
+    margin-top: 0;
+    text-indent: %EditorBodyParagraphIndentEmVal%em;
+    margin-bottom: %EditorBodyParagraphSpacingEmVal%em;
+}
+
+/* Lists *****************************************************************/
+#contenteditor ul,
+#contenteditor ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+#contenteditor ul,
+#contenteditor ol,
+#contenteditor li {
+  font-family: "%BodyFontFamilyVal%";
+}
+
+/* Preformatted text *******************************/
+
+#contenteditor pre {
+  font-family: "%PreformattedFontFamilyVal%";
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Table *****************************************/
+#contenteditor table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+#contenteditor table, 
+#contenteditor th, 
+#contenteditor td {
+  border: 0.5mm solid black;
+}
+
+#contenteditor table td {
+  font-family: "%BodyFontFamilyVal%";
+  font-weight: normal;
+  font-size: 0.8em;
+  margin: 0;
+}
+
+#contenteditor th, 
+#contenteditor td {
+  padding: .6em .8em;
+}
+
+/* IMAGES ***********************************************/
+
+#contenteditor img,
+#contenteditor div.image {
+  max-width: 100%;
+  height: auto;
+  margin: 0px auto;
+}
+
+#contenteditor .group_img {
+  page-break-inside: avoid;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#contenteditor .center {
+  text-align: center;
+}
+
+#contenteditor caption {
+  font-style: italic;
+  margin-top: 1em;
+}
+
+#contenteditor .caption_small {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+/* Endnotes ******************************************/
+#contenteditor .endnotes-container {
+  font-size: 0.9em;
+  margin-top: 2em;
+}
+
+#contenteditor .endnotes-container .endnote-counter,
+#contenteditor .endnotes-container .endnoteText {
+  font-family: "%BodyFontFamilyVal%";
+  font-weight: normal;
+  font-size: inherit;
+  line-height: normal;
+}
+
+#contenteditor .endnotes-container .endnoteText p {
+  text-indent: 0px;
+}
