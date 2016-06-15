@@ -120,7 +120,7 @@ $fontfamilies = array(
     'I' => "Roboto-LightItalic.ttf",
     'BI' => "Roboto-Italic.ttf",
   ),
-  /* font crashes paperwhite:
+  /* font crashes kindle paperwhite:
   "roboto-thin" => array(
     'R' => "Roboto-Thin.ttf",
     'B' => "Roboto-Light.ttf",
@@ -186,37 +186,6 @@ $fontfamilies = array(
     'I' => "TeXGyreHerosCondensed-Italic.ttf",
     'BI' => "TeXGyreHerosCondensed-BoldItalic.ttf",
   ),
-/* Amnesty Latin fonts */
-  "amnestyhelveticaworld" => array(
-    'R' => "AmnestyHelveticaWorld-Reg.ttf",
-    'B' => "AmnestyHelveticaWorld-Bold.ttf",
-    'I' => "AmnestyHelveticaWorld-Ita.ttf",
-    'BI' => "AmnestyHelveticaWorld-BoldI.ttf",
-    ),
-  "amnestytradegothic" => array(
-    'R' => "AmnestyTradeGothic.ttf",
-    'B' => "AmnestyTradeGothic-Bd2.ttf",
-    'I' => "AmnestyTradeGothic-Obl.ttf",
-    'BI' => "AmnestyTradeGothic-Bd2Obl.ttf",
-    ),
-  "amnestytradegothicbdcn20" => array(
-    'R' => "AmnestyTradeGothic.ttf",
-    'B' => "AmnestyTradeGothic-BdCn20.ttf",
-    'I' => "AmnestyTradeGothic-Obl.ttf",
-    'BI' => "AmnestyTradeGothic-BdCn20Ob.ttf",
-    ),
-  "amnestytradegothiccn18" => array(
-    'R' => "AmnestyTradeGothic-Cn18.ttf",
-    'B' => "AmnestyTradeGothic-BdCn20.ttf",
-    'I' => "AmnestyTradeGothic-Cn18Obl.ttf",
-    'BI' => "AmnestyTradeGothic-BdCn20Ob.ttf",
-    ),
-  "amnestytradegothiclight" => array(
-    'R' => "AmnestyTradeGothic-Light.ttf",
-    'B' => "AmnestyTradeGothic-Bd2.ttf",
-    'I' => "AmnestyTradeGothic-LightObl.ttf",
-    'BI' => "AmnestyTradeGothic-Bd2Obl.ttf",
-    ),
 	"freesans" => array(
 		'R' => "FreeSans.ttf",
 		'B' => "FreeSansBold.ttf",
