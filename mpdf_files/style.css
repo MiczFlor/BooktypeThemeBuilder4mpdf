@@ -1,13 +1,13 @@
 @page {
-  sheet-size: 210mm 297mm;  
-  size: 210mm 297mm; 
+  sheet-size: 170mm 220mm;  
+  size: 170mm 220mm; 
 
-  margin-left: 2.6cm; 
-  margin-right: 3.4cm;
+  margin-left: 1.8cm; 
+  margin-right: 2.8cm;
   margin-top: 2.4cm; 
   margin-bottom: 2.8cm;
 
-  margin-footer: 15mm;
+  margin-footer: 12mm;
   odd-footer-name: html_footer-right;
   even-footer-name: html_footer-left;
   
@@ -16,13 +16,13 @@
   even-header-name: html_header-left;         
 }
 body {
-  font-size: 10.5pt; 
-  line-height: 14.7pt; 
+  font-size: 10pt; 
+  line-height: 15pt; 
   margin: 0;
   padding: 0;
   color: #000000;
-  font-family: "roboto"; 
-  text-align: justify;
+  font-family: "dejavusans"; 
+  text-align: left;
 }
 
 .impl {
@@ -38,31 +38,31 @@ body {
 
 /* Header ********************************************************************/
 .header-text {
-  font-family: "roboto"; 
-  font-size: 0.8rem; 
+  font-family: "dejavusans"; 
+  font-size: 1rem; 
   border-bottom: 0rem solid black; 
 }
 .header-left {
-  text-align: left;
+  text-align: right;
   display: block;
 }
 .header-right {
-  text-align: right;
+  text-align: left;
   display: block;
 }
 
 /* Footer ********************************************************************/
 .footer-text {
-  font-family: "roboto"; 
+  font-family: "dejavusans"; 
   font-size: 1rem; 
   border-top: 0rem solid black; 
 }
 .footer-left {
-  text-align: center;
+  text-align: right;
   display: block;
 }
 .footer-right {
-  text-align: center;
+  text-align: left;
   display: block;
 }
 
@@ -71,11 +71,11 @@ h1.section {
   line-height: inherit;
   padding-top: 40%;
   margin-top: 0;
-  font-family: "roboto"; 
-  text-align: left; 
-  font-weight: bold; 
-  font-size: 31.5pt;
-  text-transform: none; 
+  font-family: "dejavusans"; 
+  text-align: center; 
+  font-weight: normal; 
+  font-size: 26.6pt;
+  text-transform: uppercase; 
   border-bottom: 0rem solid black;
   text-decoration: none;
 }
@@ -89,17 +89,17 @@ div.frontmatter-half-title {
   font-weight: bold; 
   text-align: left; 
   text-transform: uppercase; 
-  font-family: "roboto"; 
+  font-family: "dejavusans"; 
   text-decoration: none;
-  font-size: 21pt;
+  font-size: 20pt;
 }
 
 div.frontmatter-author {
   font-weight: normal;
   margin-top: 8rem;
   text-align: left; 
-  font-family: "roboto"; 
-  font-size: 21pt;
+  font-family: "dejavusans"; 
+  font-size: 20pt;
 }
 
 /* FRONT MATTER (title) *****************************************************/
@@ -110,9 +110,9 @@ div.frontmatter-title {
   text-align: left; 
   font-weight: bold; 
   text-transform: uppercase; 
-  font-family: "roboto"; 
+  font-family: "dejavusans"; 
   text-decoration: none;
-  font-size: 31.5pt;
+  font-size: 33.3pt;
 }
 
 div.frontmatter-subtitle {
@@ -120,8 +120,8 @@ div.frontmatter-subtitle {
   margin-top: 4rem;
   font-weight: normal;
   text-align: left; 
-  font-family: "roboto"; 
-  font-size: 21pt;
+  font-family: "dejavusans"; 
+  font-size: 20pt;
 }
 
 div.frontmatter-author-title {
@@ -130,8 +130,8 @@ div.frontmatter-author-title {
   margin-top: 6rem;
   margin-bottom: 0;
   text-align: left; 
-  font-family: "roboto"; 
-  font-size: 21pt;
+  font-family: "dejavusans"; 
+  font-size: 20pt;
 }
 
 div.frontmatter-line {
@@ -148,13 +148,13 @@ div.frontmatter-line {
   font-size: 1rem;
   line-height: inherit;
   text-align: left; 
-  font-family: "roboto"; 
+  font-family: "dejavusans"; 
 }
 
 /* Table of contents ****************************************/
 div.mpdf_toc {
   font-size: 1rem;
-  font-family: "roboto"; 
+  font-family: "dejavusans"; 
 }
 
 span.mpdf_toc_t_level_0 {
@@ -179,13 +179,13 @@ h1.chapter-h1 {
   padding-bottom: 0;
   text-align: left; 
   font-weight: normal; 
-  font-family: "roboto-condensed"; 
-  font-size: 27.9pt;
-  padding-top: 44.1pt; 
-  margin-bottom: 44.1pt; 
-  line-height: 29.4pt; 
-  text-transform: none; 
-  border-bottom: 0rem solid black;
+  font-family: "dejavusans"; 
+  font-size: 43.3pt;
+  padding-top: 0pt; 
+  margin-bottom: 75pt; 
+  line-height: 30pt; 
+  text-transform: uppercase; 
+  border-bottom: 0.8rem solid black;
   text-decoration: none;
 }
 
@@ -194,13 +194,13 @@ h1.body-h1 {
   padding-bottom: 0;
   text-align: left; 
   font-weight: normal; 
-  font-family: "roboto-condensed"; 
-  font-size: 24.5pt;
-  padding-top: 29.4pt; 
-  margin-bottom: 14.7pt; 
-  line-height: 29.4pt; 
-  text-transform: none; 
-  border-bottom: 0rem solid black;
+  font-family: "dejavusans"; 
+  font-size: 43.3pt;
+  padding-top: 30pt; 
+  margin-bottom: 15pt; 
+  line-height: 30pt; 
+  text-transform: uppercase; 
+  border-bottom: 0.8rem solid black;
   text-decoration: none;
 }
 
@@ -209,13 +209,13 @@ h2.body-h2 {
   padding-bottom: 0;
   text-align: left; 
   font-weight: normal; 
-  font-family: "roboto-condensed"; 
-  font-size: 21pt;
-  padding-top: 9.8pt; 
-  margin-bottom: 4.9pt; 
-  line-height: 29.4pt; 
-  text-transform: none; 
-  border-bottom: 0rem solid black;
+  font-family: "dejavusans"; 
+  font-size: 23.3pt;
+  padding-top: 15pt; 
+  margin-bottom: 15pt; 
+  line-height: 15pt; 
+  text-transform: uppercase; 
+  border-bottom: 0.8rem solid black;
   text-decoration: none;
 }
 
@@ -224,13 +224,13 @@ h3.body-h3 {
   padding-bottom: 0;
   text-align: left; 
   font-weight: normal; 
-  font-family: "roboto-condensed"; 
-  font-size: 15.8pt;
-  padding-top: 9.8pt; 
-  margin-bottom: 4.9pt; 
-  line-height: 14.7pt; 
-  text-transform: none; 
-  border-bottom: 0rem solid black;
+  font-family: "dejavusans"; 
+  font-size: 23.3pt;
+  padding-top: 15pt; 
+  margin-bottom: 15pt; 
+  line-height: 15pt; 
+  text-transform: uppercase; 
+  border-bottom: 0.2rem solid black;
   text-decoration: none;
 }
 
@@ -239,13 +239,13 @@ h4.body-h4 {
   padding-bottom: 0;
   text-align: left; 
   font-weight: normal; 
-  font-family: "roboto-condensed"; 
-  font-size: 14pt;
-  padding-top: 9.8pt; 
-  margin-bottom: 4.9pt; 
-  line-height: 14.7pt; 
-  text-transform: none; 
-  border-bottom: 0rem solid black;
+  font-family: "dejavusans"; 
+  font-size: 16.6pt;
+  padding-top: 15pt; 
+  margin-bottom: 15pt; 
+  line-height: 15pt; 
+  text-transform: uppercase; 
+  border-bottom: 0.2rem solid black;
   text-decoration: none;
 }
 
@@ -254,13 +254,13 @@ h5.body-h5 {
   padding-bottom: 0;
   text-align: left; 
   font-weight: normal; 
-  font-family: "roboto-condensed"; 
-  font-size: 10.5pt;
-  padding-top: 9.8pt; 
-  margin-bottom: 4.9pt; 
-  line-height: 14.7pt; 
-  text-transform: none; 
-  border-bottom: 0rem solid black;
+  font-family: "dejavusans"; 
+  font-size: 16.6pt;
+  padding-top: 15pt; 
+  margin-bottom: 15pt; 
+  line-height: 15pt; 
+  text-transform: uppercase; 
+  border-bottom: 0.05rem solid black;
   text-decoration: none;
 }
 
@@ -269,7 +269,7 @@ p.body-first {
   text-indent: 0;
   padding: 0;
   margin-top: 0;
-  margin-bottom: 0pt; 
+  margin-bottom: 15pt; 
 }
 p:first-child:first-letter{
     float:left;
@@ -283,52 +283,52 @@ p.body, p {
   font-weight: normal;
   padding: 0;
   margin-top: 0;
-  margin-bottom: 0pt; 
-  text-indent: 14.7pt; 
+  margin-bottom: 15pt; 
+  text-indent: 0pt; 
 }
 
 .quote-before {
   display: none;
 }
 blockquote, .quote {
-  font-family: "roboto"; 
+  font-family: "roboto-light"; 
   display: inline;
   font-weight: normal; 
-  font-size: 10.5pt;
-  font-style: italic;
+  font-size: 13.3pt;
+  font-style: normal;
   text-indent: 0;
-  border-left: 0.5rem solid #ccc;
+  border-left: 0.05rem solid #000;
   padding-left: 2rem;
-  margin-left: 14.7pt;
-  margin-top: 14.7pt; 
-  margin-bottom: 14.7pt; 
+  margin-left: 15pt;
+  margin-top: 15pt; 
+  margin-bottom: 15pt; 
   text-align: left; 
-  line-height: 14.7pt; 
+  line-height: 15pt; 
   text-transform: none; 
   text-decoration: none;
 }
 /* Lists ****************************************************************/
 ul, ol {
-  line-height: 14.7pt; 
-  margin-top: 14.7pt; 
-  margin-bottom: 14.7pt; 
+  line-height: 15pt; 
+  margin-top: 15pt; 
+  margin-bottom: 15pt; 
 }
 li {
   padding: 0;
   margin: 0;
-  line-height: 14.7pt; 
+  line-height: 15pt; 
 }
 /* TABLE *****************************************************************/
 table {
   border-collapse: collapse;
   max-width: 100%;
-  margin-top: 14.7pt; 
-  margin-bottom: 14.7pt; 
+  margin-top: 15pt; 
+  margin-bottom: 15pt; 
 }
 
 caption {
   font-style: italic;
-  margin-top: 14.7pt; 
+  margin-top: 15pt; 
 }
 
 table, th, td {
@@ -341,10 +341,10 @@ th, td {
 pre {
   padding-bottom: 0;
   padding-top: 0;
-  font-family: "texgyrecursor"; 
-  line-height: 14.7pt; 
-  margin-top: 14.7pt; 
-  margin-bottom: 14.7pt; 
+  font-family: "ubuntu-mono"; 
+  line-height: 15pt; 
+  margin-top: 15pt; 
+  margin-bottom: 15pt; 
 }
 /* ENDNOTES **********************************************************/
 .endnote {

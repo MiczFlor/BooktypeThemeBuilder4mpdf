@@ -1,6 +1,11 @@
 <?php
 error_reporting(0);
 
+/*
+* a few variables for this script
+*/
+$debug = "false"; // (true|false)
+
 // reading available fonts
 include("_config/config_fonts.php");
 
@@ -15,6 +20,10 @@ $options = array(
   "mpdf_lib" => "/var/www/mpdf60-old/", // path to mpdf library
   "dirthemes" => realpath(dirname(__FILE__))."/themes", // path to the folder theme dirs are
   "output" => "static_mpdf_test.pdf", // file name of the generated file
+  /*
+  * kindlegen is needed to generate kindle e-book files from EPUB
+  * Learn more here: http://www.amazon.com/gp/feature.html?docId=1000765211
+  */
   "kindlegen" => "/home/micz/kindlegen/kindlegen", // file name of the generated file
 );
 /*
@@ -355,9 +364,13 @@ if(isset($_POST['Action'])) {
     array_push($find, "%".$key."%");
     array_push($replace, $value);
   }
-  //print "<pre>"; print_r($lineheights);print "</pre>";//???
-  //print "<pre>"; print_r($FORM);print "</pre>";//???
-  //print "<pre>"; print_r($_POST);print "</pre>";//???
+  /*
+  * for debugging, print the variables posted and calculated
+  */
+  if($debug == "true") {
+    print "<pre>Form values received and calculated: \n"; print_r($FORM);print "</pre>";
+    //print "<pre>"; print_r($_POST);print "</pre>";
+  }
   
   /*
   * Write FORM values as JSON for later configuration
@@ -1027,7 +1040,9 @@ function calc_css_export_values($FORM) {
   
   // calculate the line height depending on font size and relative factor from form select
   $caluclatedlineheight = round((floatval($FORM['BodyFontSize']) * $FORM['BodyLineHeight']), 1);
-  
+  /*
+  * Run this foreach to get the values in _POST matching the form variables we asked for
+  */
   foreach($formoptions as $group=>$values) {
     foreach($values['elements'] as $key => $value) {
       // the values we assign to the template finish with "Val". 
@@ -1137,6 +1152,10 @@ function calc_css_export_values($FORM) {
   }
   $lineheights = calc_lineheights_mpdf($return['BodyLineHeightVal']);
   $fontsizes = calc_fontsizes_mpdf(floatval($return['BodyFontSizeVal']));
+  if($debug == "true") {
+    print "<pre>Line heights: \n"; print_r($lineheights);print "</pre>";
+    print "<pre>Font sizes: \n"; print_r($fontsizes);print "</pre>";
+  }
   
   // indents in paragraphs
   if($FORM['BodyParagraphIndent'] == "true") {
@@ -1170,76 +1189,27 @@ function calc_css_export_values($FORM) {
     $return['BodyParagraphDropcapsFontsizeEmVal'] = "2";
     $return['BodyParagraphDropcapsFontsizePtVal'] = $lineheights['3.33'];
   }
-
-  // start with H1 followed by other H and the PRE
-  $temp = explode(":",$FORM['ChapterHeader1Padding']);
-  //print "<pre>"; print_r($temp); print "\no:".$lineheights[$temp[0]]."\n1:".$lineheights[$temp[1]]; print "</pre>";//???
-  $return['ChapterHeader1PaddingTopVal'] = $lineheights[$temp[0]];
-  $return['ChapterHeader1PaddingBottomVal'] = $lineheights[$temp[1]];
-  $return['ChapterHeader1PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
-  $return['ChapterHeader1PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
-  $return['ChapterHeader1FontSizeRemVal'] = $return['ChapterHeader1FontSizeVal']; // REM (could be) used for mpdf CSS
-  $return['ChapterHeader1LineHeightRemVal'] = $return['ChapterHeader1LineHeightVal']; // REM (could be) used for mpdf CSS
-  $return['ChapterHeader1FontSizeEmVal'] = calc_editor_css_values($return['ChapterHeader1FontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['ChapterHeader1LineHeightEmVal'] = calc_editor_css_values($return['ChapterHeader1LineHeightVal']); // EM (should be) used for browser's editor CSS  
-  $return['ChapterHeader1FontSizePtVal'] = $fontsizes[$return['ChapterHeader1FontSizeVal']]; // Points used in mpdf CSS
-  $return['ChapterHeader1LineHeightPtVal'] = $lineheights[$return['ChapterHeader1LineHeightVal']]; // Points used in mpdf CSS
-  $temp = explode(":",$FORM['BodyHeader1Padding']);
-  //print "<pre>"; print_r($temp); print "\no:".$lineheights[$temp[0]]."\n1:".$lineheights[$temp[1]]; print "</pre>";//???
-  $return['BodyHeader1PaddingTopVal'] = $lineheights[$temp[0]];
-  $return['BodyHeader1PaddingBottomVal'] = $lineheights[$temp[1]];
-  $return['BodyHeader1PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
-  $return['BodyHeader1PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
-  $return['BodyHeader1FontSizeRemVal'] = $return['BodyHeader1FontSizeVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader1LineHeightRemVal'] = $return['BodyHeader1LineHeightVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader1FontSizeEmVal'] = calc_editor_css_values($return['BodyHeader1FontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader1LineHeightEmVal'] = calc_editor_css_values($return['BodyHeader1LineHeightVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader1FontSizePtVal'] = $fontsizes[$return['BodyHeader1FontSizeVal']]; // Points used in mpdf CSS
-  $return['BodyHeader1LineHeightPtVal'] = $lineheights[$return['BodyHeader1LineHeightVal']]; // Points used in mpdf CSS
-  $temp = explode(":",$FORM['BodyHeader2Padding']);
-  $return['BodyHeader2PaddingTopVal'] = $lineheights[$temp[0]];
-  $return['BodyHeader2PaddingBottomVal'] = $lineheights[$temp[1]];
-  $return['BodyHeader2PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
-  $return['BodyHeader2PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
-  $return['BodyHeader2FontSizeRemVal'] = $return['BodyHeader2FontSizeVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader2LineHeightRemVal'] = $return['BodyHeader2LineHeightVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader2FontSizeEmVal'] = calc_editor_css_values($return['BodyHeader2FontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader2LineHeightEmVal'] = calc_editor_css_values($return['BodyHeader2LineHeightVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader2FontSizePtVal'] = $fontsizes[$return['BodyHeader2FontSizeVal']]; // Points used in mpdf CSS
-  $return['BodyHeader2LineHeightPtVal'] = $lineheights[$return['BodyHeader2LineHeightVal']]; // Points used in mpdf CSS
-  $temp = explode(":",$FORM['BodyHeader3Padding']);
-  $return['BodyHeader3PaddingTopVal'] = $lineheights[$temp[0]];
-  $return['BodyHeader3PaddingBottomVal'] = $lineheights[$temp[1]];
-  $return['BodyHeader3PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
-  $return['BodyHeader3PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
-  $return['BodyHeader3FontSizeRemVal'] = $return['BodyHeader3FontSizeVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader3LineHeightRemVal'] = $return['BodyHeader3LineHeightVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader3FontSizeEmVal'] = calc_editor_css_values($return['BodyHeader3FontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader3LineHeightEmVal'] = calc_editor_css_values($return['BodyHeader3LineHeightVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader3FontSizePtVal'] = $fontsizes[$return['BodyHeader3FontSizeVal']]; // Points used in mpdf CSS
-  $return['BodyHeader3LineHeightPtVal'] = $lineheights[$return['BodyHeader3LineHeightVal']]; // Points used in mpdf CSS
-  $temp = explode(":",$FORM['BodyHeader4Padding']);
-  $return['BodyHeader4PaddingTopVal'] = $lineheights[$temp[0]];
-  $return['BodyHeader4PaddingBottomVal'] = $lineheights[$temp[1]];
-  $return['BodyHeader4PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
-  $return['BodyHeader4PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
-  $return['BodyHeader4FontSizeRemVal'] = $return['BodyHeader4FontSizeVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader4LineHeightRemVal'] = $return['BodyHeader4LineHeightVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader4FontSizeEmVal'] = calc_editor_css_values($return['BodyHeader4FontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader4LineHeightEmVal'] = calc_editor_css_values($return['BodyHeader4LineHeightVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader4FontSizePtVal'] = $fontsizes[$return['BodyHeader4FontSizeVal']]; // Points used in mpdf CSS
-  $return['BodyHeader4LineHeightPtVal'] = $lineheights[$return['BodyHeader4LineHeightVal']]; // Points used in mpdf CSS
-  $temp = explode(":",$FORM['BodyHeader5Padding']);
-  $return['BodyHeader5PaddingTopVal'] = $lineheights[$temp[0]];
-  $return['BodyHeader5PaddingBottomVal'] = $lineheights[$temp[1]];
-  $return['BodyHeader5PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
-  $return['BodyHeader5PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
-  $return['BodyHeader5FontSizeRemVal'] = $return['BodyHeader5FontSizeVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader5LineHeightRemVal'] = $return['BodyHeader5LineHeightVal']; // REM (could be) used for mpdf CSS
-  $return['BodyHeader5FontSizeEmVal'] = calc_editor_css_values($return['BodyHeader5FontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader5LineHeightEmVal'] = calc_editor_css_values($return['BodyHeader5LineHeightVal']); // EM (should be) used for browser's editor CSS  
-  $return['BodyHeader5FontSizePtVal'] = $fontsizes[$return['BodyHeader5FontSizeVal']]; // Points used in mpdf CSS
-  $return['BodyHeader5LineHeightPtVal'] = $lineheights[$return['BodyHeader5LineHeightVal']]; // Points used in mpdf CSS
+  /*
+  * Calculate some extra values for specific elements from $_POST
+  * Quite a few for all headlines, needed to calculate distances in print, browser editor and epub
+  */
+  $secondround = array(
+    "ChapterHeader1", "BodyHeader1", "BodyHeader2", "BodyHeader3", "BodyHeader4", "BodyHeader5", 
+  );
+  foreach($secondround as $item) {
+    $temp = explode(":",$FORM[$item.'Padding']);
+    //print "<pre>"; print_r($temp); print "\no:".$lineheights[$temp[0]]."\n1:".$lineheights[$temp[1]]; print "</pre>";//???
+    $return[$item.'PaddingTopVal'] = $lineheights[$temp[0]];
+    $return[$item.'PaddingBottomVal'] = $lineheights[$temp[1]];
+    $return[$item.'PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
+    $return[$item.'PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
+    $return[$item.'FontSizeRemVal'] = $return[$item.'FontSizeVal']; // REM (could be) used for mpdf CSS
+    $return[$item.'LineHeightRemVal'] = $return[$item.'LineHeightVal']; // REM (could be) used for mpdf CSS
+    $return[$item.'FontSizeEmVal'] = calc_editor_css_values($return[$item.'FontSizeVal']); // EM (should be) used for browser's editor CSS  
+    $return[$item.'LineHeightEmVal'] = calc_editor_css_values($return[$item.'LineHeightVal']); // EM (should be) used for browser's editor CSS  
+    $return[$item.'FontSizePtVal'] = $fontsizes[$return[$item.'FontSizeVal']]; // Points used in mpdf CSS
+    $return[$item.'LineHeightPtVal'] = $lineheights[$return[$item.'LineHeightVal']]; // Points used in mpdf CSS
+  }
   
   // Part or Section, the bigger chunks that contain a number of chapters
   $return['PartFontSizeEmVal'] = calc_editor_css_values($return['PartFontSizeVal']); // EM (should be) used for browser's editor CSS  
