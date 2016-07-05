@@ -5,6 +5,15 @@ error_reporting(0);
 * a few variables for this script
 */
 $debug = "false"; // (true|false)
+/*
+* The source html file which is piped into mpdf
+*/
+$html4mpdf = "mpdf-body_themesample.html"; // (mpdf-body.html|mpdf-body_themesample.html)
+/*
+* When creating a PDF, should also a copy with specs of the theme be created? 
+* (like: Sample_H190mm_W125mm_Font-freeserif_Size-11pt.pdf)
+*/
+$createcopypdf = "false"; // (true|false)
 
 // reading available fonts
 include("_config/config_fonts.php");
@@ -70,9 +79,9 @@ $formoptions = array(
   "pbody" => array(
     "prefix" => "BodyParagraph",
     "elements" => array(
-      "Indent" => "select__true_false",
+      "Indent" => "select__none_1_2_3",
       "Spacing" => "select__none_one-line",
-      "Dropcaps" => "select__false_true",
+      //"Dropcaps" => "select__false_true",
     )
   ),
   "preformatted" => array(
@@ -674,7 +683,6 @@ if(isset($_POST['Action'])) {
     $option = system("cp ".$options['mpdf_output']."/".$options['output']." sample-files/".$FORM['Form']['Theme']['themenamefolder'].".pdf");
     
   } elseif($ACTION == "dosomething") {
-    print "<pre>"; print_r($_POST); print "</pre>";
     /*
     * processing all the tasks that can be chosen in the "Make it happen" form.
     * The only one that is not listed here is loading theme(s), because they need
@@ -718,7 +726,7 @@ if(isset($_POST['Action'])) {
     
   } else {
     /*********************************************************************
-    * Sample PDF: Create CSS and make PDF for testing
+    * Create CSS and make PDF for testing when pressing "Create PDF" button
     */
     // read template file and add page measurements on top
     $stylecss = "@page {
@@ -744,7 +752,7 @@ if(isset($_POST['Action'])) {
     // write template file
     file_put_contents("mpdf_files/style.css", $newstylecss);
     
-    $mpdfhtml = file_get_contents('_assets/raw-html/mpdf-body.html');
+    $mpdfhtml = file_get_contents('_assets/raw-html/'.$html4mpdf);
     $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
     // write template file
     file_put_contents("mpdf_files/body.html", $newmpdfhtml);
@@ -753,6 +761,23 @@ if(isset($_POST['Action'])) {
     * Run mPDF
     */
     include("static_booktype2mpdf.php");
+    /*
+    * make a copy of the output file with theme specs
+    * set true of false at beginning of this file
+    */
+    if($createcopypdf == "true") {
+      $customfilename = "Sample";
+      //$customfilename .= $FORM['Form']['Theme']['themenamehuman']; // name of the theme
+      $customfilename .= "_H".$FORM['Val']['PageHeight']; // page height
+      $customfilename .= "_W".$FORM['Val']['PageWidth']; // page width
+      $customfilename .= "_Font-".$FORM['Val']['BodyFontFamilyVal']; // font family
+      $customfilename .= "_Size-".$FORM['Val']['BodyFontSizeVal']; // font size
+      $customfilename .= ".pdf"; // file ending
+  
+      $execcustomcopy = "cp ".$file_output." ".$options["mpdf_output"]."/".$customfilename;
+  
+      exec($execcustomcopy);
+    }
     /*
     * Create a download link and a link to go back to the form
     */
@@ -978,6 +1003,7 @@ function calc_css_export_values($FORM) {
   global $formoptions; // the form values which are possible
   global $pagepresets;
   global $FontSizeEditorCSS;
+
   // first take the page size from the sent data if available - or set some defaults
   if(isset($pagepresets[$FORM['PageDefinition']]['cropwidth'])) {
     $return['CropWidth'] = $pagepresets[$FORM['PageDefinition']]['cropwidth'];
@@ -1158,22 +1184,45 @@ function calc_css_export_values($FORM) {
   }
   
   // indents in paragraphs
-  if($FORM['BodyParagraphIndent'] == "true") {
-    /*
-    * take an absolute, no rem value to match other indents in paragraphs 
-    * with different font-sizes.
-    */
-    $return['BodyParagraphIndentVal'] = $lineheights['1']."pt"; 
-    // Special values for the epub CSS
-    $return['EpubBodyParagraphIndentEmVal'] = 1; 
-    // Special values for the editor CSS
-    $return['EditorBodyParagraphIndentEmVal'] = 1;
-  }else {
+  if($FORM['BodyParagraphIndent'] == "none") {
     $return['BodyParagraphIndentVal'] = "0pt"; 
     // Special values for the epub CSS
     $return['EpubBodyParagraphIndentEmVal'] = 0; 
     // Special values for the editor CSS
     $return['EditorBodyParagraphIndentEmVal'] = 0;
+  
+    /*
+    * CSS values for hanging paragraphs 
+    * (first line is not indented, rest of paragraph is indented.)
+    * There are no indentations for paragraphs in theme, so select value 2 for hanging.
+    */
+    $return['BodyParagraphHangingVal'] = $lineheights[2]."pt"; 
+    // Special values for the epub CSS
+    $return['EpubBodyParagraphHangingEmVal'] = 2;
+    // Special values for the editor CSS
+    $return['EditorBodyParagraphHangingEmVal'] = 2;
+    
+  } else {
+    /*
+    * take an absolute, no rem value to match other indents in paragraphs 
+    * with different font-sizes.
+    */
+    $return['BodyParagraphIndentVal'] = $lineheights[$FORM['BodyParagraphIndent']]."pt"; 
+    // Special values for the epub CSS
+    $return['EpubBodyParagraphIndentEmVal'] = $FORM['BodyParagraphIndent']; 
+    // Special values for the editor CSS
+    $return['EditorBodyParagraphIndentEmVal'] = $FORM['BodyParagraphIndent'];
+  
+    /*
+    * CSS values for hanging paragraphs 
+    * (first line is not indented, rest of paragraph is indented.)
+    * Use the same values as the indentation for paragraphs were selected.
+    */
+    $return['BodyParagraphHangingVal'] = $lineheights[$FORM['BodyParagraphIndent']]."pt"; 
+    // Special values for the epub CSS
+    $return['EpubBodyParagraphHangingEmVal'] = $FORM['BodyParagraphIndent'];
+    // Special values for the editor CSS
+    $return['EditorBodyParagraphHangingEmVal'] = $FORM['BodyParagraphIndent'];
   }
 
   /*

@@ -247,29 +247,32 @@ h5.body-h5 {
   text-decoration: %BodyHeader5TextDecorationVal%;
 }
 
-p.body-first {
+p {
   font-weight: normal;
-  text-indent: 0;
   padding: 0;
   margin-top: 0;
   margin-bottom: %BodyParagraphSpacingVal%pt; 
 }
-p:first-child:first-letter{
-    float:left;
-    margin-top:7px;
-    font-size:70px;
-    margin-right:5px;
-    color:#3D3529;
-    }
-
-p.body, p {
-  font-weight: normal;
-  padding: 0;
-  margin-top: 0;
+p.body-first {
+  text-indent: 0;
+  margin-bottom: %BodyParagraphSpacingVal%pt; 
+}
+p.body {
   margin-bottom: %BodyParagraphSpacingVal%pt; 
   text-indent: %BodyParagraphIndentVal%; 
 }
-
+p.hanging {
+  margin-bottom: %BodyParagraphSpacingVal%pt; 
+  text-indent: -%BodyParagraphHangingVal%;
+  padding-left: %BodyParagraphHangingVal%;
+}
+p:first-child:first-letter{
+  float:left;
+  margin-top:7px;
+  font-size:70px;
+  margin-right:5px;
+  color:#3D3529;
+}
 .quote-before {
   display: none;
 }

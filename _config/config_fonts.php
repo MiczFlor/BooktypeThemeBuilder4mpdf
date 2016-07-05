@@ -207,6 +207,37 @@ $fontfamilies = array(
 		'I' => "FreeMonoOblique.ttf",
 		'BI' => "FreeMonoBoldOblique.ttf",
 		),
+  /* commercial fonts */
+	"arial" => array(
+		'R' => "Arial-Regular.ttf",
+		'B' => "Arial-Bold.ttf",
+		'I' => "Arial-Italic.ttf",
+		'BI' => "Arial-BoldItalic.ttf",
+		),
+	"arial-narrow" => array(
+		'R' => "ArialNarrow-Regular.ttf",
+		'B' => "ArialNarrow-Bold.ttf",
+		'I' => "ArialNarrow-Italic.ttf",
+		'BI' => "ArialNarrow-BoldItalic.ttf",
+		),
+	"arial-black" => array(
+		'R' => "ArialBlack-Regular.ttf",
+		'B' => "ArialBlack-Bold.ttf",
+		'I' => "ArialBlack-Italic.ttf",
+		'BI' => "ArialBlack-BoldItalic.ttf",
+		),
+	"timesnewroman" => array(
+		'R' => "TimesNewRoman-Regular.ttf",
+		'B' => "TimesNewRoman-Bold.ttf",
+		'I' => "TimesNewRoman-Italic.ttf",
+		'BI' => "TimesNewRoman-BoldItalic.ttf",
+		),
+	"palatinolinotype" => array(
+		'R' => "PalatinoLinotype-Regular.ttf",
+		'B' => "PalatinoLinotype-Bold.ttf",
+		'I' => "PalatinoLinotype-Italic.ttf",
+		'BI' => "PalatinoLinotype-BoldItalic.ttf",
+		),
   /*
   "" => array(
     'R' => "",

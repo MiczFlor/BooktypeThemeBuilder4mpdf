@@ -103,7 +103,7 @@
     "marginheader": "15mm",
     "marginfooter": "15mm"
   },
-  "bodde__120_x_190_mm": {
+  "bd__120_x_190_mm": {
     "width": "120mm",
     "height": "190mm",
     "binding": "0.76cm",
@@ -114,7 +114,7 @@
     "cropwidth": "130mm",
     "cropheight": "200mm"
   },
-  "bodde__135_x_215_mm": {
+  "bd__135_x_215_mm": {
     "width": "135mm",
     "height": "215mm",
     "binding": "0.76cm",
@@ -125,7 +125,7 @@
     "cropwidth": "145mm",
     "cropheight": "225mm"
   },
-  "bodde__148_x_210_mm": {
+  "bd__148_x_210_mm": {
     "width": "148mm",
     "height": "210mm",
     "binding": "0.76cm",
@@ -136,7 +136,7 @@
     "cropwidth": "158mm",
     "cropheight": "220mm"
   },
-  "bodde__155_x_220_mm": {
+  "bd__155_x_220_mm": {
     "width": "155mm",
     "height": "220mm",
     "binding": "0.76cm",
@@ -147,7 +147,7 @@
     "cropwidth": "165mm",
     "cropheight": "230mm"
   },
-  "bodde__170_x_170_mm": {
+  "bd__170_x_170_mm": {
     "width": "170mm",
     "height": "170mm",
     "binding": "0.76cm",
@@ -158,7 +158,7 @@
     "cropwidth": "180mm",
     "cropheight": "180mm"
   },
-  "bodde__170_x_220_mm": {
+  "bd__170_x_220_mm": {
     "width": "170mm",
     "height": "220mm",
     "binding": "0.76cm",
@@ -169,7 +169,7 @@
     "cropwidth": "180mm",
     "cropheight": "230mm"
   },
-  "bodde__190_x_270_mm": {
+  "bd__190_x_270_mm": {
     "width": "190mm",
     "height": "270mm",
     "binding": "0.76cm",
@@ -180,7 +180,7 @@
     "cropwidth": "200mm",
     "cropheight": "280mm"
   },
-  "bodde__210_x_150_mm": {
+  "bd__210_x_150_mm": {
     "width": "210mm",
     "height": "150mm",
     "binding": "0.76cm",
@@ -191,7 +191,7 @@
     "cropwidth": "220mm",
     "cropheight": "160mm"
   },
-  "bodde__210_x_210_mm": {
+  "bd__210_x_210_mm": {
     "width": "210mm",
     "height": "210mm",
     "binding": "0.76cm",
@@ -202,7 +202,7 @@
     "cropwidth": "220mm",
     "cropheight": "220mm"
   },
-  "bodde__210_x_297_mm": {
+  "bd__210_x_297_mm": {
     "width": "210mm",
     "height": "297mm",
     "binding": "0.76cm",
@@ -212,6 +212,138 @@
     "marginright": "2.15cm",
     "cropwidth": "220mm",
     "cropheight": "307mm"
+  },
+  "epA6portrait__105_x_148_mm": {
+    "width": "105mm",
+    "height": "148.5mm",
+    "binding": "0cm",
+    "margintop": "1.5cm",
+    "marginbottom": "2.5cm",
+    "marginleft": "1.5cm",
+    "marginright": "1.5cm",
+    "cropwidth": "111mm",
+    "cropheight": "154.5mm"
+  },
+  "epA6landscape__148_x_105_mm": {
+    "width": "148.5mm",
+    "height": "105mm",
+    "binding": "0cm",
+    "margintop": "1.5cm",
+    "marginbottom": "2.5cm",
+    "marginleft": "1.5cm",
+    "marginright": "1.5cm",
+    "cropwidth": "154.5mm",
+    "cropheight": "111mm"
+  },
+  "epA5portrait__148_x_210_mm": {
+    "width": "148.5mm",
+    "height": "210mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "154.5mm",
+    "cropheight": "216mm"
+  },
+  "epA5landscape__210_x_148_mm": {
+    "width": "210mm",
+    "height": "148.5mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "216mm",
+    "cropheight": "154.5mm"
+  },
+  "epA4portrait__210_x_297_mm": {
+    "width": "210mm",
+    "height": "297mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "216mm",
+    "cropheight": "303mm"
+  },
+  "epA4landscape__210_x_297_mm": {
+    "width": "297mm",
+    "height": "210mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "303mm",
+    "cropheight": "216mm"
+  },
+  "epKinderbuch__156_x_148_mm": {
+    "width": "156mm",
+    "height": "148.5mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "162mm",
+    "cropheight": "154.5mm"
+  },
+  "epQuadrat__205_x_205_mm": {
+    "width": "205mm",
+    "height": "205mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "2.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "211mm",
+    "cropheight": "211mm"
+  },
+  "epTaschenbuch__125_x_190_mm": {
+    "width": "125mm",
+    "height": "190mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "131mm",
+    "cropheight": "196mm"
+  },
+  "epWissenschaft__170_x_240_mm": {
+    "width": "170mm",
+    "height": "240mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "176mm",
+    "cropheight": "246mm"
+  },
+  "epSachbuch__135_x_205_mm": {
+    "width": "135mm",
+    "height": "205mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "141mm",
+    "cropheight": "211mm"
+  },
+  "epBildband__300_x_294_mm": {
+    "width": "300mm",
+    "height": "294mm",
+    "binding": "0cm",
+    "margintop": "2.5cm",
+    "marginbottom": "3.5cm",
+    "marginleft": "2.5cm",
+    "marginright": "2.5cm",
+    "cropwidth": "306mm",
+    "cropheight": "300mm"
   }
 }
         

@@ -1,10 +1,10 @@
 body {
-  font-size: %BodyFontSizeVal%; /*  */
-  line-height: %BodyLineHeightVal%pt; /*  */
+  font-size: %BodyFontSizeVal%; 
+  line-height: %BodyLineHeightVal%pt; 
   margin: 0;
   padding: 0;
   color: #000000;
-  font-family: "%BodyFontFamilyVal%"; /*  */
+  font-family: "%BodyFontFamilyVal%"; 
   text-align: %BodyTextAlignVal%;
 }
 
@@ -19,83 +19,108 @@ body {
   font-weight: bold;
 }
 
+/* Header ********************************************************************/
 .header-text {
-  font-size: %HeaderFontSizeVal%; /*  */
-  border-bottom: %HeaderLineVal% solid black; /*  */
+  font-family: "%HeaderFontFamilyVal%"; 
+  font-size: %HeaderFontSizeVal%; 
+  border-bottom: %HeaderLineVal% solid black; 
+}
+.header-left {
+  text-align: %HeaderLeftAlignVal%;
+  display: %HeaderDisplayVal%;
+}
+.header-right {
+  text-align: %HeaderRightAlignVal%;
+  display: %HeaderDisplayVal%;
 }
 
+/* Footer ********************************************************************/
 .footer-text {
-  font-size: %FooterFontSizeVal%; /*  */
-  border-top: %FooterLineVal% solid black; /*  */
+  font-family: "%FooterFontFamilyVal%"; 
+  font-size: %FooterFontSizeVal%; 
+  border-top: %FooterLineVal% solid black; 
+}
+.footer-left {
+  text-align: %FooterLeftAlignVal%;
+  display: %FooterDisplayVal%;
+}
+.footer-right {
+  text-align: %FooterRightAlignVal%;
+  display: %FooterDisplayVal%;
 }
 
 /* SECTIONS (or parts, as they are called in LaTeX) */
 h1.section {
-  font-weight: bold;
-  font-size: 3rem;
-  text-align: left;
-  margin-top: 0;
   line-height: inherit;
   padding-top: 40%;
-  font-family: "%PartFontFamilyVal%"; /*  */
+  margin-top: 0;
+  font-family: "%PartFontFamilyVal%"; 
+  text-align: %PartAlignVal%; 
+  font-weight: %PartFontWeightVal%; 
+  font-size: %PartFontSizePtVal%pt;
+  text-transform: %PartTextTransformVal%; 
+  border-bottom: %PartBorderBottomVal% solid black;
+  text-decoration: %PartTextDecorationVal%;
 }
 
 /* FRONT MATTER (half-title) **********************************************/
 div.frontmatter-half-title {
   page: frontmatter;
-  font-size: 2rem;
-  line-height: 100%;
-  padding-top: 30%;
+  line-height: 110%;
+  padding-top: 40%;
   margin-bottom: 0;
-  font-weight: %FrontmatterHalftitleTitleFontWeightVal%; /*  */
-  text-align: %FrontmatterHalftitleTitleAlignVal%; /*  */
-  text-transform: %FrontmatterHalftitleTitleTextTransformVal%; /*  */
-  font-family: "%FrontmatterHalftitleTitleFontFamilyVal%"; /*  */
+  font-weight: %FrontmatterHalftitleTitleFontWeightVal%; 
+  text-align: %FrontmatterHalftitleTitleAlignVal%; 
+  text-transform: %FrontmatterHalftitleTitleTextTransformVal%; 
+  font-family: "%FrontmatterHalftitleTitleFontFamilyVal%"; 
+  text-decoration: %FrontmatterHalftitleTitleTextDecorationVal%;
+  font-size: %FrontmatterHalftitleTitleFontSizePtVal%pt;
 }
 
 div.frontmatter-author {
   font-weight: normal;
-  font-size: 2rem;
   margin-top: 8rem;
-  text-align: %FrontmatterHalftitleAuthorAlignVal%; /*  */
-  font-family: "%FrontmatterHalftitleAuthorFontFamilyVal%"; /*  */
+  text-align: %FrontmatterHalftitleAuthorAlignVal%; 
+  font-family: "%FrontmatterHalftitleAuthorFontFamilyVal%"; 
+  font-size: %FrontmatterHalftitleAuthorFontSizePtVal%pt;
 }
 
 /* FRONT MATTER (title) *****************************************************/
 div.frontmatter-title {
-  font-size: 3rem;
-  line-height: 100%;
+  line-height: 110%;
   padding-top: 30%;
   margin-bottom: 0;
-  text-align: %FrontmatterTitlepageTitleAlignVal%; /*  */
-  font-weight: %FrontmatterTitlepageTitleFontWeightVal%; /*  */
-  text-transform: %FrontmatterTitlepageTitleTextTransformVal%; /*  */
-  font-family: "%FrontmatterTitlepageTitleFontFamilyVal%"; /*  */
+  text-align: %FrontmatterTitlepageTitleAlignVal%; 
+  font-weight: %FrontmatterTitlepageTitleFontWeightVal%; 
+  text-transform: %FrontmatterTitlepageTitleTextTransformVal%; 
+  font-family: "%FrontmatterTitlepageTitleFontFamilyVal%"; 
+  text-decoration: %FrontmatterTitlepageTitleTextDecorationVal%;
+  font-size: %FrontmatterTitlepageTitleFontSizePtVal%pt;
 }
 
 div.frontmatter-subtitle {
-  font-size: 2rem;
-  line-height: 100%;
+  line-height: 110%;
   margin-top: 4rem;
   font-weight: normal;
-  text-align: %FrontmatterTitlepageSubtitleAlignVal%; /*  */
-  font-family: "%FrontmatterTitlepageSubtitleFontFamilyVal%"; /*  */
+  text-align: %FrontmatterTitlepageSubtitleAlignVal%; 
+  font-family: "%FrontmatterTitlepageSubtitleFontFamilyVal%"; 
+  font-size: %FrontmatterTitlepageSubtitleFontSizePtVal%pt;
 }
 
 div.frontmatter-author-title {
-  font-size: 2rem;
   line-height: 100%;
   font-weight: normal;
   margin-top: 6rem;
   margin-bottom: 0;
-  text-align: %FrontmatterTitlepageAuthorAlignVal%; /*  */
-  font-family: "%FrontmatterTitlepageAuthorFontFamilyVal%"; /*  */
+  text-align: %FrontmatterTitlepageAuthorAlignVal%; 
+  font-family: "%FrontmatterTitlepageAuthorFontFamilyVal%"; 
+  font-size: %FrontmatterTitlepageAuthorFontSizePtVal%pt;
 }
 
 div.frontmatter-line {
   width: 33%;
   background-color: black;
-  height: %FrontmatterTitlepageLineVal%; /*  */
+  height: %FrontmatterTitlepageLineVal%; 
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
@@ -104,19 +129,19 @@ div.frontmatter-line {
   font-weight: normal;
   margin-top: 3rem;
   font-size: 1rem;
-  line-height: 100%;
-  text-align: %FrontmatterTitlepagePublisherAlignVal%; /*  */
-  font-family: "%FrontmatterTitlepagePublisherFontFamilyVal%"; /*  */
+  line-height: inherit;
+  text-align: %FrontmatterTitlepagePublisherAlignVal%; 
+  font-family: "%FrontmatterTitlepagePublisherFontFamilyVal%"; 
 }
 
 /* Table of contents ****************************************/
 div.mpdf_toc {
   font-size: 1rem;
-  font-family: "%TableOfContentsFontFamilyVal%"; /*  */
+  font-family: "%TableOfContentsFontFamilyVal%"; 
 }
 
 span.mpdf_toc_t_level_0 {
-  font-weight: %TableOfContentsTopLevelFontWeightVal%; /*  */
+  font-weight: %TableOfContentsTopLevelFontWeightVal%; 
   text-transform: none;
 }
 
@@ -127,131 +152,169 @@ span.mpdf_toc_t_level_1 {
 }
 /* Body styling ************************************************************/
 
+/* dropcaps*/
+.dropcap {
+  font-size: %BodyParagraphDropcapsFontsizePtVal%pt;
+}
+
 h1.chapter-h1 {
   margin-top: 0;
   padding-bottom: 0;
-  text-align: %ChapterHeader1AlignVal%; /*  */
-  font-weight: %ChapterHeader1FontWeightVal%; /*  */
-  font-family: "%ChapterHeader1FontFamilyVal%"; /*  */
+  text-align: %ChapterHeader1AlignVal%; 
+  font-weight: %ChapterHeader1FontWeightVal%; 
+  font-family: "%ChapterHeader1FontFamilyVal%"; 
   font-size: %ChapterHeader1FontSizePtVal%pt;
   padding-top: %ChapterHeader1PaddingTopVal%pt; 
-  margin-bottom: %ChapterHeader1PaddingBottomVal%pt; /*  */
+  margin-bottom: %ChapterHeader1PaddingBottomVal%pt; 
   line-height: %ChapterHeader1LineHeightPtVal%pt; 
+  text-transform: %ChapterHeader1TextTransformVal%; 
+  border-bottom: %ChapterHeader1BorderBottomVal% solid black;
+  text-decoration: %ChapterHeader1TextDecorationVal%;
 }
 
 h1.body-h1 {
   margin-top: 0;
   padding-bottom: 0;
-  text-align: %BodyHeader1AlignVal%; /*  */
-  font-weight: %BodyHeader1FontWeightVal%; /*  */
-  font-family: "%BodyHeader1FontFamilyVal%"; /*  */
+  text-align: %BodyHeader1AlignVal%; 
+  font-weight: %BodyHeader1FontWeightVal%; 
+  font-family: "%BodyHeader1FontFamilyVal%"; 
   font-size: %BodyHeader1FontSizePtVal%pt;
   padding-top: %BodyHeader1PaddingTopVal%pt; 
-  margin-bottom: %BodyHeader1PaddingBottomVal%pt; /*  */
+  margin-bottom: %BodyHeader1PaddingBottomVal%pt; 
   line-height: %BodyHeader1LineHeightPtVal%pt; 
+  text-transform: %BodyHeader1TextTransformVal%; 
+  border-bottom: %BodyHeader1BorderBottomVal% solid black;
+  text-decoration: %BodyHeader1TextDecorationVal%;
 }
 
 h2.body-h2 {
   margin-top: 0;
   padding-bottom: 0;
-  text-align: %BodyHeader2AlignVal%; /*  */
-  font-weight: %BodyHeader2FontWeightVal%; /*  */
-  font-family: "%BodyHeader2FontFamilyVal%"; /*  */
+  text-align: %BodyHeader2AlignVal%; 
+  font-weight: %BodyHeader2FontWeightVal%; 
+  font-family: "%BodyHeader2FontFamilyVal%"; 
   font-size: %BodyHeader2FontSizePtVal%pt;
   padding-top: %BodyHeader2PaddingTopVal%pt; 
-  margin-bottom: %BodyHeader2PaddingBottomVal%pt; /*  */
+  margin-bottom: %BodyHeader2PaddingBottomVal%pt; 
   line-height: %BodyHeader2LineHeightPtVal%pt; 
+  text-transform: %BodyHeader2TextTransformVal%; 
+  border-bottom: %BodyHeader2BorderBottomVal% solid black;
+  text-decoration: %BodyHeader2TextDecorationVal%;
 }
 
 h3.body-h3 {
   margin-top: 0;
   padding-bottom: 0;
-  text-align: %BodyHeader3AlignVal%; /*  */
-  font-weight: %BodyHeader3FontWeightVal%; /*  */
-  font-family: "%BodyHeader3FontFamilyVal%"; /*  */
+  text-align: %BodyHeader3AlignVal%; 
+  font-weight: %BodyHeader3FontWeightVal%; 
+  font-family: "%BodyHeader3FontFamilyVal%"; 
   font-size: %BodyHeader3FontSizePtVal%pt;
   padding-top: %BodyHeader3PaddingTopVal%pt; 
-  margin-bottom: %BodyHeader3PaddingBottomVal%pt; /*  */
+  margin-bottom: %BodyHeader3PaddingBottomVal%pt; 
   line-height: %BodyHeader3LineHeightPtVal%pt; 
+  text-transform: %BodyHeader3TextTransformVal%; 
+  border-bottom: %BodyHeader3BorderBottomVal% solid black;
+  text-decoration: %BodyHeader3TextDecorationVal%;
 }
 
 h4.body-h4 {
   margin-top: 0;
   padding-bottom: 0;
-  text-align: %BodyHeader4AlignVal%; /*  */
-  font-weight: %BodyHeader4FontWeightVal%; /*  */
-  font-family: "%BodyHeader4FontFamilyVal%"; /*  */
+  text-align: %BodyHeader4AlignVal%; 
+  font-weight: %BodyHeader4FontWeightVal%; 
+  font-family: "%BodyHeader4FontFamilyVal%"; 
   font-size: %BodyHeader4FontSizePtVal%pt;
   padding-top: %BodyHeader4PaddingTopVal%pt; 
-  margin-bottom: %BodyHeader4PaddingBottomVal%pt; /*  */
+  margin-bottom: %BodyHeader4PaddingBottomVal%pt; 
   line-height: %BodyHeader4LineHeightPtVal%pt; 
+  text-transform: %BodyHeader4TextTransformVal%; 
+  border-bottom: %BodyHeader4BorderBottomVal% solid black;
+  text-decoration: %BodyHeader4TextDecorationVal%;
 }
 
 h5.body-h5 {
   margin-top: 0;
   padding-bottom: 0;
-  text-align: %BodyHeader5AlignVal%; /*  */
-  font-weight: %BodyHeader5FontWeightVal%; /*  */
-  font-family: "%BodyHeader5FontFamilyVal%"; /*  */
+  text-align: %BodyHeader5AlignVal%; 
+  font-weight: %BodyHeader5FontWeightVal%; 
+  font-family: "%BodyHeader5FontFamilyVal%"; 
   font-size: %BodyHeader5FontSizePtVal%pt;
   padding-top: %BodyHeader5PaddingTopVal%pt; 
-  margin-bottom: %BodyHeader5PaddingBottomVal%pt; /*  */
+  margin-bottom: %BodyHeader5PaddingBottomVal%pt; 
   line-height: %BodyHeader5LineHeightPtVal%pt; 
+  text-transform: %BodyHeader5TextTransformVal%; 
+  border-bottom: %BodyHeader5BorderBottomVal% solid black;
+  text-decoration: %BodyHeader5TextDecorationVal%;
 }
 
+p {
+  font-weight: normal;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: %BodyParagraphSpacingVal%pt; 
+}
 p.body-first {
-  font-weight: normal;
   text-indent: 0;
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: %BodyParagraphSpacingVal%pt; /*  */
+  margin-bottom: %BodyParagraphSpacingVal%pt; 
 }
-
-p.body, p {
-  font-weight: normal;
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: %BodyParagraphSpacingVal%pt; /*  */
-  text-indent: %BodyParagraphIndentVal%; /*  */
+p.body {
+  margin-bottom: %BodyParagraphSpacingVal%pt; 
+  text-indent: %BodyParagraphIndentVal%; 
 }
-
-blockquote, p.quote {
+p.hanging {
+  margin-bottom: %BodyParagraphSpacingVal%pt; 
+  text-indent: -%BodyParagraphHangingVal%;
+  padding-left: %BodyParagraphHangingVal%;
+}
+p:first-child:first-letter{
+  float:left;
+  margin-top:7px;
+  font-size:70px;
+  margin-right:5px;
+  color:#3D3529;
+}
+.quote-before {
+  display: none;
+}
+blockquote, .quote {
+  font-family: "%QuoteFontFamilyVal%"; 
   display: inline;
-  font-weight: normal;
-  font-size: 1rem;
-  font-style: italic;
+  font-weight: %QuoteFontWeightVal%; 
+  font-size: %QuoteFontSizePtVal%pt;
+  font-style: %QuoteFontStyleVal%;
   text-indent: 0;
-  border-left: 0.5rem solid #ccc;
-  padding-left: 1rem;
-  margin-top: %BodyParagraphSpacingVal%pt; /*  */
-  margin-bottom: %BodyParagraphSpacingVal%pt; /*  */
-  margin-top: %BodyLineHeightVal%pt; /*  */
-  margin-bottom: %BodyLineHeightVal%pt; /*  */
+  border-left: %QuoteLineLeftVal% %QuoteLineStyleVal% %QuoteLineLeftColorVal%;
+  padding-left: %QuotePaddingLine2QuoteVal%rem;
+  margin-left: %QuotePaddingMargin2LinePtVal%pt;
+  margin-top: %QuotePaddingTopVal%pt; 
+  margin-bottom: %QuotePaddingBottomVal%pt; 
+  text-align: %QuoteAlignVal%; 
+  line-height: %QuoteLineHeightPtVal%pt; 
+  text-transform: %QuoteTextTransformVal%; 
+  text-decoration: %QuoteTextDecorationVal%;
 }
 /* Lists ****************************************************************/
 ul, ol {
-  padding-bottom: 0;
-  padding-top: 0;
-  margin-top: 0;
-  line-height: %BodyLineHeightVal%pt; /*  */
-  margin-bottom: %BodyParagraphSpacingVal%pt; /*  */
+  line-height: %BodyLineHeightVal%pt; 
+  margin-top: %BodyLineHeightVal%pt; 
+  margin-bottom: %BodyLineHeightVal%pt; 
 }
 li {
   padding: 0;
   margin: 0;
-  line-height: %BodyLineHeightVal%pt; /*  */
+  line-height: %BodyLineHeightVal%pt; 
 }
 /* TABLE *****************************************************************/
 table {
   border-collapse: collapse;
-  width: 100%;
-  padding-top: %BodyLineHeightVal%pt; /*  */
-  margin-bottom: %BodyLineHeightVal%pt; /*  */
+  max-width: 100%;
+  margin-top: %BodyLineHeightVal%pt; 
+  margin-bottom: %BodyLineHeightVal%pt; 
 }
 
 caption {
   font-style: italic;
-  margin-top: %BodyLineHeightVal%pt; /*  */
+  margin-top: %BodyLineHeightVal%pt; 
 }
 
 table, th, td {
@@ -262,13 +325,12 @@ th, td {
 }
 /* PREFORMATTED ******************************************************/
 pre {
-  font-size: %BodyFontSizeVal%; /*  */
-  line-height: %BodyLineHeightVal%pt; /*  */
+  padding-bottom: 0;
   padding-top: 0;
-  margin-top: 0;
-  padding-top: %BodyParagraphSpacingVal%pt; /*  */
-  margin-bottom: %BodyParagraphSpacingVal%pt; /*  */
-  font-family: "%PreformattedFontFamilyVal%"; /*  */
+  font-family: "%PreformattedFontFamilyVal%"; 
+  line-height: %BodyLineHeightVal%pt; 
+  margin-top: %BodyLineHeightVal%pt; 
+  margin-bottom: %BodyLineHeightVal%pt; 
 }
 /* ENDNOTES **********************************************************/
 .endnote {
@@ -289,7 +351,7 @@ ol.endnotes li {
 
 /* DEDICATION  ***********************************************************/
 div.dedication {
-  padding-top: 30%;
+  padding-top: 30Val%;
 }
 
 p.dedication {
@@ -299,13 +361,13 @@ p.dedication {
   font-size: 1.3rem;
   line-height: 1.5rem;
   display: inline; 
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 7rem;
+  margin-right: 7rem;
 }
 
 /* IMAGE (plus captions) ************************************************/
 img, div.image {
-  max-width: 100%;
+  max-width: 100Val%;
   height: auto;
   margin: 0px auto;
 }
