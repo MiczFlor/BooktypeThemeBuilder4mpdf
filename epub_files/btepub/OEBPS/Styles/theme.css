@@ -1,57 +1,85 @@
 @font-face {
-    font-family: 'palatinolinotype';
+    font-family: 'roboto';
     font-weight: normal;
     font-style: normal;
-    src: url('../Fonts/PalatinoLinotype-Regular.ttf');
+    src: url('../Fonts/Roboto-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'palatinolinotype';
+    font-family: 'roboto';
     font-weight: bold;
     font-style: normal;
-    src: url('../Fonts/PalatinoLinotype-Bold.ttf');
+    src: url('../Fonts/Roboto-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'palatinolinotype';
+    font-family: 'roboto';
     font-weight: normal;
     font-style: italic;
-    src: url('../Fonts/PalatinoLinotype-Italic.ttf');
+    src: url('../Fonts/Roboto-Italic.ttf');
 }
 
 @font-face {
-    font-family: 'palatinolinotype';
+    font-family: 'roboto';
     font-weight: bold;
     font-style: italic;
-    src: url('../Fonts/PalatinoLinotype-BoldItalic.ttf');
+    src: url('../Fonts/Roboto-BoldItalic.ttf');
 }
 
 @font-face {
-    font-family: 'ubuntu-mono';
+    font-family: 'texgyrecursor';
     font-weight: normal;
     font-style: normal;
-    src: url('../Fonts/UbuntuMono-R.ttf');
+    src: url('../Fonts/TeXGyreCursor-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'ubuntu-mono';
+    font-family: 'texgyrecursor';
     font-weight: bold;
     font-style: normal;
-    src: url('../Fonts/UbuntuMono-B.ttf');
+    src: url('../Fonts/TeXGyreCursor-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'ubuntu-mono';
+    font-family: 'texgyrecursor';
     font-weight: normal;
     font-style: italic;
-    src: url('../Fonts/UbuntuMono-RI.ttf');
+    src: url('../Fonts/TeXGyreCursor-Italic.ttf');
 }
 
 @font-face {
-    font-family: 'ubuntu-mono';
+    font-family: 'texgyrecursor';
     font-weight: bold;
     font-style: italic;
-    src: url('../Fonts/UbuntuMono-BI.ttf');
+    src: url('../Fonts/TeXGyreCursor-BoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../Fonts/RobotoCondensed-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    font-weight: bold;
+    font-style: normal;
+    src: url('../Fonts/RobotoCondensed-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    font-weight: normal;
+    font-style: italic;
+    src: url('../Fonts/RobotoCondensed-Italic.ttf');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    font-weight: bold;
+    font-style: italic;
+    src: url('../Fonts/RobotoCondensed-BoldItalic.ttf');
 }
 
 body {
@@ -59,7 +87,7 @@ body {
   line-height: normal;
   margin: 0;
   padding: 0;
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
   color: #000000;
 }
 
@@ -68,16 +96,16 @@ div.dedication {
   margin-left: 40px;
   margin-right: 40px;
   margin-top: 50px;
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
   font-size: 2em;
   font-style: italic;
 }
 
 h1.section {
-  font-family: "palatinolinotype"; 
-  text-align: center; 
+  font-family: "roboto"; 
+  text-align: left; 
   font-weight: bold; 
-  font-size: 1.33em;
+  font-size: 2.1em;
   text-transform: none; 
   text-decoration: none;
   margin-top: 0;
@@ -86,11 +114,11 @@ h1.section {
 h1.frontmatter-title {
   text-align: left; 
   font-weight: bold; 
-  text-transform: none; 
-  font-family: "palatinolinotype"; 
+  text-transform: uppercase; 
+  font-family: "roboto"; 
   text-decoration: none;
   border-bottom: 0px; 
-  font-size: 1.86em;
+  font-size: 2.1em;
   line-height: normal;
   margin-top: 1.5em;
   margin-bottom: 0;
@@ -98,9 +126,9 @@ h1.frontmatter-title {
 
 h2.frontmatter-author {
   text-align: left; 
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
   border-bottom: 0px; 
-  font-size: 1.33em;
+  font-size: 1.6em;
   line-height: normal;
   margin-top: 2em;
 }
@@ -114,25 +142,25 @@ div.frontmatter-line {
 /*
 h2.frontmatter-author-title {
   text-align: left; 
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
   border-bottom: 0px; 
   margin-top: 2em;
-  font-size: 1.49em;
+  font-size: 1.6em;
   line-height: normal;
 }
 
 h3.frontmatter-subtitle {
   text-align: left; 
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
   border-bottom: 0px; 
   margin-top: 10mm;
-  font-size: 1.49em;
+  font-size: 1.6em;
   line-height: normal;
 }
 */
 
 p.quote {
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
   display: block;
   font-weight: normal; 
   font-size: 1em;
@@ -144,7 +172,7 @@ p.quote {
   margin-top: 1em; 
   margin-bottom: 1em; 
   text-align: left; 
-  line-height: 14.3pt; 
+  line-height: 14.7pt; 
   text-transform: none; 
   text-decoration: none;
 } 
@@ -177,59 +205,59 @@ h6 {
 }
 
 h1 {
-  font-family: "palatinolinotype"; 
+  font-family: "roboto-condensed"; 
   font-weight: normal; 
   text-transform: none; 
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 1.33em; 
+  font-size: 2.13em; 
   /*font-size: 3.6em;*/
   margin-top: 2.1em;
   margin-bottom: 2.1em;
 }
 
 h2 {
-  font-family: "palatinolinotype"; 
-  font-weight: bold; 
-  text-transform: none; 
-  text-align: left; 
-  text-decoration: none;
-  line-height: normal; 
-  font-size: 1em; 
-  /*font-size: 2.2em;*/
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-h3 {
-  font-family: "palatinolinotype"; 
-  font-weight: bold; 
-  text-transform: none; 
-  text-align: left; 
-  text-decoration: none;
-  line-height: normal; 
-  font-size: 1em; 
-  /*font-size: 1.8em;*/
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-h4 {
-  font-family: "palatinolinotype"; 
+  font-family: "roboto-condensed"; 
   font-weight: normal; 
   text-transform: none; 
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 1em; 
+  font-size: 1.6em; 
+  /*font-size: 2.2em;*/
+  margin-top: 0.66em;
+  margin-bottom: 0.33em;
+}
+
+h3 {
+  font-family: "roboto-condensed"; 
+  font-weight: normal; 
+  text-transform: none; 
+  text-align: left; 
+  text-decoration: none;
+  line-height: normal; 
+  font-size: 1.35em; 
+  /*font-size: 1.8em;*/
+  margin-top: 0.66em;
+  margin-bottom: 0.33em;
+}
+
+h4 {
+  font-family: "roboto-condensed"; 
+  font-weight: normal; 
+  text-transform: none; 
+  text-align: left; 
+  text-decoration: none;
+  line-height: normal; 
+  font-size: 1.33em; 
   /*font-size: 1.4em;*/
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0.66em;
+  margin-bottom: 0.33em;
 }
 
 h5 {
-  font-family: "palatinolinotype"; 
+  font-family: "roboto-condensed"; 
   font-weight: normal; 
   text-transform: none; 
   text-align: left; 
@@ -237,8 +265,8 @@ h5 {
   line-height: normal; 
   font-size: 1em; 
   /*font-size: 1.2em;*/
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0.66em;
+  margin-bottom: 0.33em;
 }
 
 /* Paragraph Styles *****************************************************/
@@ -252,7 +280,7 @@ h1 + p,
 h2 + p,
 h3 + p,
 h4 + p {
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
     font-weight: normal;
     font-size: 1em; 
     line-height: 1.4em;
@@ -262,7 +290,7 @@ h4 + p {
 
 p,
 a {
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
     font-weight: normal;
     font-size: 1em; 
     line-height: 1.4em;
@@ -274,13 +302,13 @@ ul+p,
 ol+p,
 div.group_img+p,
 table+p {
-    text-indent: 0em;
-    margin-bottom: 0.7em;
+    text-indent: 1em;
+    margin-bottom: 0.15em;
 }
 
 p.hanging {
-  text-indent: -2em;
-  padding-left: 2em;
+  text-indent: -1em;
+  padding-left: 1em;
 }
 
 ul,
@@ -290,7 +318,7 @@ ol {
 }
 
 li {
-    font-family: "palatinolinotype"; 
+    font-family: "roboto"; 
     font-weight: normal;
     font-size: 1em;
     line-height: 1.4em;
@@ -319,7 +347,7 @@ td {
 }
 
 td {
-    font-family: "palatinolinotype"; 
+    font-family: "roboto"; 
     font-weight: normal;
     font-size: 0.9em;
     line-height: normal;
@@ -342,9 +370,9 @@ td {
   text-align: center;
 }
 
-.caption_small {
+caption, .caption_small {
   margin-top: 0.5em;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-style: italic;
 }
 
@@ -372,7 +400,7 @@ ol.endnotes {
 }
 
 ol.endnotes li {
-  font-family: "palatinolinotype"; 
+  font-family: "roboto"; 
   font-weight: normal;
   font-size: 0.8em;
   line-height: 1.2em;

@@ -8,7 +8,7 @@ $debug = "false"; // (true|false)
 /*
 * The source html file which is piped into mpdf
 */
-$html4mpdf = "mpdf-body_themesample.html"; // (mpdf-body.html|mpdf-body_themesample.html)
+$html4mpdf = "mpdf-body.html"; // (mpdf-body.html|mpdf-body_themesample.html)
 /*
 * When creating a PDF, should also a copy with specs of the theme be created? 
 * (like: Sample_H190mm_W125mm_Font-freeserif_Size-11pt.pdf)
@@ -58,7 +58,8 @@ $FontSizeEditorCSS = array(
 */
 $formoptionselectbasefontsize = "select__". implode("_", array_keys($FontSizeEditorCSS));
 $formoptionselectpadding = "select__0-top:0-bottom_0-top:1-bottom_0-top:2-bottom_0-top:3-bottom_0-top:4-bottom_0-top:5-bottom_0.33-top:0.66-bottom_0.5-top:0.5-bottom_0.66-top:0.33-bottom_1-top:0-bottom_1-top:1-bottom_1-top:2-bottom_1-top:3-bottom_1-top:4-bottom_1-top:5-bottom_1.33-top:0.66-bottom_1.5-top:0.5-bottom_1.66-top:0.33-bottom_2-top:0-bottom_2-top:1-bottom_2-top:2-bottom_2-top:3-bottom_2-top:4-bottom_2-top:5-bottom_2.5-top:0.5-bottom_2.5-top:1.5-bottom_3-top:0-bottom_3-top:1-bottom_3-top:2-bottom_3-top:3-bottom_3-top:4-bottom_3-top:5-bottom_3.5-top:0.5-bottom_3.5-top:1.5-bottom_3.5-top:2.5-bottom_4-top:0-bottom_4-top:1-bottom_4-top:2-bottom_4-top:3-bottom_4-top:4-bottom_4-top:5-bottom_5-top:0-bottom_5-top:1-bottom_5-top:3-bottom_5-top:4-bottom_5-top:5-bottom_6-top:0-bottom_6-top:1-bottom_6-top:3-bottom_6-top:6-bottom_7-top:0-bottom_7-top:1-bottom_7-top:3-bottom_7-top:4-bottom_7-top:7-bottom";
-$formoptionselectfontsizeem = "select__1_1.33_1.5_1.66_2_2.33_2.5_2.66_3_3.33_3.5_3.66_4_4.33_4.5_4.66_5_5.5_6_6.5_7";
+$formoptionselectfontsizeem = "select__0.5_0.7_0.9_1_1.1_1.2_1.3_1.33_1.4_1.5_1.66_1.8_2_2.33_2.5_2.66_3_3.33_3.5_3.66_4_4.33_4.5_4.66_5_5.5_6_6.5_7";
+$formoptionselectcaptionfontsizeem = "select__0.33_0.5_0.6_0.7_0.8_0.9_1_1.1_1.2_1.3_1.4_1.5_1.66_1.8_2_2.5_3_3.5_4_4.5_5_5.5_6_6.5_7";
 $formoptionselectlineheightinteger = "select__1_2_3_4_5_6_7";
 $formoptions = array(
   "page" => array(
@@ -437,250 +438,34 @@ if(isset($_POST['Action'])) {
     }
     
     // write theme fonts in array format
-    $theme_fonts_txt = "/* '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." theme fonts */";
-    foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
-      $theme_fonts_txt .= "\n        \"".$fontfamily."\" => array(";
-      foreach($values as $style => $fontname) {
-        $theme_fonts_txt .= "\n          '".$style."' => \"".$fontname."\",";
-      }
-      $theme_fonts_txt .= "\n        ),";
-    }
-    //print "<pre>"; print_r($FORM['Fonts']); print $theme_fonts_txt; print "</pre>";//???
-    // write to file twice(?)
-    file_put_contents($themenamefolder."/theme_fonts.php", $theme_fonts_txt);
-    file_put_contents($themenamefolder."/static/theme_fonts.php", $theme_fonts_txt);
+    create_theme_theme_fonts_php();
 
     // write CSS to preload fonts
-    $theme_preload_css_txt = "/* Pre-load '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." theme fonts */";
-    foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
-      foreach($values as $style => $fontname) {
-        // make sure the font exists
-        if(file_exists($themenamefolder."/static/fonts/".$fontname)) {
-          $theme_preload_css_txt .= "\n@font-face {";
-          $theme_preload_css_txt .= "\n    font-family: '".$fontfamily."';";
-          $theme_preload_css_txt .= "\n    src: url('fonts/".$fontname."') format('truetype');";
-          $theme_preload_css_txt .= "\n    font-weight: ";
-          if($style == "R" OR $style == "I") {
-            $theme_preload_css_txt .= "normal;";
-          } else {
-            $theme_preload_css_txt .= "bold;";
-          }
-          $theme_preload_css_txt .= "\n    font-style: ";
-          if($style == "R" OR $style == "B") {
-            $theme_preload_css_txt .= "normal;";
-          } else {
-            $theme_preload_css_txt .= "italic;";
-          }
-          $theme_preload_css_txt .= "\n}";
-        }
-      }
-    }
-    file_put_contents($themenamefolder."/static/preload.css", $theme_preload_css_txt);
+    create_theme_preload_css();
 
     // information for user UI
-    $theme_panel_html_txt = "{% load i18n %}
-<div class=\"userstyle\">
-  <div class=\"styleblock\">
-    <div class=\"row\">
-      <div class=\"col-md-12\">
-       <p>{% trans \"".$FORM['Form']['Theme']['themedescription']."\" %} </p>";
-    if(isset($FORM['Form']['Theme']['themeauthor']) && trim($FORM['Form']['Theme']['themeauthor']) != "") {
-    $theme_panel_html_txt .= "
-       <p>{% trans \"Author\" %}: ".$FORM['Form']['Theme']['themeauthor']."</p>";
-    }
-    if(isset($FORM['Form']['Theme']['themedate']) && trim($FORM['Form']['Theme']['themedate']) != "") {
-    $theme_panel_html_txt .= "
-       <p>{% trans \"Created\" %}: ".$FORM['Form']['Theme']['themedate']."</p>";
-    }
-    $linktofile = "http://files.sourcefabric.org/booktype/sample-files/".$FORM['Form']['Theme']['themenamefolder'].".pdf";
-    $theme_panel_html_txt .= "
-        <p>
-          <span style='color: #fff; background-color: red; padding: 2px 5px; font-size: 0.7em; font-weight: bold;'><a href='".$linktofile."' target='_blank' style='color: #fff; text-decoration: none;'>PDF</a></span>
-          <a href='".$linktofile."' target='_blank' style='text-decoration: none; font-size: 0.8em;'>Download sample PDF</a>
-        </p>";
-    $theme_panel_html_txt .= "
-      </div>
-    </div>
-   </div>
-</div>";
-    file_put_contents($themenamefolder."/panel.html", $theme_panel_html_txt);
+    create_theme_panel_html();
     
     // write info json file used by Booktype
-    $info_json_txt = "{
-  \"version\": \"".$FORM['Form']['Theme']['themeversion']."\",
-  \"name\": \"".$FORM['Form']['Theme']['themenamehuman']."\",
-  \"author\": \"".$FORM['Form']['Theme']['themeauthor']."\",
-  \"date\": \"".$FORM['Form']['Theme']['themedate']."\",
-  \"output\": {
-    \"mpdf\": {
-      \"options\": {},
-      \"frontmatter\": \"frontmatter_mpdf.html\",
-      \"endmatter\": \"endmatter_mpdf.html\",
-      \"body\": \"body_mpdf.html\"
-    },
-    \"screenpdf\": {
-      \"options\": {},
-      \"frontmatter\": \"frontmatter_screenpdf.html\",
-      \"endmatter\": \"endmatter_screenpdf.html\",
-      \"body\": \"body_screenpdf.html\"
-    },
-    \"epub\": {
-      \"assets\": {
-        \"fonts\": [";
-    $counter = 0;
-    foreach($FORM['Fonts']['filenames'] as $fontfilename) {
-      $counter++;
-      $info_json_txt .= "
-          \"static/fonts/".$fontfilename."\"";
-      // add comma unless it is the last item,
-      if(count($FORM['Fonts']['filenames']) > $counter) {
-        $info_json_txt .= ",";
-      }
-    }
-    $info_json_txt .= "\n        ]\n      }\n    }\n  }\n}";
-    // write json to file
-    file_put_contents($themenamefolder."/info.json", $info_json_txt);
-
-    /*
-    * Search and replace all files with new values
-    */
-    // read print pdf template file
-    $stylecss = file_get_contents($themenamefolder."/mpdf.css");
-    $newstylecss = str_replace($find, $replace, $stylecss);
-    // write template file
-    file_put_contents($themenamefolder."/mpdf.css", $newstylecss);
-    // read screen pdf template file
-    $stylecss = file_get_contents($themenamefolder."/screenpdf.css");
-    $newstylecss = str_replace($find, $replace, $stylecss);
-    // write template file
-    file_put_contents($themenamefolder."/screenpdf.css", $newstylecss);
-    // read Aloha editor CSS template file
-    $stylecss = file_get_contents($themenamefolder."/static/editor.css");
-    $newstylecss = str_replace($find, $replace, $stylecss);
-    // write template file
-    file_put_contents($themenamefolder."/static/editor.css", $newstylecss);
+    create_theme_info_json();
     
-    /*
-    * the epub.css is a little different, because we need to add @font-face info
-    */
-    // create @font-face first
-    $stylecss = "";
-    foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
-      foreach($values as $style => $fontname) {
-        // make sure the font exists
-        if(file_exists($themenamefolder."/static/fonts/".$fontname)) {
-          $stylecss .= "@font-face {";
-          $stylecss .= "\n    font-family: '".$fontfamily."';";
-          $stylecss .= "\n    font-weight: ";
-          if($style == "R" OR $style == "I") {
-            $stylecss .= "normal;";
-          } else {
-            $stylecss .= "bold;";
-          }
-          $stylecss .= "\n    font-style: ";
-          if($style == "R" OR $style == "B") {
-            $stylecss .= "normal;";
-          } else {
-            $stylecss .= "italic;";
-          }
-          $stylecss .= "\n    src: url('../Fonts/".$fontname."');";
-          $stylecss .= "\n}\n\n";
-        }
-      }
-    }
-    // read epub CSS template file
-    $stylecss .= file_get_contents($themenamefolder."/epub.css");
-    $newstylecss = str_replace($find, $replace, $stylecss);
-    // write template file
-    file_put_contents($themenamefolder."/epub.css", $newstylecss);
+    // read print pdf template file
+    create_theme_mpdf_css();
+    
+    // read screen pdf template file
+    create_theme_screenpdf_css();
+    
+    // read browser editor CSS template file
+    create_theme_editor_css();
+    
+    // epub.css file for EPUB creation
+    create_theme_epub_css();   
+
+    // create epub and possibly mobi file
+    create_theme_ebook_files();
     
     // finally make a PDF with a sample
-    $stylecss = "@page {
-  sheet-size: %PageWidth% %PageHeight%;  
-  size: %PageWidth% %PageHeight%; 
-
-  margin-left: %PageMarginLeft%; 
-  margin-right: %PageMarginRight%;
-  margin-top: %PageMarginTop%; 
-  margin-bottom: %PageMarginBottom%;
-
-  margin-footer: %PageMarginFooter%;
-  odd-footer-name: html_footer-right;
-  even-footer-name: html_footer-left;
-  
-  margin-header: %PageMarginHeader%;
-  odd-header-name: html_header-right;
-  even-header-name: html_header-left;         
-}
-";
-    $stylecss .= file_get_contents('_assets/raw-theme/mpdf.css');
-    $newstylecss = str_replace($find, $replace, $stylecss);
-    file_put_contents("mpdf_files/style.css", $newstylecss);
-    // html for sample mpdf
-    $mpdfhtml = file_get_contents('_assets/raw-html/mpdf-body_themesample.html');
-    $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
-    file_put_contents("mpdf_files/body.html", $newmpdfhtml);
-    // frontmatter for sample mpdf
-    $mpdfhtml = file_get_contents('_assets/raw-html/frontmatter_themesample.html');
-    $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
-    file_put_contents("mpdf_files/frontmatter.html", $newmpdfhtml);    
-
-    /*
-    * create EPUB file for testing
-    */
-    // copy css file to folder from which epub will be made
-    exec("rm epub_files/btepub/OEBPS/Styles/theme.css");
-    exec("cp ".$themenamefolder."/epub.css epub_files/btepub/OEBPS/Styles/theme.css");
-    // delete all fonts, then copy new ones
-    exec ("rm epub_files/btepub/OEBPS/Fonts/*");
-    // copy the fonts to the static folder
-    foreach($FORM['Fonts'] as $fontfamily => $values) {
-      foreach($values as $style => $fontname) {
-        if(file_exists($options['mpdf_lib']."ttfonts/".$fontname)) {
-          exec("cp ".$options['mpdf_lib']."ttfonts/".$fontname." epub_files/btepub/OEBPS/Fonts/");
-        }
-      }
-    }
-    // make the new content.opf file with the fonts
-    $content_opf = file_get_contents('_assets/raw-epub/content-start.opf');
-    $content_opf = str_replace($find, $replace, $content_opf);
-    // make the new toc.ncx file with the fonts
-    $toc_ncx = file_get_contents('_assets/raw-epub/toc.ncx');
-    $newtoc_ncx = str_replace($find, $replace, $toc_ncx);
-    file_put_contents("epub_files/btepub/OEBPS/toc.ncx", $newtoc_ncx);   
-    // add lines with font paths
-    $counter = 0;
-    foreach($FORM['Fonts'] as $fontfamily => $values) {
-      foreach($values as $style => $fontname) {
-        if(file_exists($options['mpdf_lib']."ttfonts/".$fontname)) {
-          $content_opf .= "
-    <item href=\"Fonts/".$fontname."\" id=\"static_".$counter++."\" media-type=\"application/octet-stream\"/>";
-        }
-      }
-    }
-    $content_opf .= file_get_contents('_assets/raw-epub/content-end.opf');
-    // write new file
-    file_put_contents("epub_files/btepub/OEBPS/content.opf", $content_opf);
-    // make EPUB file
-    chdir("epub_files/btepub/");
-    $output = exec("rm ../btepub.epub");
-    $output = exec("zip -0r btepub.zip mimetype OEBPS META-INF");
-    $output = exec("mv btepub.zip ../btepub.epub");
-    $output = exec($options['kindlegen']." ../btepub.epub");
-    $output = exec("cp ../btepub.epub ".realpath(dirname(__FILE__))."/sample-files/".$FORM['Form']['Theme']['themenamefolder'].".epub");
-    $output = exec("cp ../btepub.mobi ".realpath(dirname(__FILE__))."/sample-files/".$FORM['Form']['Theme']['themenamefolder'].".mobi");
-    
-    /*
-    * Create sample.pdf using mpdf
-    */
-    // change the values to write the final PDF to the theme folder
-    $options['mpdf_output'] = realpath(dirname(__FILE__))."/themes/".$FORM['Form']['Theme']['themenamefolder']."/static";
-    $options['output'] = "sample.pdf";
-    // Run mPDF
-    include("static_booktype2mpdf.php");
-    // copy sample.pdf to general pdf folder with samples
-    chdir($options['home']);
-    $option = system("cp ".$options['mpdf_output']."/".$options['output']." sample-files/".$FORM['Form']['Theme']['themenamefolder'].".pdf");
+    create_theme_sample_pdf_file();
     
   } elseif($ACTION == "dosomething") {
     /*
@@ -830,6 +615,302 @@ if(isset($_POST['Action'])) {
 * STARTING FUNCTIONS ****************************************
 *************************************************************
 */
+
+function create_theme_sample_pdf_file() {
+  global $FORM;
+  global $options;
+  global $find;
+  global $replace;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $stylecss = "@page {
+  sheet-size: %PageWidth% %PageHeight%;  
+  size: %PageWidth% %PageHeight%; 
+
+  margin-left: %PageMarginLeft%; 
+  margin-right: %PageMarginRight%;
+  margin-top: %PageMarginTop%; 
+  margin-bottom: %PageMarginBottom%;
+
+  margin-footer: %PageMarginFooter%;
+  odd-footer-name: html_footer-right;
+  even-footer-name: html_footer-left;
+  
+  margin-header: %PageMarginHeader%;
+  odd-header-name: html_header-right;
+  even-header-name: html_header-left;         
+}
+";
+  $stylecss .= file_get_contents('_assets/raw-theme/mpdf.css');
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  file_put_contents("mpdf_files/style.css", $newstylecss);
+  // html for sample mpdf
+  $mpdfhtml = file_get_contents('_assets/raw-html/mpdf-body_themesample.html');
+  $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
+  file_put_contents("mpdf_files/body.html", $newmpdfhtml);
+  // frontmatter for sample mpdf
+  $mpdfhtml = file_get_contents('_assets/raw-html/frontmatter_themesample.html');
+  $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
+  file_put_contents("mpdf_files/frontmatter.html", $newmpdfhtml); 
+    
+  /*
+  * Create sample.pdf using mpdf
+  */
+  // change the values to write the final PDF to the theme folder
+  $options['mpdf_output'] = realpath(dirname(__FILE__))."/themes/".$FORM['Form']['Theme']['themenamefolder']."/static";
+  $options['output'] = "sample.pdf";
+  // Run mPDF
+  include("static_booktype2mpdf.php");
+  // copy sample.pdf to general pdf folder with samples
+  chdir($options['home']);
+  $option = system("cp ".$options['mpdf_output']."/".$options['output']." sample-files/".$FORM['Form']['Theme']['themenamefolder'].".pdf");
+}
+function create_theme_ebook_files() {
+  global $FORM;
+  global $options;
+  global $find;
+  global $replace;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  // copy css file to folder from which epub will be made
+  exec("rm epub_files/btepub/OEBPS/Styles/theme.css");
+  exec("cp ".$themenamefolder."/epub.css epub_files/btepub/OEBPS/Styles/theme.css");
+  // delete all fonts, then copy new ones
+  exec ("rm epub_files/btepub/OEBPS/Fonts/*");
+  // copy the fonts to the static folder
+  foreach($FORM['Fonts'] as $fontfamily => $values) {
+    foreach($values as $style => $fontname) {
+      if(file_exists($options['mpdf_lib']."ttfonts/".$fontname)) {
+        exec("cp ".$options['mpdf_lib']."ttfonts/".$fontname." epub_files/btepub/OEBPS/Fonts/");
+      }
+    }
+  }
+  // make the new content.opf file with the fonts
+  $content_opf = file_get_contents('_assets/raw-epub/content-start.opf');
+  $content_opf = str_replace($find, $replace, $content_opf);
+  // make the new toc.ncx file with the fonts
+  $toc_ncx = file_get_contents('_assets/raw-epub/toc.ncx');
+  $newtoc_ncx = str_replace($find, $replace, $toc_ncx);
+  file_put_contents("epub_files/btepub/OEBPS/toc.ncx", $newtoc_ncx);   
+  // add lines with font paths
+  $counter = 0;
+  foreach($FORM['Fonts'] as $fontfamily => $values) {
+    foreach($values as $style => $fontname) {
+      if(file_exists($options['mpdf_lib']."ttfonts/".$fontname)) {
+        $content_opf .= "
+  <item href=\"Fonts/".$fontname."\" id=\"static_".$counter++."\" media-type=\"application/octet-stream\"/>";
+      }
+    }
+  }
+  $content_opf .= file_get_contents('_assets/raw-epub/content-end.opf');
+  // write new file
+  file_put_contents("epub_files/btepub/OEBPS/content.opf", $content_opf);
+  // make EPUB file
+  chdir("epub_files/btepub/");
+  $output = exec("rm ../btepub.epub");
+  $output = exec("zip -0r btepub.zip mimetype OEBPS META-INF");
+  $output = exec("mv btepub.zip ../btepub.epub");
+  $output = exec($options['kindlegen']." ../btepub.epub");
+  $output = exec("cp ../btepub.epub ".realpath(dirname(__FILE__))."/sample-files/".$FORM['Form']['Theme']['themenamefolder'].".epub");
+  $output = exec("cp ../btepub.mobi ".realpath(dirname(__FILE__))."/sample-files/".$FORM['Form']['Theme']['themenamefolder'].".mobi");
+}
+function create_theme_epub_css() {
+  global $FORM;
+  global $find;
+  global $replace;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  /*
+  * the epub.css is a little different, because we need to add @font-face info
+  */
+  // create @font-face first
+  $stylecss = "";
+  foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
+    foreach($values as $style => $fontname) {
+      // make sure the font exists
+      if(file_exists($themenamefolder."/static/fonts/".$fontname)) {
+        $stylecss .= "@font-face {";
+        $stylecss .= "\n    font-family: '".$fontfamily."';";
+        $stylecss .= "\n    font-weight: ";
+        if($style == "R" OR $style == "I") {
+          $stylecss .= "normal;";
+        } else {
+          $stylecss .= "bold;";
+        }
+        $stylecss .= "\n    font-style: ";
+        if($style == "R" OR $style == "B") {
+          $stylecss .= "normal;";
+        } else {
+          $stylecss .= "italic;";
+        }
+        $stylecss .= "\n    src: url('../Fonts/".$fontname."');";
+        $stylecss .= "\n}\n\n";
+      }
+    }
+  }
+  // read epub CSS template file
+  $stylecss .= file_get_contents($themenamefolder."/epub.css");
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  // write template file
+  file_put_contents($themenamefolder."/epub.css", $newstylecss);
+}
+function create_theme_editor_css() {
+  global $FORM;
+  global $find;
+  global $replace;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $stylecss = file_get_contents($themenamefolder."/static/editor.css");
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  // write template file
+  file_put_contents($themenamefolder."/static/editor.css", $newstylecss);
+}
+function create_theme_screenpdf_css() {
+  global $FORM;
+  global $find;
+  global $replace;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $stylecss = file_get_contents($themenamefolder."/screenpdf.css");
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  // write template file
+  file_put_contents($themenamefolder."/screenpdf.css", $newstylecss);
+}
+function create_theme_mpdf_css() {
+  global $FORM;
+  global $find;
+  global $replace;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $stylecss = file_get_contents($themenamefolder."/mpdf.css");
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  // write template file
+  file_put_contents($themenamefolder."/mpdf.css", $newstylecss);
+}
+function create_theme_theme_fonts_php() {
+  global $FORM;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $theme_fonts_txt = "/* '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." theme fonts */";
+  foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
+    $theme_fonts_txt .= "\n        \"".$fontfamily."\" => array(";
+    foreach($values as $style => $fontname) {
+      $theme_fonts_txt .= "\n          '".$style."' => \"".$fontname."\",";
+    }
+    $theme_fonts_txt .= "\n        ),";
+  }
+  //print "<pre>"; print_r($FORM['Fonts']); print $theme_fonts_txt; print "</pre>";//???
+  // write to file twice(?)
+  file_put_contents($themenamefolder."/theme_fonts.php", $theme_fonts_txt);
+  file_put_contents($themenamefolder."/static/theme_fonts.php", $theme_fonts_txt);
+}
+function create_theme_info_json() {
+  global $FORM;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $info_json_txt = "{
+  \"version\": \"".$FORM['Form']['Theme']['themeversion']."\",
+  \"name\": \"".$FORM['Form']['Theme']['themenamehuman']."\",
+  \"author\": \"".$FORM['Form']['Theme']['themeauthor']."\",
+  \"date\": \"".$FORM['Form']['Theme']['themedate']."\",
+  \"output\": {
+    \"mpdf\": {
+      \"options\": {},
+      \"frontmatter\": \"frontmatter_mpdf.html\",
+      \"endmatter\": \"endmatter_mpdf.html\",
+      \"body\": \"body_mpdf.html\"
+    },
+    \"screenpdf\": {
+      \"options\": {},
+      \"frontmatter\": \"frontmatter_screenpdf.html\",
+      \"endmatter\": \"endmatter_screenpdf.html\",
+      \"body\": \"body_screenpdf.html\"
+    },
+    \"epub\": {
+      \"assets\": {
+        \"fonts\": [";
+  $counter = 0;
+  foreach($FORM['Fonts']['filenames'] as $fontfilename) {
+    $counter++;
+    $info_json_txt .= "
+          \"static/fonts/".$fontfilename."\"";
+    // add comma unless it is the last item,
+    if(count($FORM['Fonts']['filenames']) > $counter) {
+      $info_json_txt .= ",";
+    }
+  }
+  $info_json_txt .= "\n        ]\n      }\n    }\n  }\n}";
+  // write json to file
+  file_put_contents($themenamefolder."/info.json", $info_json_txt);
+}
+function create_theme_panel_html() {
+  global $FORM;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $theme_panel_html_txt = "{% load i18n %}
+<div class=\"userstyle\">
+  <div class=\"styleblock\">
+    <div class=\"row\">
+      <div class=\"col-md-12\">
+       <p>{% trans \"".$FORM['Form']['Theme']['themedescription']."\" %} </p>";
+  if(isset($FORM['Form']['Theme']['themeauthor']) && trim($FORM['Form']['Theme']['themeauthor']) != "") {
+  $theme_panel_html_txt .= "
+     <p>{% trans \"Author\" %}: ".$FORM['Form']['Theme']['themeauthor']."</p>";
+  }
+  if(isset($FORM['Form']['Theme']['themedate']) && trim($FORM['Form']['Theme']['themedate']) != "") {
+  $theme_panel_html_txt .= "
+     <p>{% trans \"Created\" %}: ".$FORM['Form']['Theme']['themedate']."</p>";
+  }
+  $linktofile = "http://files.sourcefabric.org/booktype/sample-files/".$FORM['Form']['Theme']['themenamefolder'].".pdf";
+  $theme_panel_html_txt .= "
+      <p>
+        <span style='color: #fff; background-color: red; padding: 2px 5px; font-size: 0.7em; font-weight: bold;'><a href='".$linktofile."' target='_blank' style='color: #fff; text-decoration: none;'>PDF</a></span>
+        <a href='".$linktofile."' target='_blank' style='text-decoration: none; font-size: 0.8em;'>Download sample PDF</a>
+      </p>";
+  $theme_panel_html_txt .= "
+      </div>
+    </div>
+   </div>
+</div>";
+   file_put_contents($themenamefolder."/panel.html", $theme_panel_html_txt);
+}
+function create_theme_preload_css() {
+  global $FORM;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $theme_preload_css_txt = "/* Pre-load '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." theme fonts */";
+  foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
+    foreach($values as $style => $fontname) {
+      // make sure the font exists
+      if(file_exists($themenamefolder."/static/fonts/".$fontname)) {
+        $theme_preload_css_txt .= "\n@font-face {";
+        $theme_preload_css_txt .= "\n    font-family: '".$fontfamily."';";
+        $theme_preload_css_txt .= "\n    src: url('fonts/".$fontname."') format('truetype');";
+        $theme_preload_css_txt .= "\n    font-weight: ";
+        if($style == "R" OR $style == "I") {
+          $theme_preload_css_txt .= "normal;";
+        } else {
+          $theme_preload_css_txt .= "bold;";
+        }
+        $theme_preload_css_txt .= "\n    font-style: ";
+        if($style == "R" OR $style == "B") {
+          $theme_preload_css_txt .= "normal;";
+        } else {
+          $theme_preload_css_txt .= "italic;";
+        }
+        $theme_preload_css_txt .= "\n}";
+      }
+    }
+  }
+  file_put_contents($themenamefolder."/static/preload.css", $theme_preload_css_txt);
+}
+function create_var_themenamefolder() {
+  global $FORM;
+  global $options;
+  $themenamefolder = $options['dirthemes']."/".$FORM['Form']['Theme']['themenamefolder']; 
+  return $themenamefolder;
+}
+
 function create_bash_script($themesavail) {
   /*
   * this function is not needed anymore, I just kept the stump in here, in case I need the paths
@@ -898,11 +979,20 @@ function calc_fontsizes_mpdf($basefontsize) {
   $return = array();
   $return['0.33']   = round($basefontsize * 0.33, 1);
   $return['0.5']    = round($basefontsize * 0.5, 1);
+  $return['0.6']    = round($basefontsize * 0.6, 1);
   $return['0.66']   = round($basefontsize * 0.66, 1);
+  $return['0.7']   = round($basefontsize * 0.7, 1);
+  $return['0.8']   = round($basefontsize * 0.8, 1);
+  $return['0.9']   = round($basefontsize * 0.9, 1);
   $return['1']      = $basefontsize;
+  $return['1.1']   = round($basefontsize * 1.1, 1);
+  $return['1.2']   = round($basefontsize * 1.2, 1);
+  $return['1.3']   = round($basefontsize * 1.3, 1);
   $return['1.33']   = round($basefontsize * 1.33, 1);
+  $return['1.4']   = round($basefontsize * 1.4, 1);
   $return['1.5']    = round($basefontsize * 1.5, 1);
   $return['1.66']   = round($basefontsize * 1.66, 1);
+  $return['1.8']   = round($basefontsize * 1.8, 1);
   $return['2']      = round($basefontsize * 2, 1);
   $return['2.33']   = round($basefontsize * 2.33, 1);
   $return['2.5']    = round($basefontsize * 2.5, 1);
@@ -1260,6 +1350,11 @@ function calc_css_export_values($FORM) {
     $return[$item.'LineHeightPtVal'] = $lineheights[$return[$item.'LineHeightVal']]; // Points used in mpdf CSS
   }
   
+  // special values for caption of figures, tables, etc.
+  $return['CaptionFontSizePtVal'] = $fontsizes["0.9"]; // Points used in mpdf CSS
+  $return['CaptionFontSizeRemVal'] = "0.9"; // REM (could be) used for mpdf CSS
+  $return['CaptionFontSizeEmVal'] = calc_editor_css_values("0.9"); // EM (should be) used for browser's editor CSS
+  
   // Part or Section, the bigger chunks that contain a number of chapters
   $return['PartFontSizeEmVal'] = calc_editor_css_values($return['PartFontSizeVal']); // EM (should be) used for browser's editor CSS  
   $return['PartFontSizePtVal'] = $fontsizes[$return['PartFontSizeVal']]; // Points used in mpdf CSS
@@ -1383,13 +1478,6 @@ function calc_editor_css_values($relsize) {
   if($relsize >= 4) { $factor = 0.6; }
   if($relsize >= 5) { $factor = 0.5; }
   $return = round(($factor * $relsize), 2);
-  /*
-  * should not be smaller than one, because this is used for headlines, who are usually at least
-  * the size for the body font. 
-  * Clearly, this process can be optimised - and should be, based on user experience in the 
-  * online editor.
-  */
-  if($return < 1) { $return = 1; }
 
   return $return;
 }
@@ -1603,10 +1691,19 @@ function HTML_print_form($FORM) {
   
   // if there were no posted values, still don't start with the default paper size which is the smallest
   if(!isset($FORM['PageDefinition'])) { $FORM['PageDefinition'] = "bodde__155_x_220_mm"; }
+  if(!isset($FORM['BodyFontSize'])) { $FORM['BodyFontSize'] = "10pt"; }
   if(!isset($FORM['BodyLineHeight'])) { $FORM['BodyLineHeight'] = "1.4"; }
   if(!isset($FORM['BodyFontFamily'])) { $FORM['BodyFontFamily'] = "texgyreschola"; }
   if(!isset($FORM['FooterFontSize'])) { $FORM['FooterFontSize'] = "small"; }
   if(!isset($FORM['HeaderFontSize'])) { $FORM['HeaderFontSize'] = "small"; }
+  // all font sizes set to em = 1
+  $fontsizesprefix = array("Quote", "Header", "Footer", "Part", "FrontmatterHalftitleTitle",
+    "FrontmatterTitlepageTitle", "FrontmatterTitlepageSubtitle", "FrontmatterTitlepageAuthor",
+    "FrontmatterHalftitleAuthor", "ChapterHeader1", "BodyHeader1", "BodyHeader2", "BodyHeader3", 
+    "BodyHeader4", "BodyHeader5");
+  foreach($fontsizesprefix as $prefix) {
+    if(!isset($FORM[$prefix.'FontSize'])) { $FORM[$prefix.'FontSize'] = "1"; }
+  }
   print "
       <div class=\"row\">
         <div class=\"col-lg-12\">

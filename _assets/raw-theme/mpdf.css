@@ -305,23 +305,38 @@ li {
   line-height: %BodyLineHeightVal%pt; 
 }
 /* TABLE *****************************************************************/
+/* for caption styling see images section below */
 table {
   border-collapse: collapse;
   max-width: 100%;
   margin-top: %BodyLineHeightVal%pt; 
   margin-bottom: %BodyLineHeightVal%pt; 
 }
-
-caption {
-  font-style: italic;
-  margin-top: %BodyLineHeightVal%pt; 
-}
-
-table, th, td {
-  border: 0.05rem solid black;
-}
 th, td {
+  border: 0.1mm solid #000000;
   padding: 0.6rem 0.8rem;
+}
+/* IMAGE (plus captions) ************************************************/
+img, div.image {
+  max-width: 100%;
+  height: auto;
+  margin: 0px auto;
+}
+
+.group_img {
+  page-break-inside: avoid;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+caption, .caption_small {
+  margin-top: %BodyLineHeightVal%pt;
+  font-size: %CaptionFontSizePtVal%pt;
+  line-height: %BodyLineHeightVal%pt;
+  font-style: italic;
+}
+.center {
+  text-align: center;
 }
 /* PREFORMATTED ******************************************************/
 pre {
@@ -351,7 +366,7 @@ ol.endnotes li {
 
 /* DEDICATION  ***********************************************************/
 div.dedication {
-  padding-top: 30Val%;
+  padding-top: 30%;
 }
 
 p.dedication {
@@ -363,27 +378,4 @@ p.dedication {
   display: inline; 
   margin-left: 7rem;
   margin-right: 7rem;
-}
-
-/* IMAGE (plus captions) ************************************************/
-img, div.image {
-  max-width: 100Val%;
-  height: auto;
-  margin: 0px auto;
-}
-
-.group_img {
-  page-break-inside: avoid;
-  padding-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.caption_small {
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  line-height: 1rem;
-  font-style: italic;
-}
-.center {
-  text-align: center;
 }
