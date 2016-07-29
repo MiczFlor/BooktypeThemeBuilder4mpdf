@@ -152,9 +152,31 @@ span.mpdf_toc_t_level_1 {
 }
 /* Body styling ************************************************************/
 
+/* Info Box */
+.bk-box {
+  font-family: "roboto"; 
+  font-size: 0.9em; 
+  color: #000000;
+  background-color: #ffffff;
+  padding-bottom: 1em; 
+  margin-top: 14.7pt; 
+  margin-bottom: 14.7pt; 
+}
+.bk-box p {
+  padding: 0 1em;
+  text-indent: 0ptem;
+}
+.bk-box .caption_box {
+  color: #000000;
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 /* dropcaps*/
 .dropcap {
-  font-size: 49pt;
+  font-size: inheritpt;
 }
 
 h1.chapter-h1 {
@@ -283,7 +305,7 @@ blockquote, .quote {
   font-size: 10.5pt;
   font-style: italic;
   text-indent: 0;
-  border-left: 0.5rem solid #ccc;
+  border-left: 0.5em solid #ccc;
   padding-left: 2rem;
   margin-left: 29.4pt;
   margin-top: 14.7pt; 
@@ -305,29 +327,52 @@ li {
   line-height: 14.7pt; 
 }
 /* TABLE *****************************************************************/
+/* for caption styling see images section below */
 table {
   border-collapse: collapse;
   max-width: 100%;
   margin-top: 14.7pt; 
   margin-bottom: 14.7pt; 
 }
-
-caption {
-  font-style: italic;
-  margin-top: 14.7pt; 
-}
-
-table, th, td {
-  border: 0.05rem solid black;
-}
 th, td {
+  border: 0.1mm solid #000000;
   padding: 0.6rem 0.8rem;
+}
+/* IMAGE (plus captions) ************************************************/
+img, div.image {
+  max-width: 100%;
+  height: auto;
+  margin: 0px auto;
+}
+
+.group_img {
+  page-break-inside: avoid;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+caption, 
+.caption_small, 
+.caption_table,
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
+  margin-top: 14.7pt;
+  font-size: 9.5pt;
+  line-height: 14.7pt;
+  font-style: italic;
+}
+.center {
+  text-align: center;
 }
 /* PREFORMATTED ******************************************************/
 pre {
   padding-bottom: 0;
   padding-top: 0;
   font-family: "freemono"; 
+  font-weight: "normal"; 
+  color: #000000; 
   line-height: 14.7pt; 
   margin-top: 14.7pt; 
   margin-bottom: 14.7pt; 
@@ -351,7 +396,7 @@ ol.endnotes li {
 
 /* DEDICATION  ***********************************************************/
 div.dedication {
-  padding-top: 30Val%;
+  padding-top: 30%;
 }
 
 p.dedication {
@@ -363,27 +408,4 @@ p.dedication {
   display: inline; 
   margin-left: 7rem;
   margin-right: 7rem;
-}
-
-/* IMAGE (plus captions) ************************************************/
-img, div.image {
-  max-width: 100Val%;
-  height: auto;
-  margin: 0px auto;
-}
-
-.group_img {
-  page-break-inside: avoid;
-  padding-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.caption_small {
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  line-height: 1rem;
-  font-style: italic;
-}
-.center {
-  text-align: center;
 }

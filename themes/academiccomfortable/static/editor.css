@@ -20,7 +20,7 @@
   text-align: left; 
   text-indent: 0;
   line-height: inherit; 
-  border-left: 0.5rem solid #ccc;
+  border-left: 0.5em solid #ccc;
   padding-left: 2em;
   padding-top: 0em;
   margin-left: 2em;
@@ -175,6 +175,32 @@ p.quote:before {
   text-indent: -2em;
   padding-left: 2em;
 }
+
+/* Info Box ****************************************************/
+#contenteditor .bk-box {
+  font-family: "roboto"; 
+  font-size: 0.9em; 
+  color: #000000;
+  background-color: #ffffff;
+  padding-bottom: 1em; 
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+}
+#contenteditor .bk-box p {
+  padding: 0 1em;
+  text-indent: 0em;
+}
+#contenteditor .bk-box .box-caption {
+  color: #000000;
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+#contenteditor .bk-box .box-caption span.icon-trash {
+  color: #000000;
+}
+
 /* Lists *****************************************************************/
 #contenteditor ul,
 #contenteditor ol {
@@ -245,14 +271,15 @@ p.quote:before {
   text-align: center;
 }
 
-#contenteditor caption {
-  font-style: italic;
-  margin-top: 1em;
-}
-
-#contenteditor .caption_small {
+#contenteditor caption, 
+#contenteditor .caption_small, 
+#contenteditor .caption_table,
+#contenteditor .caption_img, 
+#contenteditor .caption_fig, 
+#contenteditor .caption_image, 
+#contenteditor .caption_figure {
   margin-top: 0.5em;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-style: italic;
 }
 

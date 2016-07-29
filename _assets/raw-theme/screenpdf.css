@@ -152,6 +152,28 @@ span.mpdf_toc_t_level_1 {
 }
 /* Body styling ************************************************************/
 
+/* Info Box */
+.bk-box {
+  font-family: "%BoxFontFamilyVal%"; 
+  font-size: %BoxFontSizeVal%em; 
+  color: %BoxBodyColorVal%;
+  background-color: %BoxBodyBackgroundColorVal%;
+  padding-bottom: 1em; 
+  margin-top: %BodyLineHeightVal%pt; 
+  margin-bottom: %BodyLineHeightVal%pt; 
+}
+.bk-box p {
+  padding: 0 1em;
+  text-indent: %BoxIndentVal%em;
+}
+.bk-box .caption_box {
+  color: %BoxCaptionColorVal%;
+  font-weight: %BoxCaptionFontWeightVal%;
+  background-color: %BoxCaptionBackgroundColorVal%;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 /* dropcaps*/
 .dropcap {
   font-size: %BodyParagraphDropcapsFontsizePtVal%pt;
@@ -329,10 +351,16 @@ img, div.image {
   margin-bottom: 1rem;
 }
 
-caption, .caption_small {
-  margin-top: 1rem;
+caption, 
+.caption_small, 
+.caption_table,
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
+  margin-top: %BodyLineHeightVal%pt;
   font-size: %CaptionFontSizePtVal%pt;
-  line-height: 1rem;
+  line-height: %BodyLineHeightVal%pt;
   font-style: italic;
 }
 .center {
@@ -343,6 +371,8 @@ pre {
   padding-bottom: 0;
   padding-top: 0;
   font-family: "%PreformattedFontFamilyVal%"; 
+  font-weight: "%PreformattedFontWeightVal%"; 
+  color: %PreformattedColorVal%; 
   line-height: %BodyLineHeightVal%pt; 
   margin-top: %BodyLineHeightVal%pt; 
   margin-bottom: %BodyLineHeightVal%pt; 

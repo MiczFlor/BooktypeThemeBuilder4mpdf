@@ -152,9 +152,31 @@ span.mpdf_toc_t_level_1 {
 }
 /* Body styling ************************************************************/
 
+/* Info Box */
+.bk-box {
+  font-family: "roboto"; 
+  font-size: 0.9em; 
+  color: #000000;
+  background-color: #ffffff;
+  padding-bottom: 1em; 
+  margin-top: 14.7pt; 
+  margin-bottom: 14.7pt; 
+}
+.bk-box p {
+  padding: 0 1em;
+  text-indent: 0ptem;
+}
+.bk-box .caption_box {
+  color: #000000;
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 /* dropcaps*/
 .dropcap {
-  font-size: 49pt;
+  font-size: inheritpt;
 }
 
 h1.chapter-h1 {
@@ -283,7 +305,7 @@ blockquote, .quote {
   font-size: 10.5pt;
   font-style: italic;
   text-indent: 0;
-  border-left: 0.5rem solid #ccc;
+  border-left: 0.5em solid #ccc;
   padding-left: 2rem;
   margin-left: 14.7pt;
   margin-top: 14.7pt; 
@@ -329,10 +351,16 @@ img, div.image {
   margin-bottom: 1rem;
 }
 
-caption, .caption_small {
-  margin-top: 1rem;
+caption, 
+.caption_small, 
+.caption_table,
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
+  margin-top: 14.7pt;
   font-size: 9.5pt;
-  line-height: 1rem;
+  line-height: 14.7pt;
   font-style: italic;
 }
 .center {
@@ -343,6 +371,8 @@ pre {
   padding-bottom: 0;
   padding-top: 0;
   font-family: "texgyrecursor"; 
+  font-weight: "normal"; 
+  color: #000000; 
   line-height: 14.7pt; 
   margin-top: 14.7pt; 
   margin-bottom: 14.7pt; 

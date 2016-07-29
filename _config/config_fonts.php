@@ -1,5 +1,63 @@
 <?php
 $fontfamilies = array(
+/* new for bod */
+  "merriweatherserif" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "merriweathersanstext" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "merriweathersanshead" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "lora" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "itsok" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "alegreya" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "alegreyasans" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "volkorn" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+  "montserrat" => array(
+    'R' => "Ubuntu-R.ttf",
+    'B' => "Ubuntu-B.ttf",
+    'I' => "Ubuntu-RI.ttf",
+    'BI' => "Ubuntu-BI.ttf",
+  ),
+
+
+/* end new for bod */
   "texgyrepagella" => array(
     'R' => "TeXGyrePagella-Regular.ttf",
     'B' => "TeXGyrePagella-Bold.ttf",
@@ -237,6 +295,36 @@ $fontfamilies = array(
 		'B' => "PalatinoLinotype-Bold.ttf",
 		'I' => "PalatinoLinotype-Italic.ttf",
 		'BI' => "PalatinoLinotype-BoldItalic.ttf",
+		),
+	"agaramondpro" => array(
+		'R' => "AGaramondPro-Regular.ttf",
+		'B' => "AGaramondPro-Bold.ttf",
+		'I' => "AGaramondPro-Italic.ttf",
+		'BI' => "AGaramondPro-BoldItalic.ttf",
+		),
+	"metaotbold" => array(
+		'R' => "MetaOT-Bold.ttf",
+		'B' => "MetaOT-Black.ttf",
+		'I' => "MetaOT-BoldIta.ttf",
+		'BI' => "MetaOT-BoldIta.ttf",
+		),
+	"metaotcondensed" => array(
+		'R' => "MetaOT-CondNorm.ttf",
+		'B' => "MetaOT-CondNorm.ttf",
+		'I' => "MetaOT-CondNorm.ttf",
+		'BI' => "MetaOT-CondNorm.ttf",
+		),
+	"metaotnorm" => array(
+		'R' => "MetaOT-Norm.ttf",
+		'B' => "MetaOT-Norm.ttf",
+		'I' => "MetaOT-Norm.ttf",
+		'BI' => "MetaOT-Norm.ttf",
+		),
+	"agaramondprosemibolditalics" => array(
+		'R' => "AGaramondPro-SemiboldItalic.ttf",
+		'B' => "AGaramondPro-SemiboldItalic.ttf",
+		'I' => "AGaramondPro-SemiboldItalic.ttf",
+		'BI' => "AGaramondPro-SemiboldItalic.ttf",
 		),
   /*
   "" => array(

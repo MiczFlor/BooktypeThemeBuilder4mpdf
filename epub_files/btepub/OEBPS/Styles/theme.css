@@ -1,85 +1,57 @@
 @font-face {
-    font-family: 'roboto';
+    font-family: 'sourcesanspro';
     font-weight: normal;
     font-style: normal;
-    src: url('../Fonts/Roboto-Regular.ttf');
+    src: url('../Fonts/SourceSansPro-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'roboto';
+    font-family: 'sourcesanspro';
     font-weight: bold;
     font-style: normal;
-    src: url('../Fonts/Roboto-Bold.ttf');
+    src: url('../Fonts/SourceSansPro-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'roboto';
+    font-family: 'sourcesanspro';
     font-weight: normal;
     font-style: italic;
-    src: url('../Fonts/Roboto-Italic.ttf');
+    src: url('../Fonts/SourceSansPro-Italic.ttf');
 }
 
 @font-face {
-    font-family: 'roboto';
+    font-family: 'sourcesanspro';
     font-weight: bold;
     font-style: italic;
-    src: url('../Fonts/Roboto-BoldItalic.ttf');
+    src: url('../Fonts/SourceSansPro-BoldItalic.ttf');
 }
 
 @font-face {
-    font-family: 'texgyrecursor';
-    font-weight: normal;
-    font-style: normal;
-    src: url('../Fonts/TeXGyreCursor-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'texgyrecursor';
-    font-weight: bold;
-    font-style: normal;
-    src: url('../Fonts/TeXGyreCursor-Bold.ttf');
-}
-
-@font-face {
-    font-family: 'texgyrecursor';
-    font-weight: normal;
-    font-style: italic;
-    src: url('../Fonts/TeXGyreCursor-Italic.ttf');
-}
-
-@font-face {
-    font-family: 'texgyrecursor';
-    font-weight: bold;
-    font-style: italic;
-    src: url('../Fonts/TeXGyreCursor-BoldItalic.ttf');
-}
-
-@font-face {
-    font-family: 'roboto-condensed';
+    font-family: 'ubuntu-mono';
     font-weight: normal;
     font-style: normal;
-    src: url('../Fonts/RobotoCondensed-Regular.ttf');
+    src: url('../Fonts/UbuntuMono-R.ttf');
 }
 
 @font-face {
-    font-family: 'roboto-condensed';
+    font-family: 'ubuntu-mono';
     font-weight: bold;
     font-style: normal;
-    src: url('../Fonts/RobotoCondensed-Bold.ttf');
+    src: url('../Fonts/UbuntuMono-B.ttf');
 }
 
 @font-face {
-    font-family: 'roboto-condensed';
+    font-family: 'ubuntu-mono';
     font-weight: normal;
     font-style: italic;
-    src: url('../Fonts/RobotoCondensed-Italic.ttf');
+    src: url('../Fonts/UbuntuMono-RI.ttf');
 }
 
 @font-face {
-    font-family: 'roboto-condensed';
+    font-family: 'ubuntu-mono';
     font-weight: bold;
     font-style: italic;
-    src: url('../Fonts/RobotoCondensed-BoldItalic.ttf');
+    src: url('../Fonts/UbuntuMono-BI.ttf');
 }
 
 body {
@@ -87,7 +59,7 @@ body {
   line-height: normal;
   margin: 0;
   padding: 0;
-  font-family: "roboto"; 
+  font-family: "sourcesanspro"; 
   color: #000000;
 }
 
@@ -96,29 +68,29 @@ div.dedication {
   margin-left: 40px;
   margin-right: 40px;
   margin-top: 50px;
-  font-family: "roboto"; 
+  font-family: "sourcesanspro"; 
   font-size: 2em;
   font-style: italic;
 }
 
 h1.section {
-  font-family: "roboto"; 
-  text-align: left; 
+  font-family: "sourcesanspro"; 
+  text-align: center; 
   font-weight: bold; 
-  font-size: 2.1em;
+  font-size: 1.33em;
   text-transform: none; 
   text-decoration: none;
   margin-top: 0;
 }
 
 h1.frontmatter-title {
-  text-align: left; 
+  text-align: center; 
   font-weight: bold; 
-  text-transform: uppercase; 
-  font-family: "roboto"; 
+  text-transform: none; 
+  font-family: "sourcesanspro"; 
   text-decoration: none;
   border-bottom: 0px; 
-  font-size: 2.1em;
+  font-size: 1.62em;
   line-height: normal;
   margin-top: 1.5em;
   margin-bottom: 0;
@@ -126,9 +98,9 @@ h1.frontmatter-title {
 
 h2.frontmatter-author {
   text-align: left; 
-  font-family: "roboto"; 
+  font-family: "sourcesanspro"; 
   border-bottom: 0px; 
-  font-size: 1.6em;
+  font-size: 1em;
   line-height: normal;
   margin-top: 2em;
 }
@@ -141,38 +113,38 @@ div.frontmatter-line {
 }
 /*
 h2.frontmatter-author-title {
-  text-align: left; 
-  font-family: "roboto"; 
+  text-align: center; 
+  font-family: "sourcesanspro"; 
   border-bottom: 0px; 
   margin-top: 2em;
-  font-size: 1.6em;
+  font-size: 1.35em;
   line-height: normal;
 }
 
 h3.frontmatter-subtitle {
-  text-align: left; 
-  font-family: "roboto"; 
+  text-align: center; 
+  font-family: "sourcesanspro"; 
   border-bottom: 0px; 
   margin-top: 10mm;
-  font-size: 1.6em;
+  font-size: 1.1em;
   line-height: normal;
 }
 */
 
 p.quote {
-  font-family: "roboto"; 
+  font-family: "sourcesanspro"; 
   display: block;
   font-weight: normal; 
   font-size: 1em;
   font-style: italic;
   text-indent: 0;
-  border-left: 0.5rem solid #ccc;
+  border-left: 0rem solid #fff;
   padding-left: 1em;
   margin-left: 1em;
   margin-top: 1em; 
   margin-bottom: 1em; 
   text-align: left; 
-  line-height: 14.7pt; 
+  line-height: 14.3pt; 
   text-transform: none; 
   text-decoration: none;
 } 
@@ -205,59 +177,59 @@ h6 {
 }
 
 h1 {
-  font-family: "roboto-condensed"; 
+  font-family: "sourcesanspro"; 
   font-weight: normal; 
   text-transform: none; 
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 2.13em; 
+  font-size: 1.8em; 
   /*font-size: 3.6em;*/
-  margin-top: 2.1em;
-  margin-bottom: 2.1em;
+  margin-top: 2.4em;
+  margin-bottom: 2.4em;
 }
 
 h2 {
-  font-family: "roboto-condensed"; 
-  font-weight: normal; 
+  font-family: "sourcesanspro"; 
+  font-weight: bold; 
   text-transform: none; 
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 1.6em; 
+  font-size: 1em; 
   /*font-size: 2.2em;*/
   margin-top: 0.66em;
   margin-bottom: 0.33em;
 }
 
 h3 {
-  font-family: "roboto-condensed"; 
-  font-weight: normal; 
+  font-family: "sourcesanspro"; 
+  font-weight: bold; 
   text-transform: none; 
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 1.35em; 
+  font-size: 1em; 
   /*font-size: 1.8em;*/
   margin-top: 0.66em;
   margin-bottom: 0.33em;
 }
 
 h4 {
-  font-family: "roboto-condensed"; 
+  font-family: "sourcesanspro"; 
   font-weight: normal; 
   text-transform: none; 
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 1.33em; 
+  font-size: 1em; 
   /*font-size: 1.4em;*/
   margin-top: 0.66em;
   margin-bottom: 0.33em;
 }
 
 h5 {
-  font-family: "roboto-condensed"; 
+  font-family: "sourcesanspro"; 
   font-weight: normal; 
   text-transform: none; 
   text-align: left; 
@@ -280,7 +252,7 @@ h1 + p,
 h2 + p,
 h3 + p,
 h4 + p {
-  font-family: "roboto"; 
+  font-family: "sourcesanspro"; 
     font-weight: normal;
     font-size: 1em; 
     line-height: 1.4em;
@@ -290,7 +262,7 @@ h4 + p {
 
 p,
 a {
-  font-family: "roboto"; 
+  font-family: "sourcesanspro"; 
     font-weight: normal;
     font-size: 1em; 
     line-height: 1.4em;
@@ -302,13 +274,36 @@ ul+p,
 ol+p,
 div.group_img+p,
 table+p {
-    text-indent: 1em;
-    margin-bottom: 0.15em;
+    text-indent: 0em;
+    margin-bottom: 0.7em;
 }
 
 p.hanging {
-  text-indent: -1em;
-  padding-left: 1em;
+  text-indent: -2em;
+  padding-left: 2em;
+}
+
+/* Info Box */
+.bk-box {
+  font-family: "sourcesanspro"; 
+  color: #000000;
+  background-color: #ffffff;
+  padding-bottom: 1em; 
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+}
+.bk-box p {
+  font-family: "sourcesanspro"; 
+  padding: 0 1em;
+  text-indent: 0em;
+}
+.bk-box .box-caption {
+  font-family: "sourcesanspro"; 
+  color: #000000;
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 ul,
@@ -318,7 +313,7 @@ ol {
 }
 
 li {
-    font-family: "roboto"; 
+    font-family: "sourcesanspro"; 
     font-weight: normal;
     font-size: 1em;
     line-height: 1.4em;
@@ -347,7 +342,7 @@ td {
 }
 
 td {
-    font-family: "roboto"; 
+    font-family: "sourcesanspro"; 
     font-weight: normal;
     font-size: 0.9em;
     line-height: normal;
@@ -370,7 +365,13 @@ td {
   text-align: center;
 }
 
-caption, .caption_small {
+caption, 
+.caption_small, 
+.caption_table, 
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
   margin-top: 0.5em;
   font-size: 0.9em;
   font-style: italic;
@@ -400,7 +401,7 @@ ol.endnotes {
 }
 
 ol.endnotes li {
-  font-family: "roboto"; 
+  font-family: "sourcesanspro"; 
   font-weight: normal;
   font-size: 0.8em;
   line-height: 1.2em;

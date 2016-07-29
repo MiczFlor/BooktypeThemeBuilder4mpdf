@@ -166,7 +166,7 @@ p.quote {
   font-size: 1em;
   font-style: italic;
   text-indent: 0;
-  border-left: 0.5rem solid #ccc;
+  border-left: 0.5em solid #ccc;
   padding-left: 1em;
   margin-left: 1em;
   margin-top: 1em; 
@@ -311,6 +311,29 @@ p.hanging {
   padding-left: 1em;
 }
 
+/* Info Box */
+.bk-box {
+  font-family: "roboto"; 
+  color: #000000;
+  background-color: #ffffff;
+  padding-bottom: 1em; 
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+}
+.bk-box p {
+  font-family: "roboto"; 
+  padding: 0 1em;
+  text-indent: 0em;
+}
+.bk-box .box-caption {
+  font-family: "roboto"; 
+  color: #000000;
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 ul,
 ol {
     margin-top: 10px;
@@ -370,7 +393,13 @@ td {
   text-align: center;
 }
 
-caption, .caption_small {
+caption, 
+.caption_small, 
+.caption_table, 
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
   margin-top: 0.5em;
   font-size: 0.9em;
   font-style: italic;

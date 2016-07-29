@@ -5,7 +5,7 @@ $options = array(...
 */
 chdir($options["mpdf_files"]);
 
-$file_input  = $options["mpdf_files"] . "/body.html";
+$file_input  = $options["mpdf_files"] . "/mpdf-body.html";
 $file_output = $options["mpdf_output"] . "/" . $options["output"];
 
 /* Include mPDF library */
@@ -61,8 +61,8 @@ $mpdf->h2toc = array();
 $mpdf->h2bookmarks = array('H1' => 0, 'H2' => 1, 'H3' => 2);
 
 /* Add Styling */
-if (file_exists($options["mpdf_files"] . "/style.css")) {
-    $css_data = file_get_contents($options["mpdf_files"] . "/style.css");
+if (file_exists($options["mpdf_files"] . "/mpdf.css")) {
+    $css_data = file_get_contents($options["mpdf_files"] . "/mpdf.css");
     $mpdf->WriteHTML($css_data, 1);
 }
 
@@ -101,3 +101,6 @@ $mpdf->SetCreator('Booktype');
 $mpdf->Output($file_output);
 //echo '{"status": 1, "pages": ' . $mpdf->page . '}';
 //exit;
+
+// go back to directory
+chdir("/var/www/BooktypeThemeBuilder4mpdf/");

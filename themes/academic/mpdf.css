@@ -11,12 +11,14 @@ body {
 .impl {
   margin: 0;
   text-indent: 0;
+  text-align: left;
 }
 
 .impl-bold {
   margin: 0;
   text-indent: 0;
   font-weight: bold;
+  text-align: left;
 }
 
 /* Header ********************************************************************/
@@ -87,9 +89,9 @@ div.frontmatter-author {
 
 /* FRONT MATTER (title) *****************************************************/
 div.frontmatter-title {
-  line-height: 110%;
+  line-height: 1.1em;
   padding-top: 30%;
-  margin-bottom: 0;
+  margin-bottom: 2em;
   text-align: left; 
   font-weight: bold; 
   text-transform: uppercase; 
@@ -98,9 +100,16 @@ div.frontmatter-title {
   font-size: 31.5pt;
 }
 
+div.frontmatter-line {
+  width: 33%;
+  background-color: black;
+  height: 0.3rem; 
+  margin-bottom: 2em;
+}
+
 div.frontmatter-subtitle {
-  line-height: 110%;
-  margin-top: 4rem;
+  line-height: 1.1em;
+  margin-bottom: 2em;
   font-weight: normal;
   text-align: left; 
   font-family: "roboto"; 
@@ -108,28 +117,18 @@ div.frontmatter-subtitle {
 }
 
 div.frontmatter-author-title {
-  line-height: 100%;
+  line-height: 1.1em;
   font-weight: normal;
-  margin-top: 6rem;
-  margin-bottom: 0;
+  margin-bottom: 2em;
   text-align: left; 
   font-family: "roboto"; 
   font-size: 21pt;
 }
 
-div.frontmatter-line {
-  width: 33%;
-  background-color: black;
-  height: 0.3rem; 
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
 .frontmatter-bottom {
   font-weight: normal;
-  margin-top: 3rem;
-  font-size: 1rem;
-  line-height: inherit;
+  font-size: 0.9em;
+  line-height: 1.1em;
   text-align: left; 
   font-family: "roboto"; 
 }
@@ -152,14 +151,42 @@ span.mpdf_toc_t_level_1 {
 }
 /* Body styling ************************************************************/
 
+/* Info Box */
+.bk-box {
+  font-family: "roboto"; 
+  font-size: 0.9em; 
+  color: #000000;
+  background-color: #ffffff;
+  padding-bottom: 0.5em; 
+  margin-top: 14.7pt; 
+  margin-bottom: 14.7pt; 
+  border-left: 0.5pt solid #000000;
+  border-top: 0.5pt solid #000000;
+  border-right: 0.5pt solid #000000;
+  border-bottom: 0.5pt solid #000000; 
+}
+.bk-box p {
+  padding: 0 0.5em;
+  text-indent: 0ptem;
+}
+.bk-box .box-caption {
+  color: #000000;
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 0.5em;
+  border-bottom: 0pt solid #000000; 
+  margin-bottom: 0.5em;
+}
+
 /* dropcaps*/
 .dropcap {
-  font-size: 49pt;
+  font-size: inheritpt;
 }
 
 h1.chapter-h1 {
   margin-top: 0;
   padding-bottom: 0;
+  color: #000000; 
   text-align: left; 
   font-weight: normal; 
   font-family: "roboto-condensed"; 
@@ -175,6 +202,7 @@ h1.chapter-h1 {
 h1.body-h1 {
   margin-top: 0;
   padding-bottom: 0;
+  color: #000000; 
   text-align: left; 
   font-weight: normal; 
   font-family: "roboto-condensed"; 
@@ -190,6 +218,7 @@ h1.body-h1 {
 h2.body-h2 {
   margin-top: 0;
   padding-bottom: 0;
+  color: #000000; 
   text-align: left; 
   font-weight: normal; 
   font-family: "roboto-condensed"; 
@@ -205,6 +234,7 @@ h2.body-h2 {
 h3.body-h3 {
   margin-top: 0;
   padding-bottom: 0;
+  color: #000000; 
   text-align: left; 
   font-weight: normal; 
   font-family: "roboto-condensed"; 
@@ -220,6 +250,7 @@ h3.body-h3 {
 h4.body-h4 {
   margin-top: 0;
   padding-bottom: 0;
+  color: #000000; 
   text-align: left; 
   font-weight: normal; 
   font-family: "roboto-condensed"; 
@@ -235,6 +266,7 @@ h4.body-h4 {
 h5.body-h5 {
   margin-top: 0;
   padding-bottom: 0;
+  color: #000000; 
   text-align: left; 
   font-weight: normal; 
   font-family: "roboto-condensed"; 
@@ -283,7 +315,7 @@ blockquote, .quote {
   font-size: 10.5pt;
   font-style: italic;
   text-indent: 0;
-  border-left: 0.5rem solid #ccc;
+  border-left: 0.5em solid #ccc;
   padding-left: 2rem;
   margin-left: 14.7pt;
   margin-top: 14.7pt; 
@@ -329,7 +361,13 @@ img, div.image {
   margin-bottom: 1rem;
 }
 
-caption, .caption_small {
+caption, 
+.caption_small, 
+.caption_table,
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
   margin-top: 14.7pt;
   font-size: 9.5pt;
   line-height: 14.7pt;
@@ -343,6 +381,8 @@ pre {
   padding-bottom: 0;
   padding-top: 0;
   font-family: "texgyrecursor"; 
+  font-weight: "normal"; 
+  color: #000000; 
   line-height: 14.7pt; 
   margin-top: 14.7pt; 
   margin-bottom: 14.7pt; 

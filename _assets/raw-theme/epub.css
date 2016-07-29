@@ -227,6 +227,29 @@ p.hanging {
   padding-left: %EpubBodyParagraphHangingEmVal%em;
 }
 
+/* Info Box */
+.bk-box {
+  font-family: "%BoxFontFamilyVal%"; 
+  color: %BoxBodyColorVal%;
+  background-color: %BoxBodyBackgroundColorVal%;
+  padding-bottom: 1em; 
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+}
+.bk-box p {
+  font-family: "%BoxFontFamilyVal%"; 
+  padding: 0 1em;
+  text-indent: %EpubBoxIndentEmVal%em;
+}
+.bk-box .box-caption {
+  font-family: "%BoxFontFamilyVal%"; 
+  color: %BoxCaptionColorVal%;
+  font-weight: %BoxCaptionFontWeightVal%;
+  background-color: %BoxCaptionBackgroundColorVal%;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 ul,
 ol {
     margin-top: 10px;
@@ -286,7 +309,13 @@ td {
   text-align: center;
 }
 
-caption, .caption_small {
+caption, 
+.caption_small, 
+.caption_table, 
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
   margin-top: 0.5em;
   font-size: %CaptionFontSizeEmVal%em;
   font-style: italic;

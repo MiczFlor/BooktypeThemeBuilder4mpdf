@@ -1,4 +1,17 @@
 {
+  "amnesty__140_x_215_mm": {
+    "width": "140mm",
+    "height": "215mm",
+    "binding": "0cm",
+    "margintop": "12mm",
+    "marginbottom": "18mm",
+    "marginleft": "11mm",
+    "marginright": "13mm",
+    "cropwidth": "140mm",
+    "cropheight": "215mm",
+    "marginheader": "6mm",
+    "marginfooter": "6mm"
+  },
   "modernreport__210_x_297_mm": {
     "width": "210mm",
     "height": "297mm",
@@ -77,6 +90,19 @@
     "marginheader": "8mm",
     "marginfooter": "15mm"
   },
+  "idea__6.69_x_9.61_inch": {
+    "width": "6.69in",
+    "height": "9.61in",
+    "binding": "0cm",
+    "margintop": "2.9cm",
+    "marginbottom": "2.6cm",
+    "marginleft": "2.6cm",
+    "marginright": "2.6cm",
+    "cropwidth": "220mm",
+    "cropheight": "307mm",
+    "marginheader": "15mm",
+    "marginfooter": "9mm"
+  },
   "ubuntu__155_x_220_mm": {
     "width": "155mm",
     "height": "220mm",
@@ -112,7 +138,9 @@
     "marginleft": "1.5cm",
     "marginright": "1.5cm",
     "cropwidth": "130mm",
-    "cropheight": "200mm"
+    "cropheight": "200mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__135_x_215_mm": {
     "width": "135mm",
@@ -123,7 +151,9 @@
     "marginleft": "1.75cm",
     "marginright": "1.75cm",
     "cropwidth": "145mm",
-    "cropheight": "225mm"
+    "cropheight": "225mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__148_x_210_mm": {
     "width": "148mm",
@@ -134,7 +164,9 @@
     "marginleft": "1.8cm",
     "marginright": "1.8cm",
     "cropwidth": "158mm",
-    "cropheight": "220mm"
+    "cropheight": "220mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__155_x_220_mm": {
     "width": "155mm",
@@ -145,7 +177,9 @@
     "marginleft": "1.8cm",
     "marginright": "1.8cm",
     "cropwidth": "165mm",
-    "cropheight": "230mm"
+    "cropheight": "230mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__170_x_170_mm": {
     "width": "170mm",
@@ -156,7 +190,9 @@
     "marginleft": "1.8cm",
     "marginright": "1.8cm",
     "cropwidth": "180mm",
-    "cropheight": "180mm"
+    "cropheight": "180mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__170_x_220_mm": {
     "width": "170mm",
@@ -167,7 +203,9 @@
     "marginleft": "1.8cm",
     "marginright": "1.8cm",
     "cropwidth": "180mm",
-    "cropheight": "230mm"
+    "cropheight": "230mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__190_x_270_mm": {
     "width": "190mm",
@@ -178,7 +216,9 @@
     "marginleft": "2.15cm",
     "marginright": "2.15cm",
     "cropwidth": "200mm",
-    "cropheight": "280mm"
+    "cropheight": "280mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__210_x_150_mm": {
     "width": "210mm",
@@ -189,7 +229,9 @@
     "marginleft": "2.15cm",
     "marginright": "2.15cm",
     "cropwidth": "220mm",
-    "cropheight": "160mm"
+    "cropheight": "160mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__210_x_210_mm": {
     "width": "210mm",
@@ -200,7 +242,9 @@
     "marginleft": "2cm",
     "marginright": "2cm",
     "cropwidth": "220mm",
-    "cropheight": "220mm"
+    "cropheight": "220mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "bd__210_x_297_mm": {
     "width": "210mm",
@@ -211,51 +255,61 @@
     "marginleft": "2.15cm",
     "marginright": "2.15cm",
     "cropwidth": "220mm",
-    "cropheight": "307mm"
+    "cropheight": "307mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "epA6portrait__105_x_148_mm": {
     "width": "105mm",
     "height": "148.5mm",
     "binding": "0cm",
-    "margintop": "1.5cm",
-    "marginbottom": "2.5cm",
-    "marginleft": "1.5cm",
-    "marginright": "1.5cm",
+    "margintop": "1cm",
+    "marginbottom": "2cm",
+    "marginleft": "1cm",
+    "marginright": "1cm",
     "cropwidth": "111mm",
-    "cropheight": "154.5mm"
+    "cropheight": "154.5mm",
+    "marginheader": "8mm",
+    "marginfooter": "8mm"
   },
   "epA6landscape__148_x_105_mm": {
     "width": "148.5mm",
     "height": "105mm",
     "binding": "0cm",
-    "margintop": "1.5cm",
-    "marginbottom": "2.5cm",
-    "marginleft": "1.5cm",
-    "marginright": "1.5cm",
+    "margintop": "1cm",
+    "marginbottom": "2cm",
+    "marginleft": "1cm",
+    "marginright": "1cm",
     "cropwidth": "154.5mm",
-    "cropheight": "111mm"
+    "cropheight": "111mm",
+    "marginheader": "8mm",
+    "marginfooter": "8mm"
   },
   "epA5portrait__148_x_210_mm": {
     "width": "148.5mm",
     "height": "210mm",
     "binding": "0cm",
-    "margintop": "2.5cm",
-    "marginbottom": "3.5cm",
-    "marginleft": "2.5cm",
-    "marginright": "2.5cm",
+    "margintop": "2cm",
+    "marginbottom": "3cm",
+    "marginleft": "2cm",
+    "marginright": "2cm",
     "cropwidth": "154.5mm",
-    "cropheight": "216mm"
+    "cropheight": "216mm",
+    "marginheader": "8mm",
+    "marginfooter": "8mm"
   },
   "epA5landscape__210_x_148_mm": {
     "width": "210mm",
     "height": "148.5mm",
     "binding": "0cm",
-    "margintop": "2.5cm",
-    "marginbottom": "3.5cm",
-    "marginleft": "2.5cm",
-    "marginright": "2.5cm",
+    "margintop": "2cm",
+    "marginbottom": "3cm",
+    "marginleft": "2cm",
+    "marginright": "2cm",
     "cropwidth": "216mm",
-    "cropheight": "154.5mm"
+    "cropheight": "154.5mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "epA4portrait__210_x_297_mm": {
     "width": "210mm",
@@ -266,7 +320,9 @@
     "marginleft": "2.5cm",
     "marginright": "2.5cm",
     "cropwidth": "216mm",
-    "cropheight": "303mm"
+    "cropheight": "303mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "epA4landscape__210_x_297_mm": {
     "width": "297mm",
@@ -277,18 +333,22 @@
     "marginleft": "2.5cm",
     "marginright": "2.5cm",
     "cropwidth": "303mm",
-    "cropheight": "216mm"
+    "cropheight": "216mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "epKinderbuch__156_x_148_mm": {
     "width": "156mm",
     "height": "148.5mm",
     "binding": "0cm",
-    "margintop": "2.5cm",
-    "marginbottom": "3.5cm",
-    "marginleft": "2.5cm",
-    "marginright": "2.5cm",
+    "margintop": "2cm",
+    "marginbottom": "3cm",
+    "marginleft": "2cm",
+    "marginright": "2cm",
     "cropwidth": "162mm",
-    "cropheight": "154.5mm"
+    "cropheight": "154.5mm",
+    "marginheader": "8mm",
+    "marginfooter": "8mm"
   },
   "epQuadrat__205_x_205_mm": {
     "width": "205mm",
@@ -299,18 +359,22 @@
     "marginleft": "2.5cm",
     "marginright": "2.5cm",
     "cropwidth": "211mm",
-    "cropheight": "211mm"
+    "cropheight": "211mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "epTaschenbuch__125_x_190_mm": {
     "width": "125mm",
     "height": "190mm",
     "binding": "0cm",
-    "margintop": "2.5cm",
-    "marginbottom": "3.5cm",
-    "marginleft": "2.5cm",
-    "marginright": "2.5cm",
+    "margintop": "2cm",
+    "marginbottom": "3cm",
+    "marginleft": "2cm",
+    "marginright": "2cm",
     "cropwidth": "131mm",
-    "cropheight": "196mm"
+    "cropheight": "196mm",
+    "marginheader": "8mm",
+    "marginfooter": "8mm"
   },
   "epWissenschaft__170_x_240_mm": {
     "width": "170mm",
@@ -321,18 +385,22 @@
     "marginleft": "2.5cm",
     "marginright": "2.5cm",
     "cropwidth": "176mm",
-    "cropheight": "246mm"
+    "cropheight": "246mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "epSachbuch__135_x_205_mm": {
     "width": "135mm",
     "height": "205mm",
     "binding": "0cm",
-    "margintop": "2.5cm",
-    "marginbottom": "3.5cm",
-    "marginleft": "2.5cm",
-    "marginright": "2.5cm",
+    "margintop": "2cm",
+    "marginbottom": "3cm",
+    "marginleft": "2cm",
+    "marginright": "2cm",
     "cropwidth": "141mm",
-    "cropheight": "211mm"
+    "cropheight": "211mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   },
   "epBildband__300_x_294_mm": {
     "width": "300mm",
@@ -343,7 +411,9 @@
     "marginleft": "2.5cm",
     "marginright": "2.5cm",
     "cropwidth": "306mm",
-    "cropheight": "300mm"
+    "cropheight": "300mm",
+    "marginheader": "8mm",
+    "marginfooter": "16mm"
   }
 }
         

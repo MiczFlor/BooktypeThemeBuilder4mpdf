@@ -175,6 +175,32 @@ p.quote:before {
   text-indent: -%EditorBodyParagraphHangingEmVal%em;
   padding-left: %EditorBodyParagraphHangingEmVal%em;
 }
+
+/* Info Box ****************************************************/
+#contenteditor .bk-box {
+  font-family: "%BoxFontFamilyVal%"; 
+  font-size: %BoxFontSizeVal%em; 
+  color: %BoxBodyColorVal%;
+  background-color: %BoxBodyBackgroundColorVal%;
+  padding-bottom: 1em; 
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+}
+#contenteditor .bk-box p {
+  padding: 0 1em;
+  text-indent: %EditorBoxIndentEmVal%em;
+}
+#contenteditor .bk-box .box-caption {
+  color: %BoxCaptionColorVal%;
+  font-weight: %BoxCaptionFontWeightVal%;
+  background-color: %BoxCaptionBackgroundColorVal%;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+#contenteditor .bk-box .box-caption span.icon-trash {
+  color: %BoxCaptionIconColorVal%;
+}
+
 /* Lists *****************************************************************/
 #contenteditor ul,
 #contenteditor ol {
@@ -245,7 +271,13 @@ p.quote:before {
   text-align: center;
 }
 
-#contenteditor caption, #contenteditor .caption_small {
+#contenteditor caption, 
+#contenteditor .caption_small, 
+#contenteditor .caption_table,
+#contenteditor .caption_img, 
+#contenteditor .caption_fig, 
+#contenteditor .caption_image, 
+#contenteditor .caption_figure {
   margin-top: 0.5em;
   font-size: %CaptionFontSizeEmVal%em;
   font-style: italic;

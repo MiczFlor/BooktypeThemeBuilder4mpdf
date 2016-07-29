@@ -8,12 +8,30 @@ $debug = "false"; // (true|false)
 /*
 * The source html file which is piped into mpdf
 */
-$html4mpdf = "mpdf-body.html"; // (mpdf-body.html|mpdf-body_themesample.html)
+// CSS and HTML files using in conversion
+$files4render = array();
+// (bod_mpdf-article.html|mpdf-body_themesample.html|xyz_mpdf-body-idea.html)
+$files4render['html4mpdf'] = "xyz_mpdf-body-idea.html";
+
+// (mpdf.css|bod_mpdf-UNIVERSAL.css)
+$files4render['css4mpdf'] = "mpdf.css"; 
+
+// (bod_mpdf-frontmatter.html|frontmatter_themesample.html)
+$files4render['frontmatterhtml4mpdf'] = "frontmatter_themesample.html"; 
+
+// (mpdf-body.html|mpdf-body_themesample.html|xyz_mpdf-body-idea.html)
+$files4render['html4princexml'] = "xyz_princexml-body-idea.html"; 
+
+// (pdfreactor-arabic.html|xyz_pdfreactor-body-idea.html|pdfreactor-weihnachtserzaehlungen.html)
+$files4render['html4pdfreactor'] = "xyz_pdfreactor-codehighlighting.html"; 
+
 /*
 * When creating a PDF, should also a copy with specs of the theme be created? 
 * (like: Sample_H190mm_W125mm_Font-freeserif_Size-11pt.pdf)
 */
 $createcopypdf = "false"; // (true|false)
+
+$FORMPRESET = json_decode(file_get_contents("_config/theme_config.json"), true);
 
 // reading available fonts
 include("_config/config_fonts.php");
@@ -25,10 +43,13 @@ $options = array(
   "home" => realpath(dirname(__FILE__)), // path to the folder where the sample files are
   "mpdf_files" => realpath(dirname(__FILE__))."/mpdf_files", // path to the folder where the sample files are
   "mpdf_output" => realpath(dirname(__FILE__))."/mpdf_output", // path where to create PDF
+  "princexml_files" => realpath(dirname(__FILE__))."/princexml_files", // path to the folder where the sample files are
+  "princexml_output" => realpath(dirname(__FILE__))."/princexml_output", // path where to create PDF
   //"mpdf_lib" => "/var/www/mpdf/", // path to mpdf library
   "mpdf_lib" => "/var/www/mpdf60-old/", // path to mpdf library
   "dirthemes" => realpath(dirname(__FILE__))."/themes", // path to the folder theme dirs are
   "output" => "static_mpdf_test.pdf", // file name of the generated file
+  "fontsdir" => "/var/www/mpdf/ttfonts", // directory with all the fonts
   /*
   * kindlegen is needed to generate kindle e-book files from EPUB
   * Learn more here: http://www.amazon.com/gp/feature.html?docId=1000765211
@@ -53,14 +74,39 @@ $FontSizeEditorCSS = array(
   "13pt" => "13pt",
   "15pt" => "15pt",
 );
+$optionselectcolor = array(
+  "Black" => "#000000",
+  "DarkSlateGray" => "#2F4F4F",
+  "DimGray" => "#696969",
+  "Grey" => "#808080",
+  "LightGrey" => "#D3D3D3",
+  "Gainsboro" => "DCDCDC",
+  "GhostWhite" => "#f8f8ff",
+  "White" => "#ffffff",
+);
 /*
 * some select options for the form
 */
 $formoptionselectbasefontsize = "select__". implode("_", array_keys($FontSizeEditorCSS));
 $formoptionselectpadding = "select__0-top:0-bottom_0-top:1-bottom_0-top:2-bottom_0-top:3-bottom_0-top:4-bottom_0-top:5-bottom_0.33-top:0.66-bottom_0.5-top:0.5-bottom_0.66-top:0.33-bottom_1-top:0-bottom_1-top:1-bottom_1-top:2-bottom_1-top:3-bottom_1-top:4-bottom_1-top:5-bottom_1.33-top:0.66-bottom_1.5-top:0.5-bottom_1.66-top:0.33-bottom_2-top:0-bottom_2-top:1-bottom_2-top:2-bottom_2-top:3-bottom_2-top:4-bottom_2-top:5-bottom_2.5-top:0.5-bottom_2.5-top:1.5-bottom_3-top:0-bottom_3-top:1-bottom_3-top:2-bottom_3-top:3-bottom_3-top:4-bottom_3-top:5-bottom_3.5-top:0.5-bottom_3.5-top:1.5-bottom_3.5-top:2.5-bottom_4-top:0-bottom_4-top:1-bottom_4-top:2-bottom_4-top:3-bottom_4-top:4-bottom_4-top:5-bottom_5-top:0-bottom_5-top:1-bottom_5-top:3-bottom_5-top:4-bottom_5-top:5-bottom_6-top:0-bottom_6-top:1-bottom_6-top:3-bottom_6-top:6-bottom_7-top:0-bottom_7-top:1-bottom_7-top:3-bottom_7-top:4-bottom_7-top:7-bottom";
 $formoptionselectfontsizeem = "select__0.5_0.7_0.9_1_1.1_1.2_1.3_1.33_1.4_1.5_1.66_1.8_2_2.33_2.5_2.66_3_3.33_3.5_3.66_4_4.33_4.5_4.66_5_5.5_6_6.5_7";
+$formoptionselectfontsizept = "select__Not-using-PT_6_7_8_9_10_10.5_11_12_13_14_15_16_17_18_19_20_21_23_25_27_29_30_31_33_35_37_39_40_45_50_55_65_70_75_80_90_100_110_120__If PT is used, this overrides the EM relative size.";
 $formoptionselectcaptionfontsizeem = "select__0.33_0.5_0.6_0.7_0.8_0.9_1_1.1_1.2_1.3_1.4_1.5_1.66_1.8_2_2.5_3_3.5_4_4.5_5_5.5_6_6.5_7";
 $formoptionselectlineheightinteger = "select__1_2_3_4_5_6_7";
+
+/*
+$formoptionselectcolor = "select__";
+$counter = 1;
+foreach($optionselectcolor as $key => $value) {
+  $formoptionselectcolor .= $key;
+  if($counter++ < count($optionselectcolor)) {
+    $formoptionselectcolor .= "_";
+  }
+}
+*/
+// not using select for some color selection, but input text
+$formoptionselectcolor = "text__";
+
 $formoptions = array(
   "page" => array(
     "prefix" => "Page",
@@ -74,7 +120,8 @@ $formoptions = array(
       "FontFamily" => "select__FontFamily",
       "FontSize" => $formoptionselectbasefontsize,
       "LineHeight" => "select__0.9_1_1.1_1.2_1.3_1.4_1.5_1.6_1.7_1.8_1.9_2",
-      "TextAlign" => "select__left_right_center_justify",
+      "TextAlign" => "select__left_right_center_justify_auto",
+      "Color" => $formoptionselectcolor,
     )
   ),
   "pbody" => array(
@@ -82,14 +129,38 @@ $formoptions = array(
     "elements" => array(
       "Indent" => "select__none_1_2_3",
       "Spacing" => "select__none_one-line",
-      //"Dropcaps" => "select__false_true",
+      "FirstParaFontWeight" => "select__normal_bold",
+      "Dropcaps" => "select__false_true",
     )
   ),
   "preformatted" => array(
     "prefix" => "Preformatted",
     "elements" => array(
       "FontFamily" => "select__FontFamily",
+      "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
       "Padding" => $formoptionselectpadding,
+    )
+  ),
+  "infobox" => array(
+    "prefix" => "Box",
+    "elements" => array(
+      "FontFamily" => "select__FontFamily",
+      "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
+      "Indent" => "select__none_1_2_3",
+      "Padding" => "select__none_0.5_1_1.5_2",
+      "Border" => "select__none_top+bottom_frame",
+      "BorderLineStrength" => "select__thin_light_medium_thick_thickblack",
+      "BorderColor" => $formoptionselectcolor,
+      "CaptionFontWeight" => "select__normal_bold",
+      "CaptionColor" => $formoptionselectcolor,
+      "CaptionIconColor" => $formoptionselectcolor,
+      "CaptionBackgroundColor" => $formoptionselectcolor,
+      "CaptionBottomLine" => "select__none_true",
+      "CaptionBottomLineColor" => $formoptionselectcolor,
+      "BodyColor" => $formoptionselectcolor,
+      "BodyBackgroundColor" => $formoptionselectcolor,
     )
   ),
   "quote" => array(
@@ -105,6 +176,7 @@ $formoptions = array(
       "LineStyle" => "select__solid_dotted_dashed_double",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
       "LineHeight" => $formoptionselectlineheightinteger,
       "PaddingMargin2Line" => "select__0_1_2_3_4_5_6_7",
       "PaddingLine2Quote" => "select__0_1_2_3_4_5_6_7",
@@ -143,6 +215,14 @@ $formoptions = array(
       "BorderBottom" => "select__none_thin_medium_thick",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
+    )
+  ),
+  "frontmatter" => array(
+    "description" => "General settings for front matter",
+    "prefix" => "FrontmatterGeneral",
+    "elements" => array(
+      "PaddingTop" => $formoptionselectfontsizeem,
     )
   ),
   "frontmatterhalftitle" => array(
@@ -155,6 +235,7 @@ $formoptions = array(
       "TextTransform" => "select__none_uppercase",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
     )
   ),
   "frontmatterauthor" => array(
@@ -163,6 +244,7 @@ $formoptions = array(
       "FontFamily" => "select__FontFamily",
       "Align" => "select__left_center_right",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
     )
   ),
   "frontmattertitle" => array(
@@ -175,6 +257,7 @@ $formoptions = array(
       "TextTransform" => "select__none_uppercase",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
     )
   ),
   "frontmattersubtitle" => array(
@@ -183,6 +266,7 @@ $formoptions = array(
       "FontFamily" => "select__FontFamily",
       "Align" => "select__left_center_right",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
     )
   ),
   "frontmatterauthortitle" => array(
@@ -190,7 +274,9 @@ $formoptions = array(
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "Align" => "select__left_center_right",
+      "TextTransform" => "select__none_uppercase",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
     )
   ),
   "frontmatterbottompublisher" => array(
@@ -206,11 +292,43 @@ $formoptions = array(
       "Line" => "select__true_false__Line between title and author"
     )
   ),
+  "imprint" => array(
+    "prefix" => "Imprint",
+    "elements" => array(
+      "FontFamily" => "select__FontFamily",
+      "Align" => "select__left_center_right",
+      "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
+    )
+  ),
+  "dedication" => array(
+    "description" => "Dedication in front matter",
+    "prefix" => "Dedication",
+    "elements" => array(
+      "FontFamily" => "select__FontFamily",
+      "FontWeight" => "select__normal_bold",
+      "Align" => "select__left_center_right",
+      "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
+    )
+  ),
   "mpdftoc" => array(
     "prefix" => "TableOfContents",
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "TopLevelFontWeight" => "select__bold_normal",
+      "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
+    )
+  ),
+  "mpdftoctitle" => array(
+    "prefix" => "TableOfContentsTitle",
+    "elements" => array(
+      "FontFamily" => "select__FontFamily",
+      "FontWeight" => "select__normal_bold",
+      "Align" => "select__left_center_right",
+      "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
     )
   ),
   "chapterh1" => array(
@@ -218,11 +336,49 @@ $formoptions = array(
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
       "Align" => "select__left_center_right",
       "TextTransform" => "select__none_uppercase",
       "BorderBottom" => "select__none_thin_medium_thick",
+      "BorderBottomColor" => $formoptionselectcolor,
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
+      "LineHeight" => $formoptionselectlineheightinteger,
+      "Padding" => $formoptionselectpadding,
+    )
+  ),
+  "chapterauthor" => array(
+    "description" => "This field is not available in all themes - and padding might be hard coded in the CSS",
+    "prefix" => "ChapterAuthor",
+    "elements" => array(
+      "FontFamily" => "select__FontFamily",
+      "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
+      "Align" => "select__left_center_right",
+      "TextTransform" => "select__none_uppercase",
+      "BorderBottom" => "select__none_thin_medium_thick",
+      "BorderBottomColor" => $formoptionselectcolor,
+      "TextDecoration" => "select__none_underline_overline_line-through",
+      "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
+      "LineHeight" => $formoptionselectlineheightinteger,
+      "Padding" => $formoptionselectpadding,
+    )
+  ),
+  "chapterdateline" => array(
+    "description" => "This field is not available in all themes - and padding might be hard coded in the CSS",
+    "prefix" => "ChapterDateline",
+    "elements" => array(
+      "FontFamily" => "select__FontFamily",
+      "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
+      "Align" => "select__left_center_right",
+      "TextTransform" => "select__none_uppercase",
+      "BorderBottom" => "select__none_thin_medium_thick",
+      "BorderBottomColor" => $formoptionselectcolor,
+      "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
       "LineHeight" => $formoptionselectlineheightinteger,
       "Padding" => $formoptionselectpadding,
     )
@@ -242,11 +398,13 @@ $formoptions = array(
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
       "Align" => "select__left_center_right",
       "TextTransform" => "select__none_uppercase",
       "BorderBottom" => "select__none_thin_medium_thick",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
       "LineHeight" => $formoptionselectlineheightinteger,
       "Padding" => $formoptionselectpadding,
     )
@@ -256,11 +414,13 @@ $formoptions = array(
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
       "Align" => "select__left_center_right",
       "TextTransform" => "select__none_uppercase",
       "BorderBottom" => "select__none_thin_medium_thick",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
       "LineHeight" => $formoptionselectlineheightinteger,
       "Padding" => $formoptionselectpadding,
     )
@@ -270,11 +430,13 @@ $formoptions = array(
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
       "Align" => "select__left_center_right",
       "TextTransform" => "select__none_uppercase",
       "BorderBottom" => "select__none_thin_medium_thick",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
       "LineHeight" => $formoptionselectlineheightinteger,
       "Padding" => $formoptionselectpadding,
     )
@@ -284,11 +446,13 @@ $formoptions = array(
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
       "Align" => "select__left_center_right",
       "TextTransform" => "select__none_uppercase",
       "BorderBottom" => "select__none_thin_medium_thick",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
       "LineHeight" => $formoptionselectlineheightinteger,
       "Padding" => $formoptionselectpadding,
     )
@@ -298,11 +462,13 @@ $formoptions = array(
     "elements" => array(
       "FontFamily" => "select__FontFamily",
       "FontWeight" => "select__normal_bold",
+      "Color" => $formoptionselectcolor,
       "Align" => "select__left_center_right",
       "TextTransform" => "select__none_uppercase",
       "BorderBottom" => "select__none_thin_medium_thick",
       "TextDecoration" => "select__none_underline_overline_line-through",
       "FontSize" => $formoptionselectfontsizeem,
+      "FontSizePt" => $formoptionselectfontsizept,
       "LineHeight" => $formoptionselectlineheightinteger,
       "Padding" => $formoptionselectpadding,
     )
@@ -351,6 +517,18 @@ if(isset($_POST['Action'])) {
   if($ACTION == "dosomething") {
     $FORM['Form'] = json_decode(file_get_contents($_POST['SelectTheme']."/theme_config.json"), true);
     /*
+    * If the template editor added new values, they would not show up in older themes.
+    * Therefore load a preset and add values from the preset which are not set.
+    */
+    foreach($FORMPRESET as $key => $value) {
+      if($key != "Theme") { // exclude the sub array for theme metadata
+        if(!isset($FORM['Form'][$key]) OR trim($FORM['Form'][$key]) == "") {
+          $FORM['Form'][$key] = $value;
+          //print "<p>Loading from preset: ".$key." = ".$value."</p>";
+        }
+      }
+    }
+    /*
     * after we loaded the theme, also write the theme to disk, if user wants that.
     * This is useful if you want to update the themes after you made
     * changes in the CSS.
@@ -360,7 +538,16 @@ if(isset($_POST['Action'])) {
       $ACTION = "createtheme";
     }
   } else {
+    // if empty values, fill with preset from theme_config.json in dif _config
     $FORM['Form'] = get_post_values();
+    foreach($FORMPRESET as $key => $value) {
+      if($key != "Theme") { // exclude the sub array for theme metadata
+        if(!isset($FORM['Form'][$key]) OR trim($FORM['Form'][$key]) == "") {
+          $FORM['Form'][$key] = $value;
+          //print "<p>Loading from preset: ".$key." = ".$value."</p>";
+        } 
+      }
+    }
   }
   /*
   * Calculate the theme values for the CSS
@@ -513,8 +700,10 @@ if(isset($_POST['Action'])) {
     /*********************************************************************
     * Create CSS and make PDF for testing when pressing "Create PDF" button
     */
+    /*************************************************************/
+    // MPDF . CSS
     // read template file and add page measurements on top
-    $stylecss = "@page {
+    $mpdfstylecss = "@page {
   sheet-size: %PageWidth% %PageHeight%;  
   size: %PageWidth% %PageHeight%; 
 
@@ -532,16 +721,22 @@ if(isset($_POST['Action'])) {
   even-header-name: html_header-left;         
 }
 ";
-    $stylecss .= file_get_contents('_assets/raw-theme/mpdf.css');
-    $newstylecss = str_replace($find, $replace, $stylecss);
-    // write template file
-    file_put_contents("mpdf_files/style.css", $newstylecss);
     
-    $mpdfhtml = file_get_contents('_assets/raw-html/'.$html4mpdf);
+    $mpdfstylecss .= file_get_contents('_assets/raw-theme/'.$files4render['css4mpdf']);
+    $newmpdfstylecsss = str_replace($find, $replace, $mpdfstylecss);
+    // write template file
+    file_put_contents("mpdf_files/mpdf.css", $newmpdfstylecsss);
+    
+    $mpdfhtml = file_get_contents('_assets/raw-html/'.$files4render['html4mpdf']);
     $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
     // write template file
-    file_put_contents("mpdf_files/body.html", $newmpdfhtml);
+    file_put_contents("mpdf_files/mpdf-body.html", $newmpdfhtml);
     
+    // frontmatter html
+    $mpdfhtml = file_get_contents('_assets/raw-html/'.$files4render['frontmatterhtml4mpdf']);
+    $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
+    file_put_contents("mpdf_files/frontmatter.html", $newmpdfhtml); 
+
     /*
     * Run mPDF
     */
@@ -557,12 +752,71 @@ if(isset($_POST['Action'])) {
       $customfilename .= "_W".$FORM['Val']['PageWidth']; // page width
       $customfilename .= "_Font-".$FORM['Val']['BodyFontFamilyVal']; // font family
       $customfilename .= "_Size-".$FORM['Val']['BodyFontSizeVal']; // font size
-      $customfilename .= ".pdf"; // file ending
+      $customfilename .= ".mpdf.pdf"; // file ending
   
       $execcustomcopy = "cp ".$file_output." ".$options["mpdf_output"]."/".$customfilename;
   
       exec($execcustomcopy);
     }
+    
+    /*************************************************************/
+    // PDFREACTOR . CSS
+    // read template file and add page measurements on top
+    if(file_exists('_assets/raw-theme/pdfreactor.css')) {
+      $pdfreactorstylecss = return_font_reload_css();    
+      $pdfreactorstylecss .= "/* page measurements and margins */
+      @page{
+        sheet-size: %PageWidth% %PageHeight%;  
+        size: %PageWidth% %PageHeight%; 
+        margin-top: %PageMarginTop%; 
+        margin-bottom: %PageMarginBottom%;       
+      }
+      @page:left{
+        margin-left: %PageMarginRight%;
+        margin-right: %PageMarginLeft%; 
+      }
+      @page:right{
+        margin-left: %PageMarginLeft%; 
+        margin-right: %PageMarginRight%;
+      }
+      ";
+      $pdfreactorstylecss .= file_get_contents('_assets/raw-theme/pdfreactor.css');
+      $pdfreactorstylecss = str_replace($find, $replace, $pdfreactorstylecss);
+      // write template file
+      file_put_contents("pdfreactor_files/pdfreactor.css", $pdfreactorstylecss);
+      
+      $pdfreactorhtml = file_get_contents('_assets/raw-html/'.$files4render['html4pdfreactor']);
+      $pdfreactorhtml = str_replace($find, $replace, $pdfreactorhtml);
+      // write template file
+      file_put_contents("pdfreactor_files/body-pdfreactor.html", $pdfreactorhtml);
+    }
+    /*************************************************************/
+    // PRINCEXML . CSS
+    // read template file and add page measurements on top
+    if(file_exists('_assets/raw-theme/princexml.css')) {
+      $princexmlstylecss = return_font_reload_css();
+      
+      $princexmlstylecss .= "@page {
+        sheet-size: %PageWidth% %PageHeight%;  
+        size: %PageWidth% %PageHeight%; 
+      
+        margin-left: %PageMarginLeft%; 
+        margin-right: %PageMarginRight%;
+        margin-top: %PageMarginTop%; 
+        margin-bottom: %PageMarginBottom%;       
+      }
+      ";
+      $princexmlstylecss .= file_get_contents('_assets/raw-theme/princexml.css');
+      $newprincexmlstylecss = str_replace($find, $replace, $princexmlstylecss);
+      // write template file
+      file_put_contents("princexml_files/princexml.css", $newprincexmlstylecss);
+      
+      $princexmlhtml = file_get_contents('_assets/raw-html/'.$files4render['html4princexml']);
+      $newprincexmlhtml = str_replace($find, $replace, $princexmlhtml);
+      // write template file
+      file_put_contents("princexml_files/body-princexml.html", $newprincexmlhtml);
+    }
+    
     /*
     * Create a download link and a link to go back to the form
     */
@@ -570,8 +824,8 @@ if(isset($_POST['Action'])) {
         <div class=\"row\">
           <div class=\"col-lg-12\">
           <h2>PDF successfully generated</h2>
-            <a href='mpdf_output/static_mpdf_test.pdf' target='_blank' class='btn btn-info'>View PDF</a>
-            <a href='mpdf_files/style.css' target='_blank' class='btn btn-info'>View CSS</a>
+            <a href='mpdf_output/static_mpdf_test.pdf' target='_blank' class='btn btn-info'>View mpdf PDF</a>
+            <a href='http://localhost/BooktypeThemeBuilder4mpdf/_assets/pdfreactor-php/include-pdfreactor.php' target='_blank' class='btn btn-info'>Create PDFreactor PDF</a>
             <a href='mpdf_files/theme_config.json' target='_blank' class='btn btn-success'>Download theme config</a>
             <p><br/></p>
           </div>
@@ -641,7 +895,7 @@ function create_theme_sample_pdf_file() {
   even-header-name: html_header-left;         
 }
 ";
-  $stylecss .= file_get_contents('_assets/raw-theme/mpdf.css');
+  $stylecss .= file_get_contents('_assets/raw-theme/'.$files4render['css4mpdf']);
   $newstylecss = str_replace($find, $replace, $stylecss);
   file_put_contents("mpdf_files/style.css", $newstylecss);
   // html for sample mpdf
@@ -649,7 +903,7 @@ function create_theme_sample_pdf_file() {
   $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
   file_put_contents("mpdf_files/body.html", $newmpdfhtml);
   // frontmatter for sample mpdf
-  $mpdfhtml = file_get_contents('_assets/raw-html/frontmatter_themesample.html');
+  $mpdfhtml = file_get_contents('_assets/raw-html/'.$files4render['frontmatterhtml4mpdf']);
   $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
   file_put_contents("mpdf_files/frontmatter.html", $newmpdfhtml); 
     
@@ -782,10 +1036,10 @@ function create_theme_mpdf_css() {
   global $replace;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = file_get_contents($themenamefolder."/mpdf.css");
+  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4mpdf']);
   $newstylecss = str_replace($find, $replace, $stylecss);
   // write template file
-  file_put_contents($themenamefolder."/mpdf.css", $newstylecss);
+  file_put_contents($themenamefolder."/".$files4render['css4mpdf'], $newstylecss);
 }
 function create_theme_theme_fonts_php() {
   global $FORM;
@@ -874,6 +1128,59 @@ function create_theme_panel_html() {
 </div>";
    file_put_contents($themenamefolder."/panel.html", $theme_panel_html_txt);
 }
+
+function return_font_reload_css() {
+  global $FORM;
+  global $fontfamilies;
+
+  $fontsused = array();
+  foreach($FORM['Form'] as $key => $value) {
+    //print "<p>".$key." => ".$value."</p>";//???
+    if (strpos($key, 'FontFamily') !== false) {
+      if(isset($fontfamilies[$value])) {
+        $FORM['Fonts']['families'][$value] = $fontfamilies[$value];
+      }
+    }
+  }
+  /*
+  * Now make a list of all font file names in the same array
+  */
+  foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
+    foreach($values as $key => $value) {
+      $FORM['Fonts']['filenames'][$value] = $value;
+    }
+  }
+    
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $theme_preload_css_txt = "/* Pre-load '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." theme fonts */\n";
+  foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
+    foreach($values as $style => $fontname) {
+      // make sure the font exists
+      if(file_exists($themenamefolder."/static/fonts/".$fontname)) {
+        $theme_preload_css_txt .= "\n@font-face {";
+        $theme_preload_css_txt .= "\n    font-family: '".$fontfamily."';";
+        $theme_preload_css_txt .= "\n    src: url('../themes/".$FORM['Form']['Theme']['themenamefolder']."/static/fonts/".$fontname."') format('truetype');";
+        $theme_preload_css_txt .= "\n    font-weight: ";
+        if($style == "R" OR $style == "I") {
+          $theme_preload_css_txt .= "normal;";
+        } else {
+          $theme_preload_css_txt .= "bold;";
+        }
+        $theme_preload_css_txt .= "\n    font-style: ";
+        if($style == "R" OR $style == "B") {
+          $theme_preload_css_txt .= "normal;";
+        } else {
+          $theme_preload_css_txt .= "italic;";
+        }
+        $theme_preload_css_txt .= "\n}\n";
+      }
+    }
+  }
+ print "</pre>"; //???
+  return($theme_preload_css_txt);
+}
+
 function create_theme_preload_css() {
   global $FORM;
   // folder where to write the file
@@ -904,6 +1211,7 @@ function create_theme_preload_css() {
   }
   file_put_contents($themenamefolder."/static/preload.css", $theme_preload_css_txt);
 }
+
 function create_var_themenamefolder() {
   global $FORM;
   global $options;
@@ -975,41 +1283,41 @@ function dir_get_recursively($rootdir) {
 /*
 * Calculating absolute values for print font size in points (pt).
 */
-function calc_fontsizes_mpdf($basefontsize) {
+function calc_fontsizes_PT($basefontsize) {
   $return = array();
-  $return['0.33']   = round($basefontsize * 0.33, 1);
-  $return['0.5']    = round($basefontsize * 0.5, 1);
-  $return['0.6']    = round($basefontsize * 0.6, 1);
-  $return['0.66']   = round($basefontsize * 0.66, 1);
-  $return['0.7']   = round($basefontsize * 0.7, 1);
-  $return['0.8']   = round($basefontsize * 0.8, 1);
-  $return['0.9']   = round($basefontsize * 0.9, 1);
+  $return['0.33']   = round($basefontsize * 0.33, 2);
+  $return['0.5']    = round($basefontsize * 0.5, 2);
+  $return['0.6']    = round($basefontsize * 0.6, 2);
+  $return['0.66']   = round($basefontsize * 0.66, 2);
+  $return['0.7']   = round($basefontsize * 0.7, 2);
+  $return['0.8']   = round($basefontsize * 0.8, 2);
+  $return['0.9']   = round($basefontsize * 0.9, 2);
   $return['1']      = $basefontsize;
-  $return['1.1']   = round($basefontsize * 1.1, 1);
-  $return['1.2']   = round($basefontsize * 1.2, 1);
-  $return['1.3']   = round($basefontsize * 1.3, 1);
-  $return['1.33']   = round($basefontsize * 1.33, 1);
-  $return['1.4']   = round($basefontsize * 1.4, 1);
-  $return['1.5']    = round($basefontsize * 1.5, 1);
-  $return['1.66']   = round($basefontsize * 1.66, 1);
-  $return['1.8']   = round($basefontsize * 1.8, 1);
-  $return['2']      = round($basefontsize * 2, 1);
-  $return['2.33']   = round($basefontsize * 2.33, 1);
-  $return['2.5']    = round($basefontsize * 2.5, 1);
-  $return['2.66']   = round($basefontsize * 2.66, 1);
-  $return['3']      = round($basefontsize * 3, 1);
-  $return['3.33']   = round($basefontsize * 3.33, 1);
-  $return['3.5']    = round($basefontsize * 3.5, 1);
-  $return['3.66']   = round($basefontsize * 3.66, 1);
-  $return['4']      = round($basefontsize * 4, 1);
-  $return['4.33']   = round($basefontsize * 4.33, 1);
-  $return['4.5']    = round($basefontsize * 4.5, 1);
-  $return['4.66']   = round($basefontsize * 4.66, 1);
-  $return['5']      = round($basefontsize * 5, 1);
-  $return['5.5']    = round($basefontsize * 5.5, 1);
-  $return['6']      = round($basefontsize * 6, 1);
-  $return['6.5']    = round($basefontsize * 6.5, 1);
-  $return['7']      = round($basefontsize * 7, 1);
+  $return['1.1']   = round($basefontsize * 1.1, 2);
+  $return['1.2']   = round($basefontsize * 1.2, 2);
+  $return['1.3']   = round($basefontsize * 1.3, 2);
+  $return['1.33']   = round($basefontsize * 1.33, 2);
+  $return['1.4']   = round($basefontsize * 1.4, 2);
+  $return['1.5']    = round($basefontsize * 1.5, 2);
+  $return['1.66']   = round($basefontsize * 1.66, 2);
+  $return['1.8']   = round($basefontsize * 1.8, 2);
+  $return['2']      = round($basefontsize * 2, 2);
+  $return['2.33']   = round($basefontsize * 2.33, 2);
+  $return['2.5']    = round($basefontsize * 2.5, 2);
+  $return['2.66']   = round($basefontsize * 2.66, 2);
+  $return['3']      = round($basefontsize * 3, 2);
+  $return['3.33']   = round($basefontsize * 3.33, 2);
+  $return['3.5']    = round($basefontsize * 3.5, 2);
+  $return['3.66']   = round($basefontsize * 3.66, 2);
+  $return['4']      = round($basefontsize * 4, 2);
+  $return['4.33']   = round($basefontsize * 4.33, 2);
+  $return['4.5']    = round($basefontsize * 4.5, 2);
+  $return['4.66']   = round($basefontsize * 4.66, 2);
+  $return['5']      = round($basefontsize * 5, 2);
+  $return['5.5']    = round($basefontsize * 5.5, 2);
+  $return['6']      = round($basefontsize * 6, 2);
+  $return['6.5']    = round($basefontsize * 6.5, 2);
+  $return['7']      = round($basefontsize * 7, 2);
   /**/
   //print "<pre>";print_r($return);print "</pre>"; //???
   ksort($return);
@@ -1017,16 +1325,16 @@ function calc_fontsizes_mpdf($basefontsize) {
 }
 /*
 * Calculating absolute values for line height in pt.
-* Needs to be absolute to fake a baseline grid in mpdf
+* Needs to be absolute to fake a baseline grid in CSS for PDF renderer
 */
-function calc_lineheights_mpdf($caluclatedlineheight) {
+function calc_lineheights_PT($caluclatedlineheight) {
   $return = array();
   $return['0'] = $return['0-top'] = $return['0-bottom'] = 0;
-  $return['0.33-top'] = round(($caluclatedlineheight * 0.33), 1);
+  $return['0.33-top'] = round(($caluclatedlineheight * 0.33), 2);
   $return['0.66-bottom'] = $caluclatedlineheight - $return['0.33-top'];
   $return['0.66-top'] = $return['0.66-bottom'];
   $return['0.33-bottom'] = $return['0.33-top'];
-  $return['0.5-top'] = round(($caluclatedlineheight * 0.5), 1);
+  $return['0.5-top'] = round(($caluclatedlineheight * 0.5), 2);
   $return['0.5-bottom'] = $caluclatedlineheight - $return['0.5-top'];
   $return['1'] = $return['1-top'] = $return['1-bottom'] = $caluclatedlineheight;
   $return['1.33-top'] = $return['1.33-bottom'] = $return['1.33'] = $return['1-top'] + $return['0.33-top'];
@@ -1155,7 +1463,7 @@ function calc_css_export_values($FORM) {
   }
   
   // calculate the line height depending on font size and relative factor from form select
-  $caluclatedlineheight = round((floatval($FORM['BodyFontSize']) * $FORM['BodyLineHeight']), 1);
+  $caluclatedlineheight = round((floatval($FORM['BodyFontSize']) * $FORM['BodyLineHeight']), 2);
   /*
   * Run this foreach to get the values in _POST matching the form variables we asked for
   */
@@ -1190,13 +1498,13 @@ function calc_css_export_values($FORM) {
         $key == "LineLeft"
       ) {
         if($FORM[$values['prefix'].$key] == "thin") {
-          $return[$values['prefix'].$key."Val"] = "0.05rem";
+          $return[$values['prefix'].$key."Val"] = "0.05em";
         } elseif($FORM[$values['prefix'].$key] == "light") {
-          $return[$values['prefix'].$key."Val"] = "0.2rem";
+          $return[$values['prefix'].$key."Val"] = "0.2em";
         } elseif($FORM[$values['prefix'].$key] == "medium") {
-          $return[$values['prefix'].$key."Val"] = "0.5rem";
+          $return[$values['prefix'].$key."Val"] = "0.5em";
         } elseif($FORM[$values['prefix'].$key] == "thick") {
-          $return[$values['prefix'].$key."Val"] = "1rem";
+          $return[$values['prefix'].$key."Val"] = "1em";
         }else {
           $return[$values['prefix'].$key."Val"] = "0rem";
         }
@@ -1212,8 +1520,24 @@ function calc_css_export_values($FORM) {
           $return[$values['prefix'].$key."Val"] = "#999";
         } elseif($FORM[$values['prefix'].$key] == "black") {
           $return[$values['prefix'].$key."Val"] = "#000";
-        }else {
-          $return[$values['prefix'].$key."Val"] = "0rem";
+        }
+      }
+      /*
+      * Info box values for borders
+      */
+      if( // quote uses line on the left
+        $key == "BorderLineStrength"
+      ) {
+        if($FORM[$values['prefix'].$key] == "thin") {
+          $return[$values['prefix'].$key."PtVal"] = "0.5";
+        } elseif($FORM[$values['prefix'].$key] == "light") {
+          $return[$values['prefix'].$key."PtVal"] = "0.8";
+        } elseif($FORM[$values['prefix'].$key] == "medium") {
+          $return[$values['prefix'].$key."PtVal"] = "1.5";
+        } elseif($FORM[$values['prefix'].$key] == "thick") {
+          $return[$values['prefix'].$key."PtVal"] = "4";
+        } elseif($FORM[$values['prefix'].$key] == "thickblack") {
+          $return[$values['prefix'].$key."PtVal"] = "11";
         }
       }
       if( // font size for header or footer
@@ -1221,11 +1545,11 @@ function calc_css_export_values($FORM) {
         $values['prefix'].$key == "FooterFontSize"         
       ) {
         if($FORM[$values['prefix'].$key] == "tiny") {
-          $return[$values['prefix'].$key."Val"] = "0.5rem";
+          $return[$values['prefix'].$key."EmVal"] = "0.5";
         } elseif($FORM[$values['prefix'].$key] == "small") {
-          $return[$values['prefix'].$key."Val"] = "0.8rem";
+          $return[$values['prefix'].$key."EmVal"] = "0.8";
         }else {
-          $return[$values['prefix'].$key."Val"] = "1rem";
+          $return[$values['prefix'].$key."EmVal"] = "1";
         }
       }
       if( // show or hide line for header or footer
@@ -1242,9 +1566,9 @@ function calc_css_export_values($FORM) {
         $values['prefix'].$key == "FrontmatterTitlepageLine"
       ) {
         if($FORM[$values['prefix'].$key] == "true") {
-          $return[$values['prefix'].$key."Val"] = "0.3rem";
+          $return[$values['prefix'].$key."EmVal"] = "0.3";
         }else {
-          $return[$values['prefix'].$key."Val"] = "0rem";
+          $return[$values['prefix'].$key."EmVal"] = "0";
         }
       }
       if( // space between paragraphs
@@ -1266,11 +1590,11 @@ function calc_css_export_values($FORM) {
       }
     }
   }
-  $lineheights = calc_lineheights_mpdf($return['BodyLineHeightVal']);
-  $fontsizes = calc_fontsizes_mpdf(floatval($return['BodyFontSizeVal']));
+  $lineheights = calc_lineheights_PT($return['BodyLineHeightVal']);
+  $fontsizesPT = calc_fontsizes_PT(floatval($return['BodyFontSizeVal']));
   if($debug == "true") {
     print "<pre>Line heights: \n"; print_r($lineheights);print "</pre>";
-    print "<pre>Font sizes: \n"; print_r($fontsizes);print "</pre>";
+    print "<pre>Font sizes: \n"; print_r($fontsizesPT);print "</pre>";
   }
   
   // indents in paragraphs
@@ -1314,6 +1638,26 @@ function calc_css_export_values($FORM) {
     // Special values for the editor CSS
     $return['EditorBodyParagraphHangingEmVal'] = $FORM['BodyParagraphIndent'];
   }
+  
+  // indents in infobox
+  if($FORM['BoxIndent'] == "none") {
+    $return['BoxIndentVal'] = "0pt"; 
+    // Special values for the epub CSS
+    $return['EpubBoxIndentEmVal'] = 0; 
+    // Special values for the editor CSS
+    $return['EditorBoxIndentEmVal'] = 0;
+    
+  } else {
+    /*
+    * take an absolute, no rem value to match other indents in paragraphs 
+    * with different font-sizes.
+    */
+    $return['BoxIndentVal'] = $lineheights[$FORM['BodyParagraphIndent']]."pt"; 
+    // Special values for the epub CSS
+    $return['EpubBoxIndentEmVal'] = $FORM['BodyParagraphIndent']; 
+    // Special values for the editor CSS
+    $return['EditorBoxIndentEmVal'] = $FORM['BodyParagraphIndent'];
+  }
 
   /*
   * Dropcaps - first character in chapter
@@ -1328,12 +1672,14 @@ function calc_css_export_values($FORM) {
     $return['BodyParagraphDropcapsFontsizeEmVal'] = "2";
     $return['BodyParagraphDropcapsFontsizePtVal'] = $lineheights['3.33'];
   }
+  
   /*
   * Calculate some extra values for specific elements from $_POST
   * Quite a few for all headlines, needed to calculate distances in print, browser editor and epub
   */
   $secondround = array(
     "ChapterHeader1", "BodyHeader1", "BodyHeader2", "BodyHeader3", "BodyHeader4", "BodyHeader5", 
+    "Dedication", "Imprint", "ChapterDateline", "ChapterAuthor", "TableOfContents", "TableOfContentsTitle"
   );
   foreach($secondround as $item) {
     $temp = explode(":",$FORM[$item.'Padding']);
@@ -1342,35 +1688,90 @@ function calc_css_export_values($FORM) {
     $return[$item.'PaddingBottomVal'] = $lineheights[$temp[1]];
     $return[$item.'PaddingTopEmVal'] = calc_editor_css_values(floatval($temp[0])); // used in epub.css
     $return[$item.'PaddingBottomEmVal'] = calc_editor_css_values(floatval($temp[1])); // used in epub.css
-    $return[$item.'FontSizeRemVal'] = $return[$item.'FontSizeVal']; // REM (could be) used for mpdf CSS
     $return[$item.'LineHeightRemVal'] = $return[$item.'LineHeightVal']; // REM (could be) used for mpdf CSS
-    $return[$item.'FontSizeEmVal'] = calc_editor_css_values($return[$item.'FontSizeVal']); // EM (should be) used for browser's editor CSS  
     $return[$item.'LineHeightEmVal'] = calc_editor_css_values($return[$item.'LineHeightVal']); // EM (should be) used for browser's editor CSS  
-    $return[$item.'FontSizePtVal'] = $fontsizes[$return[$item.'FontSizeVal']]; // Points used in mpdf CSS
     $return[$item.'LineHeightPtVal'] = $lineheights[$return[$item.'LineHeightVal']]; // Points used in mpdf CSS
+    // add if else here regarding if there is PT or EM posted
+    // ...FontSizePt] => Not-using-PT
+    if(isset($FORM[$item.'FontSizePt']) && $FORM[$item.'FontSizePt'] != "Not-using-PT") {
+      // print "<h1>Using PT for ".$item."</h1>";
+      // calculate relative value from ...FontSizePt, relative to body font size BodyFontSizeVal (which is in PT)
+      // Multiply by ($FORM[$item.'FontSizePt'] / floatval($return['BodyFontSizeVal']))
+      $return[$item.'FontSizeVal'] = round($FORM[$item.'FontSizePt'] / floatval($return['BodyFontSizeVal']), 2);
+      $return[$item.'FontSizeRemVal'] = $return[$item.'FontSizeVal']; // REM (could be) used for mpdf CSS
+      $return[$item.'FontSizeEmVal'] = calc_editor_css_values($return[$item.'FontSizeVal']); // EM (should be) used for browser's editor CSS  
+      $return[$item.'FontSizePtVal'] = $FORM[$item.'FontSizePt']; // Points used in PDF renderer CSS
+    } else {
+      // print "<h1>Not using PT for ".$item."</h1>";
+      $return[$item.'FontSizeRemVal'] = $return[$item.'FontSizeVal']; // REM (could be) used for mpdf CSS
+      $return[$item.'FontSizeEmVal'] = calc_editor_css_values($return[$item.'FontSizeVal']); // EM (should be) used for browser's editor CSS  
+      $return[$item.'FontSizePtVal'] = $fontsizesPT[$return[$item.'FontSizeVal']]; // Points used in mpdf CSS
+    }
+  }
+  
+  /*
+  * Info box border values
+  */
+  // first, set all border values to zero
+  $secondround = array(
+    "BoxBorderLeftLine", "BoxBorderTopLine", "BoxBorderRightLine", "BoxBorderBottomLine" 
+  );
+  foreach($secondround as $item) {
+    $return[$item.'PtVal'] = "0";
+    $return[$item.'EmVal'] = "0";
+    $return[$item.'RemVal'] = "0";
+  }
+  $return['BoxCaptionBottomLinePtVal'] = "0";
+  $return['BoxCaptionBottomLineEmVal'] = "0";
+  $return['BoxCaptionBottomLineRemVal'] = "0";
+  // now fill them if need be
+  if($FORM['BoxBorder'] != "none") {
+    $return['BoxBorderTopLinePtVal'] = $return['BoxBorderLineStrengthPtVal'];
+    $return['BoxBorderBottomLinePtVal'] = $return['BoxBorderLineStrengthPtVal'];
+  }
+  if($FORM['BoxBorder'] == "frame") {
+    $return['BoxBorderLeftLinePtVal'] = $return['BoxBorderLineStrengthPtVal'];
+    $return['BoxBorderRightLinePtVal'] = $return['BoxBorderLineStrengthPtVal'];
+  }
+  // now do the editor and epub values
+  foreach($secondround as $item) {
+    if($return[$item.'PtVal'] != "0") {
+      $return[$item.'EmVal'] = "0.3";
+      $return[$item.'RemVal'] = "0.3";
+    }
+  }
+  // last item: border beneath the caption, seperating the body text
+  if($FORM['BoxCaptionBottomLine'] == "true") {
+    $return['BoxCaptionBottomLinePtVal'] = $return['BoxBorderLineStrengthPtVal'];
+    $return['BoxCaptionBottomLineEmVal'] = "0.3";
+    $return['BoxCaptionBottomLineRemVal'] = "0.3";
   }
   
   // special values for caption of figures, tables, etc.
-  $return['CaptionFontSizePtVal'] = $fontsizes["0.9"]; // Points used in mpdf CSS
+  $return['CaptionFontSizePtVal'] = $fontsizesPT["0.9"]; // Points used in mpdf CSS
   $return['CaptionFontSizeRemVal'] = "0.9"; // REM (could be) used for mpdf CSS
   $return['CaptionFontSizeEmVal'] = calc_editor_css_values("0.9"); // EM (should be) used for browser's editor CSS
   
   // Part or Section, the bigger chunks that contain a number of chapters
   $return['PartFontSizeEmVal'] = calc_editor_css_values($return['PartFontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['PartFontSizePtVal'] = $fontsizes[$return['PartFontSizeVal']]; // Points used in mpdf CSS
-  // Front matter
+  $return['PartFontSizePtVal'] = $fontsizesPT[$return['PartFontSizeVal']]; // Points used in mpdf CSS
+  /*
+  * Frontmatter
+  */
   $return['FrontmatterHalftitleTitleFontSizeEmVal'] = calc_editor_css_values($return['FrontmatterHalftitleTitleFontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['FrontmatterHalftitleTitleFontSizePtVal'] = $fontsizes[$return['FrontmatterHalftitleTitleFontSizeVal']]; // Points used in mpdf CSS
+  $return['FrontmatterHalftitleTitleFontSizePtVal'] = $fontsizesPT[$return['FrontmatterHalftitleTitleFontSizeVal']]; // Points used in mpdf CSS
   $return['FrontmatterHalftitleAuthorFontSizeEmVal'] = calc_editor_css_values($return['FrontmatterHalftitleAuthorFontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['FrontmatterHalftitleAuthorFontSizePtVal'] = $fontsizes[$return['FrontmatterHalftitleAuthorFontSizeVal']]; // Points used in mpdf CSS
+  $return['FrontmatterHalftitleAuthorFontSizePtVal'] = $fontsizesPT[$return['FrontmatterHalftitleAuthorFontSizeVal']]; // Points used in mpdf CSS
   $return['FrontmatterTitlepageTitleFontSizeRemVal'] = $return['FrontmatterTitlepageTitleFontSizeVal']; // REM (could be) used for mpdf CSS
   $return['FrontmatterTitlepageTitleFontSizeEmVal'] = calc_editor_css_values($return['FrontmatterTitlepageTitleFontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['FrontmatterTitlepageTitleFontSizePtVal'] = $fontsizes[$return['FrontmatterTitlepageTitleFontSizeVal']]; // Points used in mpdf CSS
+  $return['FrontmatterTitlepageTitleFontSizePtVal'] = $fontsizesPT[$return['FrontmatterTitlepageTitleFontSizeVal']]; // Points used in mpdf CSS
   $return['FrontmatterTitlepageSubtitleFontSizeEmVal'] = calc_editor_css_values($return['FrontmatterTitlepageSubtitleFontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['FrontmatterTitlepageSubtitleFontSizePtVal'] = $fontsizes[$return['FrontmatterTitlepageSubtitleFontSizeVal']]; // Points used in mpdf CSS
+  $return['FrontmatterTitlepageSubtitleFontSizePtVal'] = $fontsizesPT[$return['FrontmatterTitlepageSubtitleFontSizeVal']]; // Points used in mpdf CSS
   $return['FrontmatterTitlepageAuthorFontSizeEmVal'] = calc_editor_css_values($return['FrontmatterTitlepageAuthorFontSizeVal']); // EM (should be) used for browser's editor CSS  
-  $return['FrontmatterTitlepageAuthorFontSizePtVal'] = $fontsizes[$return['FrontmatterTitlepageAuthorFontSizeVal']]; // Points used in mpdf CSS
-  
+  $return['FrontmatterTitlepageAuthorFontSizePtVal'] = $fontsizesPT[$return['FrontmatterTitlepageAuthorFontSizeVal']]; // Points used in mpdf CSS
+  // getting the padding on top in PT for all frontmatter pages
+  $return['FrontmatterGeneralPaddingTopPtVal'] = $FORM['FrontmatterGeneralPaddingTop'] * $lineheights[1];
+    
   // Quote
   $temp = explode(":",$FORM['QuotePadding']);
   $return['QuotePaddingTopVal'] = $lineheights[$temp[0]];
@@ -1379,7 +1780,7 @@ function calc_css_export_values($FORM) {
   $return['QuoteLineHeightRemVal'] = $return['QuoteLineHeightVal']; // REM (could be) used for mpdf CSS
   $return['QuoteFontSizeEmVal'] = calc_editor_css_values($return['QuoteFontSizeVal']); // EM (should be) used for browser's editor CSS  
   $return['QuoteLineHeightEmVal'] = calc_editor_css_values($return['QuoteLineHeightVal']); // EM (should be) used for browser's editor CSS  
-  $return['QuoteFontSizePtVal'] = $fontsizes[$return['QuoteFontSizeVal']]; // Points used in mpdf CSS
+  $return['QuoteFontSizePtVal'] = $fontsizesPT[$return['QuoteFontSizeVal']]; // Points used in mpdf CSS
   $return['QuoteLineHeightPtVal'] = $lineheights[$return['QuoteLineHeightVal']]; // Points used in mpdf CSS
   // padding from margin on left to line which is left of quote
   $return['QuotePaddingMargin2LinePtVal'] = $lineheights[$FORM['QuotePaddingMargin2Line']];
@@ -1473,10 +1874,10 @@ function calc_editor_css_values($relsize) {
   $factor = 1; // this is the factor by which the size is reduced
   // change factor according to original size - the larger the original, the more we scale down
   if($relsize >= 1.5) { $factor = 0.9; }
-  if($relsize >= 2) { $factor = 0.8; }
-  if($relsize >= 3) { $factor = 0.7; }
-  if($relsize >= 4) { $factor = 0.6; }
-  if($relsize >= 5) { $factor = 0.5; }
+  if($relsize >= 2.2) { $factor = 0.8; }
+  if($relsize >= 3.3) { $factor = 0.7; }
+  if($relsize >= 4.4) { $factor = 0.6; }
+  if($relsize >= 5.5) { $factor = 0.5; }
   $return = round(($factor * $relsize), 2);
 
   return $return;
@@ -1688,21 +2089,12 @@ function HTML_print_form($FORM) {
   global $pagepresets;
   global $formoptions;
   global $fontfamilies;
+  global $FORMPRESET;
   
-  // if there were no posted values, still don't start with the default paper size which is the smallest
-  if(!isset($FORM['PageDefinition'])) { $FORM['PageDefinition'] = "bodde__155_x_220_mm"; }
-  if(!isset($FORM['BodyFontSize'])) { $FORM['BodyFontSize'] = "10pt"; }
-  if(!isset($FORM['BodyLineHeight'])) { $FORM['BodyLineHeight'] = "1.4"; }
-  if(!isset($FORM['BodyFontFamily'])) { $FORM['BodyFontFamily'] = "texgyreschola"; }
-  if(!isset($FORM['FooterFontSize'])) { $FORM['FooterFontSize'] = "small"; }
-  if(!isset($FORM['HeaderFontSize'])) { $FORM['HeaderFontSize'] = "small"; }
-  // all font sizes set to em = 1
-  $fontsizesprefix = array("Quote", "Header", "Footer", "Part", "FrontmatterHalftitleTitle",
-    "FrontmatterTitlepageTitle", "FrontmatterTitlepageSubtitle", "FrontmatterTitlepageAuthor",
-    "FrontmatterHalftitleAuthor", "ChapterHeader1", "BodyHeader1", "BodyHeader2", "BodyHeader3", 
-    "BodyHeader4", "BodyHeader5");
-  foreach($fontsizesprefix as $prefix) {
-    if(!isset($FORM[$prefix.'FontSize'])) { $FORM[$prefix.'FontSize'] = "1"; }
+  // if the form is shown the first time, use values from default theme in _config folder
+  if(!isset($FORM['PageDefinition']) && !isset($FORM['BodyFontSize']) && !isset($FORM['BodyLineHeight'])) { 
+    // assume form is called the first time
+    $FORM = $FORMPRESET;
   }
   print "
       <div class=\"row\">
@@ -1805,6 +2197,15 @@ function HTML_print_form($FORM) {
           print " type=\"radio\">".$selectval."
           </label>";     
         }
+      } elseif($temp[0] == "text") {
+        // text input field
+        print "
+          <input id=\"".$values['prefix'].$key."\" name=\"".$values['prefix'].$key."\" placeholder=\"e.g. #ff0000\" value=\"";
+          if(!empty($FORM[$values['prefix'].$key])) { print $FORM[$values['prefix'].$key]; }
+          print "\" class=\"form-control input-md\" type=\"text\">";  
+      }
+      if(isset($temp[2])) {
+        print "<span='help'>".$temp[2]."</span>";
       }
     print "
   </div>
@@ -1829,6 +2230,7 @@ function HTML_print_form($FORM) {
 * HTML for the header and body tag
 */
 function HTML_print_start() {
+  global $files4render;
   print "
 <!DOCTYPE html>
 <html lang=\"en\">
@@ -1861,6 +2263,13 @@ function HTML_print_start() {
         <div class='jumbotron'>
           <h1>Booktype Themes</h1>
           <p>Change the values below and create PDF. If you like what you see, make sure to save the config file!</p>  
+          <p>
+            Currently using:
+            <ol>
+              <li>HTML 4 mpdf: BODY: <b>".$files4render['html4mpdf']."</b> FRONTMATTER: <b>".$files4render['frontmatterhtml4mpdf']."</b></li>
+              <li>CSS 4 mpdf: <b>".$files4render['css4mpdf']."</b></li>
+            </ol>
+          </p>  
         </div>
   ";
 }
