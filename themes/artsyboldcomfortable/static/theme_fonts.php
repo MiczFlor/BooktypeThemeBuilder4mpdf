@@ -1,4 +1,4 @@
-/* 'Artsy Bold (Comfortable)' Version 0.1 theme fonts */
+/* 'Artsy Bold (Comfortable)' Version 0.2 theme fonts */
         "dejavusans" => array(
           'R' => "DejaVuSans.ttf",
           'B' => "DejaVuSans-Bold.ttf",

@@ -1,4 +1,4 @@
-/* 'Fairy Tale (Comfortable)' Version 0.1 theme fonts */
+/* 'Fairy Tale (Comfortable)' Version 0.2 theme fonts */
         "texgyrepagella" => array(
           'R' => "TeXGyrePagella-Regular.ttf",
           'B' => "TeXGyrePagella-Bold.ttf",

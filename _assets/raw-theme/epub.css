@@ -227,7 +227,7 @@ p.hanging {
   padding-left: %EpubBodyParagraphHangingEmVal%em;
 }
 
-/* Info Box */
+/* Info Box ****************************************************/
 .bk-box {
   font-family: "%BoxFontFamilyVal%"; 
   color: %BoxBodyColorVal%;
@@ -235,11 +235,16 @@ p.hanging {
   padding-bottom: 1em; 
   margin-top: 1em; 
   margin-bottom: 1em; 
+  border-left: %BoxBorderLeftLinePtVal%pt solid %BoxBorderColorVal%;
+  border-top: %BoxBorderTopLinePtVal%pt solid %BoxBorderColorVal%;
+  border-right: %BoxBorderRightLinePtVal%pt solid %BoxBorderColorVal%;
+  border-bottom: %BoxBorderBottomLinePtVal%pt solid %BoxBorderColorVal%; 
 }
 .bk-box p {
   font-family: "%BoxFontFamilyVal%"; 
   padding: 0 1em;
   text-indent: %EpubBoxIndentEmVal%em;
+  margin-bottom: 0;
 }
 .bk-box .box-caption {
   font-family: "%BoxFontFamilyVal%"; 
@@ -247,6 +252,7 @@ p.hanging {
   font-weight: %BoxCaptionFontWeightVal%;
   background-color: %BoxCaptionBackgroundColorVal%;
   padding: 1em;
+  border-bottom: %BoxCaptionBottomLinePtVal%pt solid %BoxBorderColorVal%; 
   margin-bottom: 1em;
 }
 

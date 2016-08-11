@@ -2,7 +2,7 @@
     "Theme": {
         "themenamehuman": "Artsy Bold (Comfortable)",
         "themenamefolder": "artsyboldcomfortable",
-        "themeversion": "0.1",
+        "themeversion": "0.2",
         "themedescription": "A strong theme for bold words. It might strain the eye for longer text, but leaves an impression for shorter statements. The compact theme uses no line indents and has spacing between paragraphs.",
         "themeauthor": "Micz Flor",
         "themedate": "11th August 2016"
@@ -30,9 +30,9 @@
     "BoxBorderLineStrength": "thin",
     "BoxBorderColor": "#000000",
     "BoxCaptionFontWeight": "bold",
-    "BoxCaptionColor": "#000000",
-    "BoxCaptionIconColor": "#000000",
-    "BoxCaptionBackgroundColor": "#aaaaaa",
+    "BoxCaptionColor": "#ffffff",
+    "BoxCaptionIconColor": "#ffffff",
+    "BoxCaptionBackgroundColor": "#000000",
     "BoxCaptionBottomLine": "true",
     "BoxCaptionBottomLineColor": "#000000",
     "BoxBodyColor": "#000000",

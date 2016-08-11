@@ -260,7 +260,7 @@ div.toc-title
 
 /* dropcaps*/
 .dropcap {
-  font-size: %BodyParagraphDropcapsFontsizePtVal%pt;
+  /*font-size: %BodyParagraphDropcapsFontsizePtVal%pt; /* for the future */
 }
 
 h1.chapter-h1 {

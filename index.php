@@ -13,18 +13,22 @@ $files4render = array();
 // (bod_mpdf-article.html|mpdf-body_themesample.html|xyz_mpdf-body-idea.html)
 $files4render['html4mpdf'] = "xyz_mpdf-body-idea.html";
 $files4render['htmlsample4mpdf'] = "mpdf-body_themesample.html";
-
 // (mpdf.css|bod_mpdf-UNIVERSAL.css)
 $files4render['css4mpdf'] = "mpdf.css"; 
+$files4render['css4bodprint'] = "bod_mpdf-UNIVERSAL.css"; 
 
 // (bod_mpdf-frontmatter.html|frontmatter_themesample.html)
 $files4render['frontmatterhtml4mpdf'] = "frontmatter_themesample.html"; 
 
 // (mpdf-body.html|mpdf-body_themesample.html|xyz_mpdf-body-idea.html)
 $files4render['html4princexml'] = "xyz_princexml-body-idea.html"; 
+// (princexml.css)
+$files4render['css4princexml'] = "princexml.css"; 
 
 // (pdfreactor-arabic.html|xyz_pdfreactor-body-idea.html|pdfreactor-weihnachtserzaehlungen.html)
 $files4render['html4pdfreactor'] = "xyz_pdfreactor-codehighlighting.html"; 
+// (pdfreactor.css)
+$files4render['css4pdfreactor'] = "pdfreactor.css"; 
 
 /*
 * When creating a PDF, should also a copy with specs of the theme be created? 
@@ -584,7 +588,6 @@ if(isset($_POST['Action'])) {
     * Create a theme: write all fonts and files to folder and change values
     */
     $themenamefolder = $options['dirthemes']."/".$FORM['Form']['Theme']['themenamefolder']; 
-
     // create theme folder
     if (!file_exists($themenamefolder)) {
     	mkdir($themenamefolder, 0777, true);
@@ -637,8 +640,11 @@ if(isset($_POST['Action'])) {
     // write info json file used by Booktype
     create_theme_info_json();
     
-    // read print pdf template file
+    // read print pdf template files
     create_theme_mpdf_css();
+    create_theme_princexml_css();
+    create_theme_pdfreactor_css();
+    create_theme_bodprint_css();
     
     // read screen pdf template file
     create_theme_screenpdf_css();
@@ -653,7 +659,6 @@ if(isset($_POST['Action'])) {
     create_theme_ebook_files();
     
     // finally make a PDF with a sample
-    print "<h1>Creating sample PDF file</h1>";//???
     create_theme_sample_pdf_file();
     
   } elseif($ACTION == "dosomething") {
@@ -765,7 +770,7 @@ if(isset($_POST['Action'])) {
     // PDFREACTOR . CSS
     // read template file and add page measurements on top
     if(file_exists('_assets/raw-theme/pdfreactor.css')) {
-      $pdfreactorstylecss = return_font_reload_css();    
+      $pdfreactorstylecss = return_font_preload_css();    
       $pdfreactorstylecss .= "/* page measurements and margins */
       @page{
         sheet-size: %PageWidth% %PageHeight%;  
@@ -796,7 +801,7 @@ if(isset($_POST['Action'])) {
     // PRINCEXML . CSS
     // read template file and add page measurements on top
     if(file_exists('_assets/raw-theme/princexml.css')) {
-      $princexmlstylecss = return_font_reload_css();
+      $princexmlstylecss = return_font_preload_css();
       
       $princexmlstylecss .= "@page {
         sheet-size: %PageWidth% %PageHeight%;  
@@ -1042,12 +1047,49 @@ function create_theme_mpdf_css() {
   global $FORM;
   global $find;
   global $replace;
+  global $files4render;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
   $stylecss = file_get_contents($themenamefolder."/".$files4render['css4mpdf']);
   $newstylecss = str_replace($find, $replace, $stylecss);
   // write template file
   file_put_contents($themenamefolder."/".$files4render['css4mpdf'], $newstylecss);
+}
+function create_theme_princexml_css() {
+  global $FORM;
+  global $find;
+  global $replace;
+  global $files4render;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4princexml']);
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  // write template file
+  file_put_contents($themenamefolder."/".$files4render['css4princexml'], $newstylecss);
+}
+function create_theme_pdfreactor_css() {
+  global $FORM;
+  global $find;
+  global $replace;
+  global $files4render;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4pdfreactor']);
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  // write template file
+  file_put_contents($themenamefolder."/".$files4render['css4pdfreactor'], $newstylecss);
+}
+function create_theme_bodprint_css() {
+  global $FORM;
+  global $find;
+  global $replace;
+  global $files4render;
+  // folder where to write the file
+  $themenamefolder = create_var_themenamefolder();
+  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4bodprint']);
+  $newstylecss = str_replace($find, $replace, $stylecss);
+  // write template file
+  file_put_contents($themenamefolder."/".$files4render['css4bodprint'], $newstylecss);
 }
 function create_theme_theme_fonts_php() {
   global $FORM;
@@ -1137,7 +1179,7 @@ function create_theme_panel_html() {
    file_put_contents($themenamefolder."/panel.html", $theme_panel_html_txt);
 }
 
-function return_font_reload_css() {
+function return_font_preload_css() {
   global $FORM;
   global $fontfamilies;
 
@@ -1185,7 +1227,6 @@ function return_font_reload_css() {
       }
     }
   }
- print "</pre>"; //???
   return($theme_preload_css_txt);
 }
 

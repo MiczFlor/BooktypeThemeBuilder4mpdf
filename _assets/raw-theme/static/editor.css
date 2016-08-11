@@ -185,16 +185,22 @@ p.quote:before {
   padding-bottom: 1em; 
   margin-top: 1em; 
   margin-bottom: 1em; 
+  border-left: %BoxBorderLeftLinePtVal%pt solid %BoxBorderColorVal%;
+  border-top: %BoxBorderTopLinePtVal%pt solid %BoxBorderColorVal%;
+  border-right: %BoxBorderRightLinePtVal%pt solid %BoxBorderColorVal%;
+  border-bottom: %BoxBorderBottomLinePtVal%pt solid %BoxBorderColorVal%; 
 }
 #contenteditor .bk-box p {
   padding: 0 1em;
   text-indent: %EditorBoxIndentEmVal%em;
+  margin-bottom: 0;
 }
 #contenteditor .bk-box .box-caption {
   color: %BoxCaptionColorVal%;
   font-weight: %BoxCaptionFontWeightVal%;
   background-color: %BoxCaptionBackgroundColorVal%;
   padding: 1em;
+  border-bottom: %BoxCaptionBottomLinePtVal%pt solid %BoxBorderColorVal%; 
   margin-bottom: 1em;
 }
 #contenteditor .bk-box .box-caption span.icon-trash {
