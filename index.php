@@ -12,6 +12,7 @@ $debug = "false"; // (true|false)
 $files4render = array();
 // (bod_mpdf-article.html|mpdf-body_themesample.html|xyz_mpdf-body-idea.html)
 $files4render['html4mpdf'] = "xyz_mpdf-body-idea.html";
+$files4render['htmlsample4mpdf'] = "mpdf-body_themesample.html";
 
 // (mpdf.css|bod_mpdf-UNIVERSAL.css)
 $files4render['css4mpdf'] = "mpdf.css"; 
@@ -484,7 +485,7 @@ $pagepresets = json_decode(file_get_contents("_config/config_papersizes.json"), 
 /*
 * Find available themes for editing
 */
-$themesavail = dir_get_recursively($options['dirthemes']."/");
+$themesavail = dir_list_recursively($options['dirthemes']."/");
 $tempthemes = glob($options['dirthemes']."/*", GLOB_ONLYDIR);
 if(count($tempthemes) > 0) {
   $themesavail = array();
@@ -652,6 +653,7 @@ if(isset($_POST['Action'])) {
     create_theme_ebook_files();
     
     // finally make a PDF with a sample
+    print "<h1>Creating sample PDF file</h1>";//???
     create_theme_sample_pdf_file();
     
   } elseif($ACTION == "dosomething") {
@@ -723,19 +725,19 @@ if(isset($_POST['Action'])) {
 ";
     
     $mpdfstylecss .= file_get_contents('_assets/raw-theme/'.$files4render['css4mpdf']);
-    $newmpdfstylecsss = str_replace($find, $replace, $mpdfstylecss);
+    $mpdfstylecss = str_replace($find, $replace, $mpdfstylecss);
     // write template file
-    file_put_contents("mpdf_files/mpdf.css", $newmpdfstylecsss);
+    file_put_contents("mpdf_files/mpdf.css", $mpdfstylecss);
     
     $mpdfhtml = file_get_contents('_assets/raw-html/'.$files4render['html4mpdf']);
-    $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
+    $mpdfhtml = str_replace($find, $replace, $mpdfhtml);
     // write template file
-    file_put_contents("mpdf_files/mpdf-body.html", $newmpdfhtml);
+    file_put_contents("mpdf_files/mpdf-body.html", $mpdfhtml);
     
     // frontmatter html
-    $mpdfhtml = file_get_contents('_assets/raw-html/'.$files4render['frontmatterhtml4mpdf']);
-    $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
-    file_put_contents("mpdf_files/frontmatter.html", $newmpdfhtml); 
+    $mpdffrontmatterhtml = file_get_contents('_assets/raw-html/'.$files4render['frontmatterhtml4mpdf']);
+    $mpdffrontmatterhtml = str_replace($find, $replace, $mpdffrontmatterhtml);
+    file_put_contents("mpdf_files/frontmatter.html", $mpdffrontmatterhtml); 
 
     /*
     * Run mPDF
@@ -875,9 +877,14 @@ function create_theme_sample_pdf_file() {
   global $options;
   global $find;
   global $replace;
+  global $files4render;
+  
+  // go to root directory
+  chdir($options['home']);
+
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = "@page {
+  $mpdfstylecss = "@page {
   sheet-size: %PageWidth% %PageHeight%;  
   size: %PageWidth% %PageHeight%; 
 
@@ -895,17 +902,18 @@ function create_theme_sample_pdf_file() {
   even-header-name: html_header-left;         
 }
 ";
-  $stylecss .= file_get_contents('_assets/raw-theme/'.$files4render['css4mpdf']);
-  $newstylecss = str_replace($find, $replace, $stylecss);
-  file_put_contents("mpdf_files/style.css", $newstylecss);
+  $mpdfstylecss .= file_get_contents('_assets/raw-theme/'.$files4render['css4mpdf']);
+  $mpdfstylecss = str_replace($find, $replace, $mpdfstylecss);
+  file_put_contents("mpdf_files/mpdf.css", $mpdfstylecss);
   // html for sample mpdf
-  $mpdfhtml = file_get_contents('_assets/raw-html/mpdf-body_themesample.html');
-  $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
-  file_put_contents("mpdf_files/body.html", $newmpdfhtml);
+  $readhtml = '_assets/raw-html/'.$files4render['htmlsample4mpdf'];
+  $mpdfhtml = file_get_contents($readhtml);
+  $mpdfhtml = str_replace($find, $replace, $mpdfhtml);
+  file_put_contents("mpdf_files/mpdf-body.html", $mpdfhtml);
   // frontmatter for sample mpdf
-  $mpdfhtml = file_get_contents('_assets/raw-html/'.$files4render['frontmatterhtml4mpdf']);
-  $newmpdfhtml = str_replace($find, $replace, $mpdfhtml);
-  file_put_contents("mpdf_files/frontmatter.html", $newmpdfhtml); 
+  $mpdffrontmatterhtml = file_get_contents('_assets/raw-html/'.$files4render['frontmatterhtml4mpdf']);
+  $mpdffrontmatterhtml = str_replace($find, $replace, $mpdffrontmatterhtml);
+  file_put_contents("mpdf_files/frontmatter.html", $mpdffrontmatterhtml); 
     
   /*
   * Create sample.pdf using mpdf
@@ -1263,22 +1271,6 @@ function create_bash_script($themesavail) {
     }
   }
   */
-}
-/*
-* Get directory tree recursively
-*/
-function dir_get_recursively($rootdir) {
-  $return = array();
-  $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($rootdir), RecursiveIteratorIterator::SELF_FIRST);
-  foreach($objects as $dir => $object){
-    $dir = rtrim($dir,".");
-    $dir = rtrim($dir,"/");
-    if(is_dir($dir)) {
-      $return[$dir."/"] = $dir."/";
-    }
-  }
-  asort($return);
-  return $return;
 }
 /*
 * Calculating absolute values for print font size in points (pt).
@@ -2285,5 +2277,21 @@ print "
 
 </html>
 ";
+}
+function dir_list_recursively($rootdir) {
+  /*
+  * Get directory tree recursively
+  */
+  $return = array();
+  $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($rootdir), RecursiveIteratorIterator::SELF_FIRST);
+  foreach($objects as $dir => $object){
+    $dir = rtrim($dir,".");
+    $dir = rtrim($dir,"/");
+    if(is_dir($dir)) {
+      $return[$dir."/"] = $dir."/";
+    }
+  }
+  asort($return);
+  return $return;
 }
 ?>

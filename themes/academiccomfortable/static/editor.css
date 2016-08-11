@@ -78,14 +78,14 @@ p.quote:before {
 
 #contenteditor h2 {
     font-family: "roboto-condensed";
-    font-size: 1.6em;
+    font-size: 1.8em;
     text-align: left; 
     font-weight: normal; 
     text-transform: none; 
     border-bottom: 0rem solid black;
     text-decoration: none;
-    padding-top: 9.8pt; 
-    margin-bottom: 4.9pt;
+    padding-top: 9.85pt; 
+    margin-bottom: 4.85pt;
     line-height: inherit;
     line-height: 29.4pt; 
 }
@@ -98,8 +98,8 @@ p.quote:before {
     text-transform: none; 
     border-bottom: 0rem solid black;
     text-decoration: none;
-    padding-top: 9.8pt; 
-    margin-bottom: 4.9pt;
+    padding-top: 9.85pt; 
+    margin-bottom: 4.85pt;
     line-height: inherit;
     line-height: 14.7pt; 
 }
@@ -112,8 +112,8 @@ p.quote:before {
     text-transform: none; 
     border-bottom: 0rem solid black;
     text-decoration: none;
-    padding-top: 9.8pt; 
-    margin-bottom: 4.9pt;
+    padding-top: 9.85pt; 
+    margin-bottom: 4.85pt;
     line-height: inherit;
     line-height: 14.7pt; 
 }
@@ -126,8 +126,8 @@ p.quote:before {
     text-transform: none; 
     border-bottom: 0rem solid black;
     text-decoration: none;
-    padding-top: 9.8pt; 
-    margin-bottom: 4.9pt;
+    padding-top: 9.85pt; 
+    margin-bottom: 4.85pt;
     line-height: inherit;
     line-height: 14.7pt; 
 }
@@ -181,7 +181,7 @@ p.quote:before {
   font-family: "roboto"; 
   font-size: 0.9em; 
   color: #000000;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   padding-bottom: 1em; 
   margin-top: 1em; 
   margin-bottom: 1em; 
@@ -193,7 +193,7 @@ p.quote:before {
 #contenteditor .bk-box .box-caption {
   color: #000000;
   font-weight: bold;
-  background-color: #ffffff;
+  background-color: #aaaaaa;
   padding: 1em;
   margin-bottom: 1em;
 }

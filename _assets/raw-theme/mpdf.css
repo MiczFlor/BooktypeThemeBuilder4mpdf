@@ -247,6 +247,7 @@ div.toc-title
 .bk-box p {
   padding: 0 %BoxPaddingVal%em;
   text-indent: %BoxIndentVal%em;
+  margin-bottom: 0;
 }
 .bk-box .box-caption {
   color: %BoxCaptionColorVal%;

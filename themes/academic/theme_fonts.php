@@ -1,4 +1,4 @@
-/* 'Academic (Compact)' Version 0.1 theme fonts */
+/* 'Academic (Compact)' Version 0.2 theme fonts */
         "roboto" => array(
           'R' => "Roboto-Regular.ttf",
           'B' => "Roboto-Bold.ttf",

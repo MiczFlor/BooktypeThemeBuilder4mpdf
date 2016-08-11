@@ -128,7 +128,7 @@ h2.frontmatter-author {
   text-align: left; 
   font-family: "dejavusans"; 
   border-bottom: 0px; 
-  font-size: 1.6em;
+  font-size: 1.8em;
   line-height: normal;
   margin-top: 2em;
 }
@@ -145,7 +145,7 @@ h2.frontmatter-author-title {
   font-family: "dejavusans"; 
   border-bottom: 0px; 
   margin-top: 2em;
-  font-size: 1.6em;
+  font-size: 1.8em;
   line-height: normal;
 }
 
@@ -154,7 +154,7 @@ h3.frontmatter-subtitle {
   font-family: "dejavusans"; 
   border-bottom: 0px; 
   margin-top: 10mm;
-  font-size: 1.6em;
+  font-size: 1.8em;
   line-height: normal;
 }
 */
@@ -166,7 +166,7 @@ p.quote {
   font-size: 1em;
   font-style: normal;
   text-indent: 0;
-  border-left: 0.05rem solid #000;
+  border-left: 0.05em solid #000;
   padding-left: 1em;
   margin-left: 1em;
   margin-top: 1em; 
@@ -211,10 +211,10 @@ h1 {
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 2.6em; 
+  font-size: 3.03em; 
   /*font-size: 3.6em;*/
-  margin-top: 1em;
-  margin-bottom: 2.5em;
+  margin-top: 0em;
+  margin-bottom: 3em;
 }
 
 h2 {
@@ -311,6 +311,29 @@ p.hanging {
   padding-left: 1em;
 }
 
+/* Info Box */
+.bk-box {
+  font-family: "dejavusans"; 
+  color: #000000;
+  background-color: #eeeeee;
+  padding-bottom: 1em; 
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+}
+.bk-box p {
+  font-family: "dejavusans"; 
+  padding: 0 1em;
+  text-indent: 0em;
+}
+.bk-box .box-caption {
+  font-family: "dejavusans"; 
+  color: #000000;
+  font-weight: bold;
+  background-color: #aaaaaa;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 ul,
 ol {
     margin-top: 10px;
@@ -370,9 +393,15 @@ td {
   text-align: center;
 }
 
-.caption_small {
+caption, 
+.caption_small, 
+.caption_table, 
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
   margin-top: 0.5em;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-style: italic;
 }
 

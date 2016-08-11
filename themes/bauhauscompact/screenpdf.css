@@ -22,7 +22,7 @@ body {
 /* Header ********************************************************************/
 .header-text {
   font-family: "texgyreadventor"; 
-  font-size: 0.5rem; 
+  font-size: tiny; 
   border-bottom: 0rem solid black; 
 }
 .header-left {
@@ -37,7 +37,7 @@ body {
 /* Footer ********************************************************************/
 .footer-text {
   font-family: "texgyreadventor"; 
-  font-size: 1rem; 
+  font-size: normal; 
   border-top: 0rem solid black; 
 }
 .footer-left {
@@ -120,7 +120,7 @@ div.frontmatter-author-title {
 div.frontmatter-line {
   width: 33%;
   background-color: black;
-  height: 0.3rem; 
+  height: true; 
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
@@ -152,9 +152,31 @@ span.mpdf_toc_t_level_1 {
 }
 /* Body styling ************************************************************/
 
+/* Info Box */
+.bk-box {
+  font-family: "texgyreadventor"; 
+  font-size: 0.9em; 
+  color: #000000;
+  background-color: #eeeeee;
+  padding-bottom: 1em; 
+  margin-top: 15pt; 
+  margin-bottom: 15pt; 
+}
+.bk-box p {
+  padding: 0 1em;
+  text-indent: 0ptem;
+}
+.bk-box .caption_box {
+  color: #000000;
+  font-weight: bold;
+  background-color: #aaaaaa;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 /* dropcaps*/
 .dropcap {
-  font-size: 50pt;
+  font-size: inheritpt;
 }
 
 h1.chapter-h1 {
@@ -283,7 +305,7 @@ blockquote, .quote {
   font-size: 13.3pt;
   font-style: normal;
   text-indent: 0;
-  border-left: 0.05rem solid #000;
+  border-left: 0.05em solid #000;
   padding-left: 2rem;
   margin-left: 15pt;
   margin-top: 15pt; 
@@ -305,29 +327,52 @@ li {
   line-height: 15pt; 
 }
 /* TABLE *****************************************************************/
+/* for caption styling see images section below */
 table {
   border-collapse: collapse;
   max-width: 100%;
   margin-top: 15pt; 
   margin-bottom: 15pt; 
 }
-
-caption {
-  font-style: italic;
-  margin-top: 15pt; 
-}
-
-table, th, td {
-  border: 0.05rem solid black;
-}
 th, td {
+  border: 0.1mm solid #000000;
   padding: 0.6rem 0.8rem;
+}
+/* IMAGE (plus captions) ************************************************/
+img, div.image {
+  max-width: 100%;
+  height: auto;
+  margin: 0px auto;
+}
+
+.group_img {
+  page-break-inside: avoid;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+caption, 
+.caption_small, 
+.caption_table,
+.caption_img, 
+.caption_fig, 
+.caption_image, 
+.caption_figure {
+  margin-top: 15pt;
+  font-size: 9pt;
+  line-height: 15pt;
+  font-style: italic;
+}
+.center {
+  text-align: center;
 }
 /* PREFORMATTED ******************************************************/
 pre {
   padding-bottom: 0;
   padding-top: 0;
   font-family: "texgyrecursor"; 
+  font-weight: "normal"; 
+  color: #000000; 
   line-height: 15pt; 
   margin-top: 15pt; 
   margin-bottom: 15pt; 
@@ -351,7 +396,7 @@ ol.endnotes li {
 
 /* DEDICATION  ***********************************************************/
 div.dedication {
-  padding-top: 30Val%;
+  padding-top: 30%;
 }
 
 p.dedication {
@@ -363,27 +408,4 @@ p.dedication {
   display: inline; 
   margin-left: 7rem;
   margin-right: 7rem;
-}
-
-/* IMAGE (plus captions) ************************************************/
-img, div.image {
-  max-width: 100Val%;
-  height: auto;
-  margin: 0px auto;
-}
-
-.group_img {
-  page-break-inside: avoid;
-  padding-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.caption_small {
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  line-height: 1rem;
-  font-style: italic;
-}
-.center {
-  text-align: center;
 }

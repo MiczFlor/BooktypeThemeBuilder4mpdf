@@ -105,7 +105,7 @@ h1.section {
   font-family: "roboto"; 
   text-align: left; 
   font-weight: bold; 
-  font-size: 2.1em;
+  font-size: 2.4em;
   text-transform: none; 
   text-decoration: none;
   margin-top: 0;
@@ -118,7 +118,7 @@ h1.frontmatter-title {
   font-family: "roboto"; 
   text-decoration: none;
   border-bottom: 0px; 
-  font-size: 2.1em;
+  font-size: 2.4em;
   line-height: normal;
   margin-top: 1.5em;
   margin-bottom: 0;
@@ -128,7 +128,7 @@ h2.frontmatter-author {
   text-align: left; 
   font-family: "roboto"; 
   border-bottom: 0px; 
-  font-size: 1.6em;
+  font-size: 1.8em;
   line-height: normal;
   margin-top: 2em;
 }
@@ -145,7 +145,7 @@ h2.frontmatter-author-title {
   font-family: "roboto"; 
   border-bottom: 0px; 
   margin-top: 2em;
-  font-size: 1.6em;
+  font-size: 1.8em;
   line-height: normal;
 }
 
@@ -154,7 +154,7 @@ h3.frontmatter-subtitle {
   font-family: "roboto"; 
   border-bottom: 0px; 
   margin-top: 10mm;
-  font-size: 1.6em;
+  font-size: 1.8em;
   line-height: normal;
 }
 */
@@ -213,8 +213,8 @@ h1 {
   line-height: normal; 
   font-size: 2.13em; 
   /*font-size: 3.6em;*/
-  margin-top: 2.1em;
-  margin-bottom: 2.1em;
+  margin-top: 2.4em;
+  margin-bottom: 2.4em;
 }
 
 h2 {
@@ -224,7 +224,7 @@ h2 {
   text-align: left; 
   text-decoration: none;
   line-height: normal; 
-  font-size: 1.6em; 
+  font-size: 1.8em; 
   /*font-size: 2.2em;*/
   margin-top: 0.66em;
   margin-bottom: 0.33em;
@@ -315,7 +315,7 @@ p.hanging {
 .bk-box {
   font-family: "roboto"; 
   color: #000000;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   padding-bottom: 1em; 
   margin-top: 1em; 
   margin-bottom: 1em; 
@@ -329,7 +329,7 @@ p.hanging {
   font-family: "roboto"; 
   color: #000000;
   font-weight: bold;
-  background-color: #ffffff;
+  background-color: #aaaaaa;
   padding: 1em;
   margin-bottom: 1em;
 }
