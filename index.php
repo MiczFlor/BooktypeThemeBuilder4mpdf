@@ -730,7 +730,9 @@ if(isset($_POST['Action'])) {
 ";
     
     $mpdfstylecss .= file_get_contents('_assets/raw-theme/'.$files4render['css4mpdf']);
-    $mpdfstylecss = str_replace($find, $replace, $mpdfstylecss);
+    $mpdfstylecss = str_replace($find, $replace, $mpdfstylecss);  
+    // uncomment specific things for mpdf
+    $mpdfstylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $mpdfstylecss); 
     // write template file
     file_put_contents("mpdf_files/mpdf.css", $mpdfstylecss);
     
@@ -789,6 +791,8 @@ if(isset($_POST['Action'])) {
       ";
       $pdfreactorstylecss .= file_get_contents('_assets/raw-theme/pdfreactor.css');
       $pdfreactorstylecss = str_replace($find, $replace, $pdfreactorstylecss);
+      // uncomment specific things for this pdf rendering engine
+      $pdfreactorstylecss = str_replace(array("/*uncomment4pdfreactor_"), array(""), $pdfreactorstylecss); 
       // write template file
       file_put_contents("pdfreactor_files/pdfreactor.css", $pdfreactorstylecss);
       
@@ -814,14 +818,16 @@ if(isset($_POST['Action'])) {
       }
       ";
       $princexmlstylecss .= file_get_contents('_assets/raw-theme/princexml.css');
-      $newprincexmlstylecss = str_replace($find, $replace, $princexmlstylecss);
+      $princexmlstylecss = str_replace($find, $replace, $princexmlstylecss);
+      // uncomment specific things for this pdf rendering engine
+      $princexmlstylecss = str_replace(array("/*uncomment4princexml_"), array(""), $princexmlstylecss); 
       // write template file
-      file_put_contents("princexml_files/princexml.css", $newprincexmlstylecss);
+      file_put_contents("princexml_files/princexml.css", $princexmlstylecss);
       
       $princexmlhtml = file_get_contents('_assets/raw-html/'.$files4render['html4princexml']);
-      $newprincexmlhtml = str_replace($find, $replace, $princexmlhtml);
+      $princexmlhtml = str_replace($find, $replace, $princexmlhtml);
       // write template file
-      file_put_contents("princexml_files/body-princexml.html", $newprincexmlhtml);
+      file_put_contents("princexml_files/body-princexml.html", $princexmlhtml);
     }
     
     /*
@@ -909,6 +915,8 @@ function create_theme_sample_pdf_file() {
 ";
   $mpdfstylecss .= file_get_contents('_assets/raw-theme/'.$files4render['css4mpdf']);
   $mpdfstylecss = str_replace($find, $replace, $mpdfstylecss);
+  // uncomment specific things for this pdf rendering engine
+  $mpdfstylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $mpdfstylecss); 
   file_put_contents("mpdf_files/mpdf.css", $mpdfstylecss);
   // html for sample mpdf
   $readhtml = '_assets/raw-html/'.$files4render['htmlsample4mpdf'];
@@ -1039,9 +1047,12 @@ function create_theme_screenpdf_css() {
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
   $stylecss = file_get_contents($themenamefolder."/screenpdf.css");
-  $newstylecss = str_replace($find, $replace, $stylecss);
+  $stylecss = str_replace($find, $replace, $stylecss);
+  // uncomment specific things for this pdf rendering engine
+  $stylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $stylecss); 
   // write template file
-  file_put_contents($themenamefolder."/screenpdf.css", $newstylecss);
+  file_put_contents($themenamefolder."/screenpdf.css", $stylecss);
+  return $stylecss;
 }
 function create_theme_mpdf_css() {
   global $FORM;
@@ -1051,9 +1062,12 @@ function create_theme_mpdf_css() {
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
   $stylecss = file_get_contents($themenamefolder."/".$files4render['css4mpdf']);
-  $newstylecss = str_replace($find, $replace, $stylecss);
+  $stylecss = str_replace($find, $replace, $stylecss);
+  // uncomment specific things for this pdf rendering engine
+  $stylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $stylecss); 
   // write template file
-  file_put_contents($themenamefolder."/".$files4render['css4mpdf'], $newstylecss);
+  file_put_contents($themenamefolder."/".$files4render['css4mpdf'], $stylecss);
+  return $stylecss;
 }
 function create_theme_princexml_css() {
   global $FORM;
@@ -1064,8 +1078,11 @@ function create_theme_princexml_css() {
   $themenamefolder = create_var_themenamefolder();
   $stylecss = file_get_contents($themenamefolder."/".$files4render['css4princexml']);
   $newstylecss = str_replace($find, $replace, $stylecss);
+  // uncomment specific things for this pdf rendering engine
+  $stylecss = str_replace(array("/*uncomment4princexml_"), array(""), $stylecss); 
   // write template file
-  file_put_contents($themenamefolder."/".$files4render['css4princexml'], $newstylecss);
+  file_put_contents($themenamefolder."/".$files4render['css4princexml'], $stylecss);
+  return $stylecss;
 }
 function create_theme_pdfreactor_css() {
   global $FORM;
@@ -1075,9 +1092,12 @@ function create_theme_pdfreactor_css() {
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
   $stylecss = file_get_contents($themenamefolder."/".$files4render['css4pdfreactor']);
-  $newstylecss = str_replace($find, $replace, $stylecss);
+  $stylecss = str_replace($find, $replace, $stylecss);
+  // uncomment specific things for this pdf rendering engine
+  $stylecss = str_replace(array("/*uncomment4pdfreactor_"), array(""), $stylecss); 
   // write template file
-  file_put_contents($themenamefolder."/".$files4render['css4pdfreactor'], $newstylecss);
+  file_put_contents($themenamefolder."/".$files4render['css4pdfreactor'], $stylecss);
+  return $stylecss;
 }
 function create_theme_bodprint_css() {
   global $FORM;
@@ -1087,9 +1107,12 @@ function create_theme_bodprint_css() {
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
   $stylecss = file_get_contents($themenamefolder."/".$files4render['css4bodprint']);
-  $newstylecss = str_replace($find, $replace, $stylecss);
+  $stylecss = str_replace($find, $replace, $stylecss);
+  // uncomment specific things for this pdf rendering engine
+  $stylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $stylecss); 
   // write template file
-  file_put_contents($themenamefolder."/".$files4render['css4bodprint'], $newstylecss);
+  file_put_contents($themenamefolder."/".$files4render['css4bodprint'], $stylecss);
+  return $stylecss;
 }
 function create_theme_theme_fonts_php() {
   global $FORM;
