@@ -255,6 +255,11 @@ p.hanging {
   border-bottom: %BoxCaptionBottomLinePtVal%pt solid %BoxBorderColorVal%; 
   margin-bottom: 1em;
 }
+/* if p tag inside caption, this is needed */
+.bk-box .box-caption p {
+  padding: 0em;
+  font-weight: %BoxCaptionFontWeightVal%;
+}
 
 ul,
 ol {

@@ -67,7 +67,7 @@
     "PartAlign": "center",
     "PartTextTransform": "uppercase",
     "PartBorderBottom": "none",
-    "PartTextDecoration": "underline",
+    "PartTextDecoration": "none",
     "PartFontSize": "2",
     "PartFontSizePt": "Not-using-PT",
     "FrontmatterGeneralPaddingTop": "3",
@@ -209,5 +209,6 @@
     "BodyHeader5FontSizePt": "Not-using-PT",
     "BodyHeader5LineHeight": "1",
     "BodyHeader5Padding": "1-top:1-bottom",
-    "ChapterDatelineTextDecoration": "none"
+    "ChapterDatelineTextDecoration": "none",
+    "last_update": "2016-08-15T09:52:55+02:00"
 }

@@ -1,3 +1,4 @@
+/* Theme 'Fairy Tale (Comfortable)' Version 0.2 update: 2016-08-15T09:55:43+02:00 */
 body {
   font-size: 9pt; 
   line-height: 13.5pt; 
@@ -70,7 +71,7 @@ h1.section {
 
 /* FRONT MATTER (half-title) **********************************************/
 div.frontmatter-half-title {
-  page: frontmatter;
+  page: frontmatter; /* needed for mpdf pdf rendering */
   font-weight: bold; 
   text-align: left; 
   text-transform: none; 
@@ -235,13 +236,13 @@ div.toc-title
   font-family: "texgyrepagella"; 
   font-size: 0.9em; 
   color: #000000;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   padding-bottom: 0.5em; 
   margin-top: 13.5pt; 
   margin-bottom: 13.5pt; 
-  border-left: 0pt solid #000000;
+  border-left: 0.5pt solid #000000;
   border-top: 0.5pt solid #000000;
-  border-right: 0pt solid #000000;
+  border-right: 0.5pt solid #000000;
   border-bottom: 0.5pt solid #000000; 
 }
 .bk-box p {
@@ -252,10 +253,14 @@ div.toc-title
 .bk-box .box-caption {
   color: #000000;
   font-weight: bold;
-  background-color: #aaaaaa;
+  background-color: #ffffff;
   padding: 0.5em;
-  border-bottom: 0.5pt solid #000000; 
+  border-bottom: 0pt solid #000000; 
   margin-bottom: 0.5em;
+}
+.bk-box .box-caption p {
+  font-weight: bold;
+  padding: 0em;
 }
 
 /* dropcaps*/

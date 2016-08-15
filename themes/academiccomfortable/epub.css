@@ -1,3 +1,4 @@
+/* Theme 'Academic (Comfortable)' Version 0.2 update: 2016-08-15T09:49:50+02:00 */
 @font-face {
     font-family: 'roboto';
     font-weight: normal;
@@ -338,6 +339,11 @@ p.hanging {
   padding: 1em;
   border-bottom: 0.5pt solid #000000; 
   margin-bottom: 1em;
+}
+/* if p tag inside caption, this is needed */
+.bk-box .box-caption p {
+  padding: 0em;
+  font-weight: bold;
 }
 
 ul,

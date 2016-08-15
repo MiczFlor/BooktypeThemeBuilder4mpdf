@@ -1,3 +1,4 @@
+/* Theme 'Artsy Bold (Compact)' Version 0.2 update: 2016-08-15T09:50:25+02:00 */
 #contenteditor {
   font-size: 13pt;
   line-height: normal;
@@ -202,6 +203,11 @@ p.quote:before {
   padding: 1em;
   border-bottom: 0.5pt solid #000000; 
   margin-bottom: 1em;
+}
+/* if p tag inside caption, this is needed */
+#contenteditor .bk-box .box-caption p {
+  padding: 0em;
+  font-weight: bold;
 }
 #contenteditor .bk-box .box-caption span.icon-trash {
   color: #ffffff;

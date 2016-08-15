@@ -1,3 +1,4 @@
+/* Theme 'Fairy Tale (Comfortable)' Version 0.2 update: 2016-08-15T09:55:43+02:00 */
 @font-face {
     font-family: 'texgyrepagella';
     font-weight: normal;
@@ -287,13 +288,13 @@ p.hanging {
 .bk-box {
   font-family: "texgyrepagella"; 
   color: #000000;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   padding-bottom: 1em; 
   margin-top: 1em; 
   margin-bottom: 1em; 
-  border-left: 0pt solid #000000;
+  border-left: 0.5pt solid #000000;
   border-top: 0.5pt solid #000000;
-  border-right: 0pt solid #000000;
+  border-right: 0.5pt solid #000000;
   border-bottom: 0.5pt solid #000000; 
 }
 .bk-box p {
@@ -306,10 +307,15 @@ p.hanging {
   font-family: "texgyrepagella"; 
   color: #000000;
   font-weight: bold;
-  background-color: #aaaaaa;
+  background-color: #ffffff;
   padding: 1em;
-  border-bottom: 0.5pt solid #000000; 
+  border-bottom: 0pt solid #000000; 
   margin-bottom: 1em;
+}
+/* if p tag inside caption, this is needed */
+.bk-box .box-caption p {
+  padding: 0em;
+  font-weight: bold;
 }
 
 ul,

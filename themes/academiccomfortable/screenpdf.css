@@ -1,3 +1,4 @@
+/* Theme 'Academic (Comfortable)' Version 0.2 update: 2016-08-15T09:49:50+02:00 */
 body {
   font-size: 10.5pt; 
   line-height: 14.7pt; 
@@ -70,7 +71,7 @@ h1.section {
 
 /* FRONT MATTER (half-title) **********************************************/
 div.frontmatter-half-title {
-  page: frontmatter;
+  page: frontmatter; /* needed for mpdf pdf rendering */
   font-weight: bold; 
   text-align: left; 
   text-transform: uppercase; 
@@ -256,6 +257,10 @@ div.toc-title
   padding: 0.5em;
   border-bottom: 0.5pt solid #000000; 
   margin-bottom: 0.5em;
+}
+.bk-box .box-caption p {
+  font-weight: bold;
+  padding: 0em;
 }
 
 /* dropcaps*/

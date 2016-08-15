@@ -597,7 +597,10 @@ if(isset($_POST['Action'])) {
     // copy all theme raw files into folder
     exec("cp -R _assets/raw-theme/* ".$themenamefolder."/");
     // store theme json in folder
-    file_put_contents($themenamefolder."/theme_config.json", json_encode($FORM['Form'], JSON_PRETTY_PRINT));  
+    // add creation date and time
+    $theme_config = $FORM['Form'];
+    $theme_config['last_update'] = date(DATE_ATOM);
+    file_put_contents($themenamefolder."/theme_config.json", json_encode($theme_config, JSON_PRETTY_PRINT));  
     /*
     * copy fonts into static folder
     */
@@ -999,7 +1002,7 @@ function create_theme_epub_css() {
   * the epub.css is a little different, because we need to add @font-face info
   */
   // create @font-face first
-  $stylecss = "";
+  $stylecss = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
   foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
     foreach($values as $style => $fontname) {
       // make sure the font exists
@@ -1035,10 +1038,12 @@ function create_theme_editor_css() {
   global $replace;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = file_get_contents($themenamefolder."/static/editor.css");
-  $newstylecss = str_replace($find, $replace, $stylecss);
+  $stylecss = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
+  $stylecss .= file_get_contents($themenamefolder."/static/editor.css");
+  $stylecss = str_replace($find, $replace, $stylecss);
   // write template file
-  file_put_contents($themenamefolder."/static/editor.css", $newstylecss);
+  file_put_contents($themenamefolder."/static/editor.css", $stylecss);
+  return $stylecss;
 }
 function create_theme_screenpdf_css() {
   global $FORM;
@@ -1046,7 +1051,8 @@ function create_theme_screenpdf_css() {
   global $replace;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = file_get_contents($themenamefolder."/screenpdf.css");
+  $stylecss = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
+  $stylecss .= file_get_contents($themenamefolder."/screenpdf.css");
   $stylecss = str_replace($find, $replace, $stylecss);
   // uncomment specific things for this pdf rendering engine
   $stylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $stylecss); 
@@ -1061,7 +1067,8 @@ function create_theme_mpdf_css() {
   global $files4render;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4mpdf']);
+  $stylecss = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
+  $stylecss .= file_get_contents($themenamefolder."/".$files4render['css4mpdf']);
   $stylecss = str_replace($find, $replace, $stylecss);
   // uncomment specific things for this pdf rendering engine
   $stylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $stylecss); 
@@ -1076,7 +1083,8 @@ function create_theme_princexml_css() {
   global $files4render;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4princexml']);
+  $stylecss = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
+  $stylecss .= file_get_contents($themenamefolder."/".$files4render['css4princexml']);
   $newstylecss = str_replace($find, $replace, $stylecss);
   // uncomment specific things for this pdf rendering engine
   $stylecss = str_replace(array("/*uncomment4princexml_"), array(""), $stylecss); 
@@ -1091,7 +1099,8 @@ function create_theme_pdfreactor_css() {
   global $files4render;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4pdfreactor']);
+  $stylecss = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
+  $stylecss .= file_get_contents($themenamefolder."/".$files4render['css4pdfreactor']);
   $stylecss = str_replace($find, $replace, $stylecss);
   // uncomment specific things for this pdf rendering engine
   $stylecss = str_replace(array("/*uncomment4pdfreactor_"), array(""), $stylecss); 
@@ -1106,7 +1115,8 @@ function create_theme_bodprint_css() {
   global $files4render;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $stylecss = file_get_contents($themenamefolder."/".$files4render['css4bodprint']);
+  $stylecss = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
+  $stylecss .= file_get_contents($themenamefolder."/".$files4render['css4bodprint']);
   $stylecss = str_replace($find, $replace, $stylecss);
   // uncomment specific things for this pdf rendering engine
   $stylecss = str_replace(array("/*uncomment4mpdf_"), array(""), $stylecss); 
@@ -1118,7 +1128,7 @@ function create_theme_theme_fonts_php() {
   global $FORM;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $theme_fonts_txt = "/* '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." theme fonts */";
+  $theme_fonts_txt = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
   foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
     $theme_fonts_txt .= "\n        \"".$fontfamily."\" => array(";
     foreach($values as $style => $fontname) {
@@ -1257,7 +1267,7 @@ function create_theme_preload_css() {
   global $FORM;
   // folder where to write the file
   $themenamefolder = create_var_themenamefolder();
-  $theme_preload_css_txt = "/* Pre-load '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." theme fonts */";
+  $theme_preload_css_txt = "/* Theme '".$FORM['Form']['Theme']['themenamehuman']."' Version ".$FORM['Form']['Theme']['themeversion']." update: ".date(DATE_ATOM)." */\n";
   foreach($FORM['Fonts']['families'] as $fontfamily => $values) {
     foreach($values as $style => $fontname) {
       // make sure the font exists
