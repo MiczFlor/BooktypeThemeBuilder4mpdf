@@ -1,4 +1,4 @@
-/* Theme 'Report Idea (Compact)' Version 0.2 update: 2016-08-15T10:48:32+02:00 */
+/* Theme 'Report Idea (Compact)' Version 0.2 update: 2016-08-24T13:58:38+02:00 */
 @font-face {
     font-family: 'agaramondpro';
     font-weight: normal;
@@ -476,6 +476,7 @@ ol.endnotes li {
   margin: 0;
 }
 
-ol.endnotes p {
+ol.endnotes p,
+ol.endnotes li p {
   text-indent: 0;
 }

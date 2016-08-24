@@ -363,6 +363,7 @@ ol.endnotes li {
   margin: 0;
 }
 
-ol.endnotes p {
+ol.endnotes p,
+ol.endnotes li p {
   text-indent: 0;
 }

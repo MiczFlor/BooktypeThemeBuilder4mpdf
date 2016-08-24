@@ -10,8 +10,8 @@ $debug = "false"; // (true|false)
 */
 // CSS and HTML files using in conversion
 $files4render = array();
-// (bod_mpdf-article.html|mpdf-body_themesample.html|xyz_mpdf-body-idea.html)
-$files4render['html4mpdf'] = "xyz_mpdf-body-idea.html";
+// (mpdf-body.html|bod_mpdf-article.html|mpdf-body_themesample.html|xyz_mpdf-body-idea.html)
+$files4render['html4mpdf'] = "mpdf-body.html";
 $files4render['htmlsample4mpdf'] = "mpdf-body_themesample.html";
 // (mpdf.css|bod_mpdf-UNIVERSAL.css)
 $files4render['css4mpdf'] = "mpdf.css"; 
