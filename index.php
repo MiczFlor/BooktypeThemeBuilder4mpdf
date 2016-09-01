@@ -51,10 +51,10 @@ $options = array(
   "princexml_files" => realpath(dirname(__FILE__))."/princexml_files", // path to the folder where the sample files are
   "princexml_output" => realpath(dirname(__FILE__))."/princexml_output", // path where to create PDF
   //"mpdf_lib" => "/var/www/mpdf/", // path to mpdf library
-  "mpdf_lib" => "/var/www/mpdf60-old/", // path to mpdf library
+  "mpdf_lib" => "/var/www/html/mpdf60-old/", // path to mpdf library
   "dirthemes" => realpath(dirname(__FILE__))."/themes", // path to the folder theme dirs are
   "output" => "static_mpdf_test.pdf", // file name of the generated file
-  "fontsdir" => "/var/www/mpdf/ttfonts", // directory with all the fonts
+  "fontsdir" => "/var/www/html/mpdf/ttfonts", // directory with all the fonts
   /*
   * kindlegen is needed to generate kindle e-book files from EPUB
   * Learn more here: http://www.amazon.com/gp/feature.html?docId=1000765211
